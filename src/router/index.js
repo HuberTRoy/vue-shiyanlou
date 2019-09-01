@@ -1,0 +1,58 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+
+import Home from '@/pages/home.vue'
+import Course from '@/pages/courses/course.vue'
+import Courses from '@/pages/courses/course_home.vue'
+import Path from '@/pages/path/path_home.vue'
+import CoursePath from '@/pages/path/course_path.vue'
+import QuestionsHome from '@/pages/questions/questions_home.vue'
+import Question from '@/pages/questions/question.vue'
+import User from '@/pages/user/user.vue'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+        path: '/',
+        name: 'Home',
+        component: Home
+    },
+    {
+        path: '/courses',
+        name: 'courses',
+        component: Courses
+    },
+    {
+        path: '/courses/:id',
+        name: 'course',
+        component: Course
+    },
+    {
+        path: '/path',
+        name: 'path',
+        component: Path
+    },
+    {
+        path: '/path/:id',
+        name: 'coursePath',
+        component: CoursePath
+    },
+    {
+        path: '/questions',
+        name: 'questions',
+        component: QuestionsHome
+    },
+    {
+        path: '/questions/:id',
+        name: 'question',
+        component: Question
+    },
+    {
+        path: '/user/:id',
+        name: 'user',
+        component: User
+    }
+  ]
+})

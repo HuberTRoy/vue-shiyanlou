@@ -1,0 +1,79 @@
+<template>
+   <div class="qa_div">
+       <a href="javascript:;" class="submit_qa">
+           我要提问
+       </a>
+       <hr class="split_hr">
+
+       <div class="question_div">
+           <QaItem v-for="(qa, index) in qa_information.items"
+                   :key="index"
+                   :data="qa"
+            >
+           </QaItem>
+       </div>
+       <TabPage :pageType="'qa'">
+       </TabPage>
+   </div>
+</template>
+
+<script type="text/javascript">
+import { mapState, mapActions } from 'vuex'
+import QaItem from '@/components/common_components/qa_item/qa_item.vue'
+import TabPage from '../tab_page.vue'
+
+export default {
+    components: {
+        QaItem,
+        TabPage
+    },
+
+    computed: {
+        ...mapState({
+            course_id: state => state.course.course_id,
+            qa_information: state => state.course.qa_information
+        })
+    },
+
+    methods: {
+        ...mapActions({
+            get_qa: 'course/change_qa_information'
+        })
+    },
+
+    created: function () {
+        this.get_qa({
+            'course_id': this.course_id,
+            'page': 1,
+            'page_size': 10
+        })
+    }
+}
+
+</script>
+
+<style type="text/css">
+.submit_qa {
+    display: inline-block;
+    margin-top: 12px;
+    color: #fff;
+    background-color: #08bf91;
+    border-color: #08bf91;
+    padding: 6px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+.submit_qa:hover {
+    color: #fff;
+    background-color: #21d6a8;
+}
+
+.split_hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+</style>
