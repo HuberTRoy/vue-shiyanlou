@@ -221,3 +221,20 @@ TODO 后端配合部分
 
 现在重新开始看实验楼的话，布局没有太大的变化，但是之前首次请求部分是直接返回的，现在好像是做了前后端彻底分离，
 可以直接抓取实验楼的API使用了。
+
+已知Api:
+获得所有课程分类：
+    https://www.shiyanlou.com/api/v2/courses/categories/
+获得所有的课程，参数
+    http://www.shiyanlou.com/api/v2/courses/
+获取主页中的内容:
+    index/paths 获取路径
+    index/bootcamps 获取推荐的训练营
+    index/classfication-courses 获取推荐的各类课程
+    index/louplus 获取楼+
+    index/banner-pictures 获取滚动的推广课程
+    index/categories 获取主页的课程分类信息
+
+另外，单一课程仍然没有直接可用的API，而且已经更新了布局。
+
+
