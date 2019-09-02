@@ -17,52 +17,10 @@ const state = {
             'page_size': 20,
             'results': []
     },
-    course_item_category: {
-                'courses_category': ['全部', '后端开发', 'Linux运维', '云计算与大数据', '数据库', '信息安全', 'Web前端', '计算机专业课', '其他技术'],
-                'sub_courses_category': [
-                                        {'name': 'Python',
-                                        'category': ['全部', '后端开发']},
-                                        {'name': 'PHP',
-                                        'category': ['全部', '后端开发']},
-                                        {'name': 'Java',
-                                        'category': ['全部', '后端开发']},
-                                        {'name': 'OpenCV',
-                                        'category': ['全部', '后端开发']},
-                                        {'name': 'Ruby',
-                                        'category': ['全部', '后端开发']},
-                                        {'name': 'C++',
-                                        'category': ['全部', '后端开发']},
-                                        {'name': 'C',
-                                        'category': ['全部', '后端开发']},
-                                        {'name': 'NodeJS',
-                                        'category': ['全部', '后端开发']},
-                                        {'name': 'GO',
-                                        'category': ['全部', '后端开发']},
-                                        {'name': 'Flask',
-                                        'category': ['全部', '后端开发']},
-                                        {'name': 'Linux',
-                                        'category': ['全部', 'Linux运维']},
-                                        {'name': 'Shell',
-                                        'category': ['全部', 'Linux运维']},
-                                        {'name': 'Nginx',
-                                        'category': ['全部', 'Linux运维']},
-                                        {'name': 'SQL',
-                                        'category': ['全部', '数据库']},
-                                        {'name': 'MongoDB',
-                                        'category': ['全部', '数据库']},
-                                        {'name': 'MySQL',
-                                        'category': ['全部', '数据库']},
-                                        {'name': 'Redis',
-                                        'category': ['全部', '数据库']},
-                                        {'name': 'HTML5',
-                                        'category': ['全部', 'Web前端']},
-                                        {'name': 'CSS3',
-                                        'category': ['全部', 'Web前端']},
-                                        {'name': 'React',
-                                        'category': ['全部', 'Web前端']},
-                                        {'name': 'Bootstrap',
-                                        'category': ['全部', 'Web前端']}]
-            }
+    courses_category: {
+        'name': '全部',
+        'tags': [1,2,3]
+    }
 }
 
 const getters = {
@@ -98,7 +56,9 @@ const mutations = {
         state.courses_content = content
         state.all_page = Math.ceil(content['count'] / content['page_size'])
     },
-
+    change_courses_category (state, content) {
+        state.courses_category = content
+    },
     change_current_category (state, category) {
         state.current_category = category
         // 更改大分类时会将选取的小分类初始化。
@@ -163,6 +123,15 @@ const actions = {
                 commit('change_courses_content', courseContent.data)
             }
         )
+    },
+
+    change_courses_category (context) {
+        coursesApi.get_courses_categories().then((coursesCategory) => {
+            for (let tags of coursesCategory.data) {
+                tags.tags.unshift('全部')
+            }
+            context.commit('change_courses_category', coursesCategory.data)
+        })
     },
 
     router_to (context) {

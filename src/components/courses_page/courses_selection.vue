@@ -4,29 +4,30 @@
             <div class="courses_category_diretion courses_selection">
                 <div class="courses_category_title"> 方向：</div>
                 <div class="courses_selection_card">
-                    <SelectionButton v-for="title in course_item_category['courses_category']"
-                    :text="title"
-                    :key="title"
-                    :class="current_category==title ? 'selected' : ''"
-                    @click.native="change_current_category(title)"
+                    <SelectionButton v-for="title in courses_category"
+                    :text="title['name']"
+                    :key="title['name']"
+                    :class="current_category==title['name'] ? 'selected' : ''"
+                    @click.native="change_current_category(title['name'])"
                     ></SelectionButton>
                 </div>
             </div>
             <div class="courses_category_tag courses_selection">
                 <div class="courses_category_title"> 标签： </div>
                 <div class="courses_selection_card">
-                    <SelectionButton :text="'全部'"
-                                     :class="current_tag=='全部' ? 'selected' : ''"
-                                     @click.native="change_current_tag('全部')"
-                    ></SelectionButton>
-                    <SelectionButton v-for="tag_information in course_item_category['sub_courses_category']"
-                    :text="tag_information['name']"
-                    :key="tag_information['name']"
-                    :class="current_tag==tag_information['name'] ? 'selected' : ''"
-                    v-show="tag_information['category'].indexOf(current_category) != -1"
-                    @click.native="change_current_tag(tag_information['name'])"
+                    <div
+                        v-for="tags in courses_category"
+                        :key="tags['name']"
                     >
-                    </SelectionButton>
+                        <SelectionButton v-for="tag_information in tags['tags']"
+                        :text="tag_information"
+                        :key="tag_information"
+                        :class="current_tag==tag_information ? 'selected' : ''"
+                        v-show="tags['name'].indexOf(current_category) != -1"
+                        @click.native="change_current_tag(tag_information)"
+                        >
+                        </SelectionButton>
+                    </div>
                 </div>
             </div>
             <div class="courses_order_div">
@@ -138,7 +139,7 @@ export default {
             current_page: state => state.coursesCategory.current_page,
             all_page: state => state.coursesCategory.all_page,
             courses_content: state => state.coursesCategory.courses_content,
-            course_item_category: state => state.coursesCategory.course_item_category
+            courses_category: state => state.coursesCategory.courses_category
         })
     },
 
@@ -158,7 +159,8 @@ export default {
             change_current_type_order: 'coursesCategory/change_current_type_order',
             router_to: 'coursesCategory/router_to',
             change_courses_content: 'coursesCategory/change_courses_content',
-            change_query: 'coursesCategory/change_query'
+            change_query: 'coursesCategory/change_query',
+            change_courses_category: 'coursesCategory/change_courses_category'
         })
     },
     watch: {
@@ -170,6 +172,7 @@ export default {
         // console.log(1)
         // this.has_created = true
         // this.router_to()
+        this.change_courses_category()
         this.change_courses_content(this.$route.query)
     }
 }
