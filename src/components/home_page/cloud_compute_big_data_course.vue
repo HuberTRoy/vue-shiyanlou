@@ -1,15 +1,15 @@
 <template>
     <div class="cloud_compute_big_data_course_div">
         <Title class="cloud_compute_big_data_course_div_title"
-               :title="'云计算与大数据'"
+               :title="cloud_compute_big_data_course_content['classify_name']"
         >
 
         </Title>
 
         <div class="cloud_compute_big_data_normal_card_div">
             <NormalCard class="cloud_compute_big_data_normal_card"
-                        :data="cloud_compute_big_data_course_content.normal ?
-                        cloud_compute_big_data_course_content.normal : {}"
+                        :data="cloud_compute_big_data_course_content.recommend_course ?
+                        cloud_compute_big_data_course_content.recommend_course : {}"
             >
 
             </NormalCard>
@@ -36,7 +36,7 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            cloud_compute_big_data_course_content: state => state.home.home_content.cloud_compute_big_data_course_content
+            cloud_compute_big_data_course_content: state => state.home.home_content.classfication_courses[4]
         })
     },
     components: {

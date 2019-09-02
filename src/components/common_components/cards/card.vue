@@ -1,13 +1,14 @@
 <template>
     <!-- 普通 card a 标签 + img  -->
     <div class="normal_card">
-        <router-link tag="a"
-                     :to="{ name: 'course', params: {id: data.course_id} }"
+        <a tag="a"
                      class="normal_card_a"
                      target="_blank"
+                     :href="data.html_url"
         >
-            <img :src="data.img_url" class="normal_card_img">
-        </router-link>
+                     <!-- :to="{ name: 'course', params: {id: data.course_id} }" -->
+            <img :src="data.picture_url" class="normal_card_img">
+        </a>
     </div>
 </template>
 

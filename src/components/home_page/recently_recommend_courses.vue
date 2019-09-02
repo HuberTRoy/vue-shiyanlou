@@ -1,8 +1,8 @@
 <template>
     <div class="recently_recommend_courses">
         <Title class="recently_recommend_course_div_title"
-               :title="'近期好课 | '"
-               :description="'及时学习，跟进时代的脚步'"
+               :title="recently_recommend_courses_content['classify_name'] + ' | '"
+               :description="recently_recommend_courses_content['description']"
         >
         </Title>
 
@@ -69,7 +69,7 @@ export default {
     },
     computed: {
         ...mapState({
-            recently_recommend_courses_content: state => state.home.home_content.recently_recommend_courses_content
+            recently_recommend_courses_content: state => state.home.home_content.classfication_courses[1]
         })
     },
     components: {

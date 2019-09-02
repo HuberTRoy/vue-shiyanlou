@@ -8,18 +8,19 @@
             <div id="course_categories">
                 <ul id="course_categories_ul">
                    <li class="course_categories_li"
-                       v-for="(nav,index) in navigation_categories_content.categories"
+                       v-for="(nav,index) in index_categories"
                        :key="index"
                    >
                         <div class="course_categories_div">
-                            <router-link :to="{ name: 'courses', query: {category: nav.header.name} }"
+                            <router-link :to="{ name: 'courses', query: {category: nav.name} }"
                                          target="_blank"
                                          class="main_course_button course_button">
-                                {{ nav.header.name }}
+                                {{ nav.name }}
                             </router-link>
-                            <router-link v-for=" (sub, s_index) in nav.sub_header"
+                            <router-link v-for=" (sub, s_index) in nav.tags"
+                                         v-if="s_index<2"
                                          :key="s_index"
-                                         :to="{ name: 'courses', query: {category: nav.header.name, tag: sub.name} }"
+                                         :to="{ name: 'courses', query: {category: nav.name, tag: sub.name} }"
                                          target="_blank"
                                          class="course_button">
                                 {{ sub.name }}
@@ -29,13 +30,13 @@
                              :style="{ top: index > 3 ? ((-57 * (index-4))-40)+'px' : '0px' }"
                         >
                             <p class="sub_course_categories_p">
-                                {{ nav.header.name }}
+                                {{ nav.name }}
                             </p>
                             <div class="sub_course_categories_span_div">
-                                <span v-for="(sub_category, s_c_index) in nav.hidden.categories"
+                                <span v-for="(sub_category, s_c_index) in nav.tags"
                                       :key="s_c_index"
                                       class="sub_course_categories_span">
-                                    <router-link :to="{ name: 'courses', query: { category: nav.header.name, tag: sub_category.name } }"
+                                    <router-link :to="{ name: 'courses', query: { category: nav.name, tag: sub_category.name } }"
                                                  target="_blank"
                                                  class="sub_course_a">
                                         {{ sub_category.name }}
@@ -44,13 +45,13 @@
 
                             </div>
                             <p class="sub_course_categories_p">课程推荐</p>
-                            <p v-for="(recom, r_index) in nav.hidden.recommend"
+                            <p v-for="(recom, r_index) in nav.recommend_courses"
                                :key="r_index"
                                class="sub_course_p" >
-                                <router-link :to="{ name: 'course', params: {id: recom.course_id} }"
+                                <router-link :to="{ name: 'course', params: {id: recom.id} }"
                                              target="_blank"
                                              class="sub_recommend_course_a">
-                                            {{ recom.title }}
+                                            {{ recom.name }}
                                 </router-link>
                             </p>
                         </div>
@@ -70,25 +71,26 @@
 
             <transition-group name="ad_transition_group" tag="ul" class="ad_transition_group_ul">
                 <li class="ads_li"
-                    v-for="(ad,index) in home_ad_content['ads']"
+                    v-for="(ad,index) in index_banner"
                     :key="index"
                     v-show="current_index==index">
-                    <router-link tag="a"
+                    <a tag="a"
                                  class="ads_a"
                                  tagget="_blank"
-                                 :to="{ name: ad.router_name, params: ad.router_params}"
+                                 :href="ad['html_url']"
                                  >
-                        <img class="ads_img" :src="ad['ad_img']">
-                    </router-link>
+                                 <!-- :to="{ name: ad.router_name, params: ad.router_params}" -->
+                        <img class="ads_img" :src="ad['picture_url']">
+                    </a>
                 </li>
             </transition-group>
-            <!--
-                广告区域，分布在中间。
-             -->
+            
+                <!-- 广告区域，分布在中间。 -->
+             
              <div id="slide_ads_div">
                 <ul class="slide_ads_ul">
                     <li class="slide_ads_li"
-                        v-for="(ad,index) in home_ad_content['ads']"
+                        v-for="(ad,index) in index_banner"
                         :class="current_index==index ? 'slide_ads_li_adtive':''"
                         :key="index"
                         @mouseover="tab_ad(index)">
@@ -111,17 +113,17 @@ export default {
     },
     computed: {
         ...mapState({
-            home_ad_content: state => state.home.home_content.home_ad_content,
-            navigation_categories_content: state => state.home.home_content.navigation_categories_content
+            index_banner: state => state.home.home_content.index_banner,
+            index_categories: state => state.home.home_content.index_categories
         }),
         bg_colors: function () {
             let colors = []
-            if (!this.home_ad_content) {
+            if (!this.index_banner) {
                 return []
             }
 
-            for (let ad of this.home_ad_content['ads']) {
-                colors.push(ad['ad_color'])
+            for (let ad of this.index_banner) {
+                colors.push(ad['background_color'])
             }
             return colors
         }
@@ -264,7 +266,7 @@ export default {
 
 .sub_course_categories_span_div {
     display: flex;
-    align-self: center;
+    /*align-self: center;*/
     flex-wrap: wrap;
     margin-bottom: 20px;
 }

@@ -4,34 +4,34 @@
             <router-link class="training_card_a"
                          tag="a"
                          target="_blank"
-                         :to="{ name: 'course', params: {id: data.course_id} }"
+                         :to="{ name: 'course', params: {id: data.id} }"
             >
-                <img :src="data.course_img_url" class="training_card_img">
+                <img :src="data.picture_url" class="training_card_img">
             </router-link>
         </div>
         <div class="training_card_text_div">
             <div class="training_card_title_description_div">
                 <h4 class="training_card_text_title">
                     {{
-                        data.course_title
+                        data.name
                     }}
                 </h4>
                 <p class="training_card_text_description">
                     {{
-                        data.course_description
+                        data.description
                     }}
                 </p>
             </div>
             <div class="training_card_text_footer_div">
                 <p class="training_card_text_tag">
                     {{
-                        data.course_tag
+                        data.tags.join(" ")
                     }}
                 </p>
                 <router-link class="go_to_detail_a"
                              tag="a"
                              target="_blank"
-                             :to="{ name: 'course', params: {id: data.course_id } }"
+                             :to="{ name: 'course', params: {id: data.id } }"
                 >
                     查看详情
                 </router-link>

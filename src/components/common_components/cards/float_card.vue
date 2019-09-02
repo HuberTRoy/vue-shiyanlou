@@ -3,14 +3,14 @@
         Path 中用的Card。
      -->
     <div class="float_card_div">
-        <router-link :to="{name: 'coursePath', params: {id: data.path_id}}"
+        <router-link :to="{name: 'coursePath', params: {id: data.id}}"
                      tag="a"
                      class="float_card_a"
                      target="_blank">
-            <img :src="data.path_img_url" class="float_card_img">
+            <img :src="data.image" class="float_card_img">
             <div class="float_card_text_div">
-                <p class="float_card_text_p"> {{ data.path_name }} </p>
-                <p class="float_card_text_p float_card_text_information"> {{ data.path_description }} </p>
+                <p class="float_card_text_p"> {{ data.name }} </p>
+                <p class="float_card_text_p float_card_text_information"> {{ data.courses_count }}门课程 </p>
             </div>
         </router-link>
     </div>

@@ -8,7 +8,7 @@
         </Title>
 
         <CourseCard class="learning_path_course_card"
-                    v-for="(path, index) in learning_path_content['path']"
+                    v-for="(path, index) in learning_path_content"
                     :key="index"
                     :data="path"
         >
@@ -26,7 +26,7 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            learning_path_content: state => state.home.home_content.learning_path_content
+            learning_path_content: state => state.home.home_content.paths
         })
     },
     components: {

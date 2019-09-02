@@ -7,7 +7,8 @@
         </Title>
         <div class="item_card">
             <Card class="lou_plus_card"
-                  v-for="(data, index) in lou_plus_content.lou_plus "
+                  v-for="(data, index) in index_louplus "
+                  v-if="index<4"
                   :key="index"
                   :data="data"
             >
@@ -27,7 +28,7 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            lou_plus_content: state => state.home.home_content.lou_plus_content
+            index_louplus: state => state.home.home_content.index_louplus
         })
     },
     components: {

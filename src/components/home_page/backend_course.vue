@@ -1,14 +1,14 @@
 <template>
     <div class="backend_course_div">
         <Title class="backend_course_div_title"
-               :title="'后端开发'"
+               :title="backend_course_content.classify_name"
         >
 
         </Title>
 
         <div class="backend_normal_card_div">
             <NormalCard class="backend_normal_card"
-                        :data="backend_course_content.normal ? backend_course_content.normal : {}"
+                        :data="backend_course_content.recommend_course ? backend_course_content.recommend_course : {}"
             >
 
             </NormalCard>
@@ -35,7 +35,7 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            backend_course_content: state => state.home.home_content.backend_course_content
+            backend_course_content: state => state.home.home_content.classfication_courses[3]
         })
     },
     components: {

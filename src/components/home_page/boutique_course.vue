@@ -1,13 +1,13 @@
 <template>
     <div class="boutique_course_div">
         <Title class="boutique_course_div_title"
-               :title="'精选项目课 | '"
-               :description="'精选会员项目课程，动手中收获'"
+               :title="boutique_course_content['classify_name'] + ' | '"
+               :description="boutique_course_content['description']"
         >
 
         </Title>
         <NormalCard class="boutique_normal_card"
-                    :data="boutique_course_content['normal'] ? boutique_course_content['normal'] : {}"
+                    :data="boutique_course_content['recommend_course'] ? boutique_course_content['recommend_course'] : {}"
         >
 
         </NormalCard>
@@ -31,7 +31,7 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            boutique_course_content: state => state.home.home_content.boutique_course_content
+            boutique_course_content: state => state.home.home_content.classfication_courses[0]
         })
     },
     components: {

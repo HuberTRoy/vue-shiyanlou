@@ -1,19 +1,21 @@
 <template>
     <div class="lou_plus_card">
-        <router-link :to="{ name: 'louPlus', params: {'name': data.lou_plus_name} }"
-                     class="lou_plus_card_a"
-                     target="_blank">
-            <img :src="data.img_src" class="lou_plus_card_img">
+        <a 
+             class="lou_plus_card_a"
+             target="_blank"
+             :href="data.html_url">
+                     <!-- :to="{ name: 'louPlus', params: {'name': data.lou_plus_name} }" -->
+            <img :src="data.picture_url" class="lou_plus_card_img">
 
             <div class="lou_plus_card_text_div">
                 <p class="lou_plus_description">
-                    {{ data.description }}
+                    {{ data.title }}
                 </p>
                 <p class="lou_plus_last_time">
-                    {{ data.last_time }}
+                    最近班次： {{ data.open_time }}
                 </p>
             </div>
-        </router-link>
+        </a>
     </div>
 </template>
 <script type="text/javascript">

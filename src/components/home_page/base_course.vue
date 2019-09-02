@@ -1,8 +1,8 @@
 <template>
     <div class="base_course_div">
         <Title class="base_course_div_title"
-               :title="'基本功 | '"
-               :description="'行业专家打造的免费基础课程，注册即可学习'"
+               :title="base_course_content['classify_name'] + ' | '"
+               :description="base_course_content['description']"
         >
         </Title>
         <CourseCard class="base_course_card"
@@ -22,7 +22,7 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            base_course_content: state => state.home.home_content.base_course_content
+            base_course_content: state => state.home.home_content.classfication_courses[2]
         })
     },
     components: {

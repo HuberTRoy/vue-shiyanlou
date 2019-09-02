@@ -91,7 +91,6 @@ export default {
     },
 
     beforeCreate: function () {
-        debugger
         this.$store.dispatch('home/get_and_change_home_content')
     }
 }

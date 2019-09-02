@@ -6,7 +6,7 @@
         >
 
         </Title>
-        <TrainingCard v-for="(course_info, index) in training_course_content['courses']"
+        <TrainingCard v-for="(course_info, index) in training_course_content"
                       :key="index"
                       :data="course_info"
         >
@@ -24,7 +24,7 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            training_course_content: state => state.home.home_content.training_course_content
+            training_course_content: state => state.home.home_content.bootcamps
         })
     },
     components: {
@@ -40,6 +40,7 @@ export default {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
+    padding: 0 15px;
     display: flex;
     flex-wrap: wrap;
 }
