@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-const api_url = 'http://localhost:8000/api/'
+import {api_url} from '@/api/base.js'
 
 export default {
     get_courses_categories () {
