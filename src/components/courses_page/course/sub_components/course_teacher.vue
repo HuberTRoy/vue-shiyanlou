@@ -58,6 +58,7 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 30px;
+    margin-bottom: 10px;
 }
 
 .course_nav_ul {

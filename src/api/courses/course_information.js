@@ -86,12 +86,12 @@ export default {
             },
             'related_courses': [
                 {
-                    'course_img': 'https://static.shiyanlou.com/img/louplus/recommend/rec-louplus.png',
-                    'course_a': ''
-                },
-                {
-                    'course_img': 'https://static.shiyanlou.com/img/common/shiyanlou-guide.png',
-                    'course_a': ''
+                    'name': '200行代码实现 Python 2048',
+                    'description': '本实验仅用200行的 python 代码完成2048小游戏的编写。通过本实验将学习 Python 基本知识，状态机的概念，以及编写 python 游戏的步骤。为 Python 的进阶课程，需要用户具有 Python 的语法基础。',
+                    'picture_url': 'https://dn-simplecloud.shiyanlou.com/ncn368.jpg',
+                    'id': 1,
+                    'stduents': 9999,
+                    'fee_type': 'free'
                 }
             ],
             'recommend_courses': [

@@ -91,6 +91,7 @@ export default {
     border: 1px solid #eee;
     padding: 30px;
     padding-bottom: 60px;
+    margin-bottom: 10px;
 }
 
 .discuss_nav_ul {

@@ -67,6 +67,9 @@
                 <div class="course_discuss_div">
                     <CourseDiscuss></CourseDiscuss>
                 </div>
+                <div class="course_related">
+                    <CourseRelated></CourseRelated>
+                </div>
             </div>
             <div class="course_related_div">
                 <CourseSideContent :class="[scrolled && !scrollEnd ? 'course_side_content_scroll' : '', scrollEnd ? 'course_side_content_scrollend' : '']"
@@ -128,6 +131,7 @@ import CourseDescription from './sub_components/course_description.vue'
 import CourseTeacher from './sub_components/course_teacher.vue'
 import CourseDiscuss from './sub_components/course_discuss.vue'
 import CourseSideContent from './sub_components/course_side_content.vue'
+import CourseRelated from './sub_components/course_related.vue'
 import Card from '../../common_components/cards/card.vue'
 // import CourseAuthor from './sub_components/course_author.vue'
 // import RecommendCourse from './sub_components/recommend_courses.vue'
@@ -146,6 +150,7 @@ export default {
     CourseTeacher,
     CourseDiscuss,
     CourseSideContent,
+    CourseRelated,
     Card
     // CourseAuthor,
     // RecommendCourse,
