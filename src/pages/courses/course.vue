@@ -2,8 +2,8 @@
     <div class="course_div">
         <Login></Login>
         <ScrollBar class="courses_home_scroll_bar"
-        :class="scrolled ? 'scroll_bar_scrolled' : ''"
         ></ScrollBar>
+        <CourseHeaderBar :class="[scrolled ? 'show_course_header' : 'hide_course_header']"></CourseHeaderBar>
         <Course></Course>
         <Footer></Footer>
     </div>
@@ -14,6 +14,7 @@ import Footer from '../../components/common_components/footer/footer.vue'
 import ScrollBar from '../../components/common_components/scroll_bar/scroll_bar.vue'
 import Course from '../../components/courses_page/course/course.vue'
 import Login from '../../components/common_components/sign_on_up/login.vue'
+import CourseHeaderBar from '@/components/courses_page/course/sub_components/course_header_bar.vue'
 
 import { mapState } from 'vuex'
 
@@ -22,6 +23,7 @@ export default {
         ScrollBar,
         Course,
         Footer,
+        CourseHeaderBar,
         Login
     },
     computed: {
@@ -48,4 +50,18 @@ export default {
 .scroll_bar_scrolled {
     position: fixed;
 }
+
+.hide_course_header {
+    visibility: hidden;
+    opacity: 0 !important;
+    height: 0px !important;
+}
+
+.show_course_header {
+    position: fixed;
+    top: 0;
+    opacity: .9;
+    height: 72px;
+}
+
 </style>

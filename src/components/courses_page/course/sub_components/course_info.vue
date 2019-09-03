@@ -13,23 +13,33 @@
         </div>
         <div class="course_numbers_div">
             <p class="course_numbers_p">{{ course_info.course_learning_information.learn_number}} 人学过</p>
-            <p class="course_numbers_p">{{ course_info.course_learning_information.favorite_number}} 人关注</p>
-            <p class="course_numbers_p">{{ course_info.course_learning_information.comments_number}} 人评论</p>
+            <span class="course_numbers_line">
+            </span>
+            <p class="course_numbers_p"> {{ course_info.course_learning_information.favorite_number}} 人关注</p>
+            <span class="course_numbers_line">
+            </span>
+            <p class="course_numbers_p">
+                作者: {{ course_info.author.name }}
+            </p>
+<!--             <p class="course_numbers_p">{{ course_info.course_learning_information.comments_number}} 人评论</p> -->
         </div>
-        <div class="course_operation_div">
+
+        <!-- 更新后下面不需要了 -->
+       <div class="course_operation_div"> 
             <!-- 包括一些价格表和具体的开始实验按钮等 -->
             <p class="course_description">
                 {{ course_info.course_description }}
             </p>
-            <div class="price_info">
+            <!-- 下面更新后暂时不要了 -->
+            <!-- <div class="price_info"> -->
                 <!-- 这里放价格信息 -->
-            </div>
-            <div class="course_buttons">
+            <!-- </div> -->
+<!--             <div class="course_buttons">
                 <a href="javascript:;" class="start_course_button">
                     开始实验
                 </a>
-            </div>
-        </div>
+            </div> -->
+        </div> 
     </div>
 </template>
 <script type="text/javascript">
@@ -106,6 +116,15 @@ export default {
     margin-right: 10px;
     font-size: 14px;
     color: #a4a4a4;
+}
+
+.course_numbers_line:before {
+    content: "";
+    display: inline-block;
+    height: 30px;
+    width: 1px;
+    background: #eee;
+    margin: 0 8px -9px 4px;
 }
 
 /* 课程操作部分的一些信息，包括说明和按钮 */

@@ -76,9 +76,9 @@ export default {
             'course_comments_number': 9999,
             'course_report_number': 9999,
             'course_QA_number': 9999,
-            'course_img': 'https://dn-simplecloud.shiyanlou.com/ncn1.jpg',
+            'course_img': 'https://dn-simplecloud.shiyanlou.com/1505093960707.png',
             'author': {
-                'avatar': 'https://doc.shiyanlou.com/teacher/Linux&c.png',
+                'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar37f0e884fbad9667e38940169d0a3c95.png?imageView2/1/w/100/h/100',
                 'name': 'Edward',
                 'description': '资深程序员，5年Linux运维、企业级开发经验及数据库实战和教学经验。',
                 'published_courses_number': 14,

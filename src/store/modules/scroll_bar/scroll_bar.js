@@ -3,6 +3,17 @@ const state = {
     currentScrolledValue: 0
 }
 
+const getters = {
+    documentHeight: state => {
+        // 这个不会随着变化,废弃。
+        let body = document.body,
+        html = document.documentElement;
+        return Math.max( body.scrollHeight, body.offsetHeight, 
+            html.clientHeight, html.scrollHeight, html.offsetHeight );
+    },
+
+}
+
 const mutations = {
     updateScrollValue (state) {
         let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
@@ -25,6 +36,7 @@ const actions = {
 export default {
     namespaced: true,
     state,
+    getters,
     mutations,
     actions
 }

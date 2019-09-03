@@ -3,11 +3,7 @@
         <div class="course_nav_div">
             <ul class="course_nav_ul">
                 <li class="course_nav_li">
-                    <a href="javascript:;"
-                       class="course_nav_a active_course_nav_a"
-                    >
-                        实验列表
-                    </a>
+                    课程内容
                 </li>
             </ul>
         </div>
@@ -18,7 +14,8 @@
                 <div class="lab_header">
                     <div class="lab_text">
                         <div class="lab_icon lab_text_item">
-                            <i class="fa fa-check-circle lab_icon_i"></i>
+                            <!-- <i class="fa fa-check-circle lab_icon_i"></i> -->
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAipJREFUSA3tlcFrE0EUxpONNaGQpYdAEXopNHoIBjaGJEKhLRREPVkR9NKTkn+gDQiKF9H2UMhJClXosXgQSqEXqfSWbAiktOSiIAhepAjCYkOaZtPfW51QQjZtQgoFHRi+mbdvvu+9N29Yj+f/uGgV8KqAcrncNOvFRqMRBS8pew945PV6d30+XyaRSGzJeUckn8+HbdveZf9D07T3CB30QK6OBFjch2MErmgqlfriRIzAXT4EMI5j/K68e8VSqbRQqVT2//JmNSEivSHBfggIj2EYvwBL8Toi8uE8R9ci1FpjdtUYp4rQdY8LhUJEZWqa5ksa5Y3s+ZYpFotX1Dc37CgCyQsOZpkDQlAuly+TxRNq/Un2jPFarbZ9mpCrCNE+h2Sefr9Dv+8Io2VZM4LBYPCDYCgUegB8FSH8h8XWbriKEPEjpklb59RB9mnmaiQSORRbOByuktUytqtsbyi/VnS9QL/ff7tarW4T5RrleFiv10fp+wkySysS7ucW9jUCmaP9N5W9FV0zicVi3xCa5ICB0D3Ipoj4YzKZ/KxIEF1B4BkCS8rWDl0zEWcRIotr8Xi8hoAE9O4kia7rY6p0J+2t644i4iwCgtTeBmQ2x1kExNm1XE2mPiyUyE/hog31PnB6KLG8q0Gmw6vKtYHhFXVf5wG+5TJ/9yoGR4BGmeW8lFl4//xPZEE73qRbXrO8jqPzwsXe7eDuhHyPQJ/Sic031i3PP+x/DBPn3QC5lw/kAAAAAElFTkSuQmCC" />
                         </div>
                         <div class="lab_category lab_text_item">
                             {{ course_process.course_category }}
@@ -28,7 +25,7 @@
                             {{ course_process.course_name }}
                         </div>
                     </div>
-                    <div class="lab_control" v-if="index == course_content.current_course_process">
+<!--                     <div class="lab_control" v-if="index == course_content.current_course_process">
                         <a href="javascript:;"
                            class="lab_control_button look_up_experiment_steps"
                         >
@@ -39,7 +36,7 @@
                         >
                             开始实验
                         </a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="lab_description">
                     <div class="inner_lab_description"
@@ -80,7 +77,10 @@ export default {
 }
 
 .course_nav_li {
-
+    color: #565656;
+    font-weight: 500;
+    font-size: 20px;
+    padding-bottom: 5px;
 }
 
 .course_nav_a {

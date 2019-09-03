@@ -1,43 +1,45 @@
 <template>
-    <div class="course_author_info_div">
-        <ul class="course_author_nav_ul">
-            <li class="course_author_nav_li">
-                <a class="course_author_nav_a">
-                    课程教师
-                </a>
+    <div class="course_teacher_div">
+        <ul class="course_nav_ul">
+            <li class="course_nav_li">
+                课程教师
             </li>
         </ul>
-
         <div class="course_author_main_div">
             <div class="author_base_info">
                 <div class="author_avatar">
                     <a href="javascript:;">
-                        <img :src="course_author_info.avatar" class="avatar">
+                        <img :src="course_author_info.avatar" class="course_teacher_avatar">
                     </a>
                 </div>
                 <div class="author_name_course_history">
                     <span class="author_name_span">
-                        {{ course_author_info.name }}
+                        {{ course_author_info.name }} 
+                        <span class="author_history_span">共发表过{{ course_author_info.published_courses_number }}门课程</span>
                     </span>
-                    <span class="author_history_span">
+                    <a href="javascript:;"
+                       class="look_up_teacher"
+                    >
+                        查看老师的所有课程 >
+                    </a>
+<!--                     <span class="author_history_span">
                         共发表过<strong>{{ course_author_info.published_courses_number }}</strong>门课程
-                    </span>
+                    </span> -->
                 </div>
             </div>
-            <div class="author_description">
+<!--             <div class="author_description">
                 {{ course_author_info.description }}
-            </div>
-            <div class="location_author">
+            </div> -->
+<!--             <div class="location_author">
                 <a href="javascript:;"
                    class="look_up_teacher"
                 >
                     查看老师的所有课程 >
                 </a>
-            </div>
+            </div> -->
         </div>
-    </div>
+    </div>    
 </template>
-
 <script type="text/javascript">
 import { mapState } from 'vuex'
 
@@ -47,47 +49,38 @@ export default {
             course_author_info: state => state.course.course_information.author
         })
     }
-}
-
+}    
 </script>
-
 <style type="text/css">
-.course_author_info_div {
+.course_teacher_div {
     background: #fff;
-    padding: 15px;
-    margin-bottom: 10px;
-    margin-left: 10px;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
 }
 
-.course_author_nav_ul {
+.course_nav_ul {
     margin-bottom: 10px;
     border: none;
     border-bottom: 1px solid #eee;
     display: flex;
 }
 
-.course_author_nav_li {
-
-}
-
-.course_author_nav_a {
-    display: block;
-    padding: 0 0 4px;
-    margin: 0 48px 0 0;
-    font-size: 16px;
-    color: #4c5157;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid transparent;
+.course_nav_li {
+    color: #565656;
+    font-weight: 500;
+    font-size: 20px;
+    padding-bottom: 5px;
 }
 
 .author_base_info {
     display: flex;
 }
 
-.avatar {
-    height: 64px;
-    width: 64px;
+.course_teacher_avatar {
+    height: 70px;
+    width: 70px;
     border-radius: 50%;
     margin-right: 20px;
 }
@@ -100,12 +93,14 @@ export default {
 .author_name_span {
     display: block;
     font-size: 15px;
-    font-weight: bold;
+    /*font-weight: bold;*/
     margin: 5px 0;
 }
 
 .author_history_span {
-    font-size: 14px;
+    color: #999;
+    font-size: 12px;
+    /*font-weight: normal;*/
 }
 
 .author_description {
@@ -116,14 +111,17 @@ export default {
     color: #4c5157;
 }
 
-.location_author {
+/*.location_author {
     display: flex;
-    justify-content: flex-end;
-}
+    justify-content: flex-start;
+}*/
 
 .look_up_teacher {
-    color: #529fd2;
+    color: #999;
     font-size: 14px;
 }
 
+.look_up_teacher:hover {
+    color: #999;
+}
 </style>

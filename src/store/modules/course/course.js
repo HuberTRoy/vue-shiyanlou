@@ -110,8 +110,10 @@ const actions = {
         //courseApi.get_course_information(courseId).then(function (courseInfo) {
         //    context.commit('change_course_information', courseInfo)
         //})
+        console.log(courseInfo)
         context.commit('change_current_page', 1)
         context.commit('change_course_id', courseId)
+        context.commit('change_course_information', courseInfo)
     },
 
     change_content_nav (context, contentNav) {
