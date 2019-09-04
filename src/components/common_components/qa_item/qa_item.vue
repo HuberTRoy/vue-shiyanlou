@@ -55,30 +55,30 @@
      -->
     <div class="qa_item_div">
         <div class="qa_item_question_div">
-            <img :src="data.author.avatar" class="item_question_avatar" />
+            <img :src="data.author.avatar_url" class="item_question_avatar" />
             <div class="item_question">
-                <router-link :to="{name:'question', params: { id: data.question_id }}" tag="a" class="item_question_title">
+                <router-link :to="{name:'question', params: { id: data.id }}" tag="a" class="item_question_title">
                     {{ data.title }}
                 </router-link>
                 <div class="item_question_base_info">
                     <!--  -->
                     <span>{{ data.author.name }}</span>
                     <span class="level">L{{ data.author.level }}</span>
-                    <span>{{ data.created_time }}</span>
-                    <span v-if="data.answer_number!==0">
-                        最后回复 {{ data.last_reply.author.name }}
-                        <span class="level">L{{ data.last_reply.author.level }}</span>
+                    <span>{{ data.updated_at }}</span>
+                    <span v-if="data.answers_count!==0">
+                        最后回复 {{ data.latest_answer_author.name }}
+                        <span class="level">L{{ data.latest_answer_author.level }}</span>
                     </span>
                 </div>
             </div>
         </div>
         <div class="item_view_answer_div">
             <div class="view_answer_div answer_number_div">
-                <span class="view_span view_answer_span">{{ data.answer_number }}</span>
+                <span class="view_span view_answer_span">{{ data.answers_count }}</span>
                 <span class="view_span view_answer_span">回复</span>
             </div>
             <div class="view_answer_div view_number_div">
-                <span class="answer_span view_answer_span">{{ data.view_number }}</span>
+                <span class="answer_span view_answer_span">{{ data.views }}</span>
                 <span class="answer_span view_answer_span">查看</span>
             </div>
         </div>
@@ -142,13 +142,16 @@ export default {
 
 .item_view_answer_div {
     display: flex;
-    margin: 0 30px;
+    width: 16%;
+    /*margin: 0 30px;*/
+    padding: 0 15px;
+    justify-content: space-around;
 }
 
 .view_answer_div {
     display: flex;
     flex-direction: column;
-    margin-right: 5px;
+    /*margin-right: 5px;*/
 }
 
 .view_answer_span {

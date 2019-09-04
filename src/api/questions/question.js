@@ -1,168 +1,177 @@
+import axios from 'axios'
+import { apiUrl } from '@/api/base.js'
+
 export default {
     get_question_information (questionArgs) {
         // questionArgs
         // id
         let id = questionArgs.id
-        return {
-            'question_tag': '交流讨论',
-            'question_id': id,
-            'answer_number': 99,
-            'view_number': 99,
-            'question_title': 'Test text for Question Hoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
-            'author': {
-                'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
-                'created_time': '2019-01-03T02:26:00Z',
-                'home_page': '/user/1',
-                'id': 123,
-                'level': 99,
-                'is_member': false,
-                'is_teacher': false,
-                'name': 'Shiyanlou'
-            },
-            'created_time': '2019-01-03T02:26:00Z',
-            'source': '',
-            'content': '这是一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤'
+        return axios.get(`${apiUrl}v2/questions/${id}`)
+        // return {
+        //     'question_tag': '交流讨论',
+        //     'question_id': id,
+        //     'answer_number': 99,
+        //     'view_number': 99,
+        //     'question_title': 'Test text for Question Hoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo',
+        //     'author': {
+        //         'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
+        //         'created_time': '2019-01-03T02:26:00Z',
+        //         'home_page': '/user/1',
+        //         'id': 123,
+        //         'level': 99,
+        //         'is_member': false,
+        //         'is_teacher': false,
+        //         'name': 'Shiyanlou'
+        //     },
+        //     'created_time': '2019-01-03T02:26:00Z',
+        //     'source': '',
+        //     'content': '这是一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤'
 
-        }
+        // }
     },
 
     get_question_reply (questionArgs) {
         // questionArgs
         // id
-        return {
-            'reply': [
-                {
-                    'author': {
-                        'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
-                        'created_time': '2019-01-03T02:26:00Z',
-                        'home_page': '/user/1',
-                        'id': 123,
-                        'level': 99,
-                        'is_member': false,
-                        'is_teacher': false,
-                        'name': 'Shiyanlou'
-                    },
+        // cursor
+        let id = questionArgs.id
+        let cursor = questionArgs.cursor
 
-                    'content': '这是另外的一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤',
-                    'up_thumb': 9,
-                    'created_time': '2019-01-03T02:26:00Z',
-                    '@user': {
-                        'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
-                        'created_time': '2019-01-03T02:26:00Z',
-                        'home_page': '/user/1',
-                        'id': 123,
-                        'level': 99,
-                        'is_member': false,
-                        'is_teacher': false,
-                        'name': 'Shiyanlou'
-                    }
-                },
-                {
-                    'author': {
-                        'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
-                        'created_time': '2019-01-03T02:26:00Z',
-                        'home_page': '/user/1',
-                        'id': 123,
-                        'level': 99,
-                        'is_member': false,
-                        'is_teacher': false,
-                        'name': 'Shiyanlou'
-                    },
+        return axios.get(`${apiUrl}v2/questions/${id}/answers/`, {params: {'cursor': cursor}})
+        // return {
+        //     'reply': [
+        //         {
+        //             'author': {
+        //                 'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
+        //                 'created_time': '2019-01-03T02:26:00Z',
+        //                 'home_page': '/user/1',
+        //                 'id': 123,
+        //                 'level': 99,
+        //                 'is_member': false,
+        //                 'is_teacher': false,
+        //                 'name': 'Shiyanlou'
+        //             },
 
-                    'content': '这是另外的一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤',
-                    'up_thumb': 9,
-                    'created_time': '2019-01-03T02:26:00Z',
-                    '@user': {
-                        'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
-                        'created_time': '2019-01-03T02:26:00Z',
-                        'home_page': '/user/1',
-                        'id': 123,
-                        'level': 99,
-                        'is_member': false,
-                        'is_teacher': false,
-                        'name': 'Shiyanlou'
-                    }
-                },
-                {
-                    'author': {
-                        'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
-                        'created_time': '2019-01-03T02:26:00Z',
-                        'home_page': '/user/1',
-                        'id': 123,
-                        'level': 99,
-                        'is_member': false,
-                        'is_teacher': false,
-                        'name': 'Shiyanlou'
-                    },
+        //             'content': '这是另外的一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤',
+        //             'up_thumb': 9,
+        //             'created_time': '2019-01-03T02:26:00Z',
+        //             '@user': {
+        //                 'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
+        //                 'created_time': '2019-01-03T02:26:00Z',
+        //                 'home_page': '/user/1',
+        //                 'id': 123,
+        //                 'level': 99,
+        //                 'is_member': false,
+        //                 'is_teacher': false,
+        //                 'name': 'Shiyanlou'
+        //             }
+        //         },
+        //         {
+        //             'author': {
+        //                 'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
+        //                 'created_time': '2019-01-03T02:26:00Z',
+        //                 'home_page': '/user/1',
+        //                 'id': 123,
+        //                 'level': 99,
+        //                 'is_member': false,
+        //                 'is_teacher': false,
+        //                 'name': 'Shiyanlou'
+        //             },
 
-                    'content': '这是另外的一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤',
-                    'up_thumb': 9,
-                    'created_time': '2019-01-03T02:26:00Z',
-                    '@user': {
-                        'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
-                        'created_time': '2019-01-03T02:26:00Z',
-                        'home_page': '/user/1',
-                        'id': 123,
-                        'level': 99,
-                        'is_member': false,
-                        'is_teacher': false,
-                        'name': 'Shiyanlou'
-                    }
-                },
-                {
-                    'author': {
-                        'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
-                        'created_time': '2019-01-03T02:26:00Z',
-                        'home_page': '/user/1',
-                        'id': 123,
-                        'level': 99,
-                        'is_member': false,
-                        'is_teacher': false,
-                        'name': 'Shiyanlou'
-                    },
+        //             'content': '这是另外的一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤',
+        //             'up_thumb': 9,
+        //             'created_time': '2019-01-03T02:26:00Z',
+        //             '@user': {
+        //                 'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
+        //                 'created_time': '2019-01-03T02:26:00Z',
+        //                 'home_page': '/user/1',
+        //                 'id': 123,
+        //                 'level': 99,
+        //                 'is_member': false,
+        //                 'is_teacher': false,
+        //                 'name': 'Shiyanlou'
+        //             }
+        //         },
+        //         {
+        //             'author': {
+        //                 'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
+        //                 'created_time': '2019-01-03T02:26:00Z',
+        //                 'home_page': '/user/1',
+        //                 'id': 123,
+        //                 'level': 99,
+        //                 'is_member': false,
+        //                 'is_teacher': false,
+        //                 'name': 'Shiyanlou'
+        //             },
 
-                    'content': '这是另外的一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤',
-                    'up_thumb': 9,
-                    'created_time': '2019-01-03T02:26:00Z',
-                    '@user': {
-                        'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
-                        'created_time': '2019-01-03T02:26:00Z',
-                        'home_page': '/user/1',
-                        'id': 123,
-                        'level': 99,
-                        'is_member': false,
-                        'is_teacher': false,
-                        'name': 'Shiyanlou'
-                    }
-                },
-                {
-                    'author': {
-                        'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
-                        'created_time': '2019-01-03T02:26:00Z',
-                        'home_page': '/user/1',
-                        'id': 123,
-                        'level': 99,
-                        'is_member': false,
-                        'is_teacher': false,
-                        'name': 'Shiyanlou'
-                    },
+        //             'content': '这是另外的一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤',
+        //             'up_thumb': 9,
+        //             'created_time': '2019-01-03T02:26:00Z',
+        //             '@user': {
+        //                 'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
+        //                 'created_time': '2019-01-03T02:26:00Z',
+        //                 'home_page': '/user/1',
+        //                 'id': 123,
+        //                 'level': 99,
+        //                 'is_member': false,
+        //                 'is_teacher': false,
+        //                 'name': 'Shiyanlou'
+        //             }
+        //         },
+        //         {
+        //             'author': {
+        //                 'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
+        //                 'created_time': '2019-01-03T02:26:00Z',
+        //                 'home_page': '/user/1',
+        //                 'id': 123,
+        //                 'level': 99,
+        //                 'is_member': false,
+        //                 'is_teacher': false,
+        //                 'name': 'Shiyanlou'
+        //             },
 
-                    'content': '这是另外的一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤',
-                    'up_thumb': 9,
-                    'created_time': '2019-01-03T02:26:00Z',
-                    '@user': {
-                        'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
-                        'created_time': '2019-01-03T02:26:00Z',
-                        'home_page': '/user/1',
-                        'id': 123,
-                        'level': 99,
-                        'is_member': false,
-                        'is_teacher': false,
-                        'name': 'Shiyanlou'
-                    }
-                }
-            ]
-        }
+        //             'content': '这是另外的一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤',
+        //             'up_thumb': 9,
+        //             'created_time': '2019-01-03T02:26:00Z',
+        //             '@user': {
+        //                 'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
+        //                 'created_time': '2019-01-03T02:26:00Z',
+        //                 'home_page': '/user/1',
+        //                 'id': 123,
+        //                 'level': 99,
+        //                 'is_member': false,
+        //                 'is_teacher': false,
+        //                 'name': 'Shiyanlou'
+        //             }
+        //         },
+        //         {
+        //             'author': {
+        //                 'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
+        //                 'created_time': '2019-01-03T02:26:00Z',
+        //                 'home_page': '/user/1',
+        //                 'id': 123,
+        //                 'level': 99,
+        //                 'is_member': false,
+        //                 'is_teacher': false,
+        //                 'name': 'Shiyanlou'
+        //             },
+
+        //             'content': '这是另外的一条测试文本，❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤',
+        //             'up_thumb': 9,
+        //             'created_time': '2019-01-03T02:26:00Z',
+        //             '@user': {
+        //                 'avatar': 'https://dn-simplecloud.shiyanlou.com/gravatar906950.png?v=1546239403459&imageView2/1/w/200/h/200',
+        //                 'created_time': '2019-01-03T02:26:00Z',
+        //                 'home_page': '/user/1',
+        //                 'id': 123,
+        //                 'level': 99,
+        //                 'is_member': false,
+        //                 'is_teacher': false,
+        //                 'name': 'Shiyanlou'
+        //             }
+        //         }
+        //     ]
+        // }
     },
 
     get_related_question (questionArgs) {

@@ -3,20 +3,20 @@
         <ul class="main_questions_nav_bar_ul">
             <div class="main_questions_nav_bar_div">
                 <li class="main_questions_nav_bar_li"
-                    v-for="tag in all_nav_bar_tag"
+                    v-for="(query,tag) in all_nav_bar_tag"
                     :key="tag"
-                    @click="change_current_nav_bar_tag(tag)"
-                    :class="current_nav_bar_tag===tag ? 'main_questions_nav_bar_active' : ''"
+                    @click="change_current_nav_bar_tag(query)"
+                    :class="current_nav_bar_tag===query ? 'main_questions_nav_bar_active' : ''"
                 >
                     {{ tag }}
                 </li>
             </div>
             <ul class="sort_category_ul">
                 <li class="sort_category_li"
-                    v-for="(category,index) in all_sort_category"
+                    v-for="(query,category,index) in all_sort_category"
                     :key="category"
-                    @click="change_current_sort_category(category)"
-                    :class="current_sort_category===category ? 'sort_category_active' : ''"
+                    @click="change_current_sort_category(query)"
+                    :class="current_sort_category===query ? 'sort_category_active' : ''"
                 >
                     <span v-if="index !== 0" class="separator">
                     /

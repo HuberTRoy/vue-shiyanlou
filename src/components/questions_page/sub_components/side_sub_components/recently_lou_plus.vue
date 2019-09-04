@@ -12,15 +12,15 @@
                 :key="index"
                 class="recently_lou_plus_li"
             >
-                <router-link :to="{ name: 'louPlus', params: { name: louPlus.lou_plus_name } }"
+                <router-link :to="{ name: 'louPlus', params: { name: louPlus.name } }"
                              target="_blank"
                              class="recently_lou_plus_a"
                 >
                     <span class="lou_plus_title">
-                        {{ louPlus.title }}
+                        {{ louPlus.name }}
                     </span>
                     <span class="lou_plus_date">
-                        {{ louPlus.date }}
+                        {{ trans_date(louPlus.open_time) }}
                     </span>
                 </router-link>
             </li>
@@ -33,8 +33,21 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            recently_lou_plus: state => state.questions.related_stuff_information.recently_lou_plus
+            recently_lou_plus: state => state.questions.related_stuff_information.recently_louplus
         })
+    },
+    methods: {
+        trans_date: function (time) {
+            let date = new Date(time)
+            let m = date.getMonth() + 1
+            let d = date.getDate()
+            m = m.toString()
+            d = d.toString()
+            m = m.padStart(2, '0')
+            d = d.padStart(2, '0')
+
+            return `${m}月${d}日`
+        }
     }
 }
 

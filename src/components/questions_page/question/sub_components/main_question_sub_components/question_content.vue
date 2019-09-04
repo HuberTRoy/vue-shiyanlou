@@ -8,20 +8,20 @@
     <div class="question_content">
         <div class="question_content_header">
             <div>
-                <span class="content_question_title">{{ question_info.question_title }}</span>
+                <span class="content_question_title">{{ question_info.title }}</span>
             </div>
             <div>
-                <span class="question_number">{{ question_info.view_number }}查看</span>
-                <span class="question_number">{{ question_info.answer_number }}回复</span>
+                <span class="question_number">{{ question_info.views }}查看</span>
+                <span class="question_number">{{ question_info.answers_count }}回复</span>
                 <a href="javascript:;" class="favourite_button">收藏</a>
             </div>
         </div>
         <div class="question_content_information">
-            <img class="question_content_info avatar" :src="question_info.author.avatar" />
+            <img class="question_content_info avatar" :src="question_info.author.avatar_url" />
             <span class="question_content_info author_name">{{ question_info.author.name }}</span>
             <span class="question_content_info level">L{{ question_info.author.level }}</span>
-            <span class="question_content_info created_time">{{ question_info.created_time }}</span>
-            <router-link class="question_content_info" tag="a" :to="{ name: 'questions', query: { tag:question_info.question_tag } }">{{ question_info.question_tag }}</router-link>
+            <span class="question_content_info created_time">{{ question_info.created_at }}</span>
+            <router-link class="question_content_info" tag="a" :to="{ name: 'questions', query: { type:question_info.type } }">{{ tag_type[question_info.type] }}</router-link>
         </div>
         <div class="_question_content">
             {{ question_info.content }}
@@ -37,6 +37,16 @@ import { mapState } from 'vuex'
 export default {
     components: {
         QuestionReply
+    },
+    data: function () {
+        return {
+            tag_type: {
+                'discussion': '交流讨论',
+                'course': '课程问答',
+                'sharing': '技术分享',
+                'notice': '站内公告'
+            }
+        }
     },
     computed: {
         ...mapState({

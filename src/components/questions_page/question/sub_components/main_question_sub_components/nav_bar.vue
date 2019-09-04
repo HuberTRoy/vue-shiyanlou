@@ -11,8 +11,8 @@
         >
             <router-link tag="a"
             class="nav_title_a"
-            :to="{ name: 'questions', query: { tag: question_tag } }">
-                {{ question_tag }}
+            :to="{ name: 'questions', query: { type: question_tag } }">
+                {{ tag_type[question_tag] }}
             </router-link>
         </div>
         <span class="separator_span">
@@ -29,10 +29,20 @@
 import { mapState } from 'vuex'
 
 export default {
+    data: function () {
+        return {
+            tag_type: {
+                'discussion': '交流讨论',
+                'course': '课程问答',
+                'sharing': '技术分享',
+                'notice': '站内公告'
+            }
+        }
+    },
     computed: {
         ...mapState({
-            question_title: state => state.question.question_information.question_title,
-            question_tag: state => state.question.question_information.question_tag
+            question_title: state => state.question.question_information.title,
+            question_tag: state => state.question.question_information.type
         })
     }
 }

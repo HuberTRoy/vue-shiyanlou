@@ -5,23 +5,31 @@
                 content
                 reply_time  reply_button
          -->
-        <img :src="data.author.avatar" class="avatar"/>
-        <div class="main_reply">
-            <a href="javascript:;" class="author">{{ data.author.name }}
-                <span class="level">L{{ data.author.level }}</span>
-            </a>
-            <p class="content_p">{{ data.content }}</p>
-            <span class="created_time">{{ data.created_time }}</span>
-        </div>
-        <div class="up_reply_button">
-            <span class="thumb">
-                <a href="javascript:;" class="thumb_button">
-                    <i class="far fa-thumbs-up"></i>
-                </a>
-                | {{ data.up_thumb }}
-            </span>
-            <a class="reply_button" href="javascript:;">回复</a>
-        </div>
+        <!-- <div class="question_reply_item_top"> -->
+            <div class="question_reply_item_base_info">
+                <div>
+                    <img :src="data.author.avatar_url" class="avatar"/>
+                    <a href="javascript:;" class="author">{{ data.author.name }}
+                        <span class="level">L{{ data.author.level }}</span>
+                    </a>
+                </div>
+                <span class="thumb">
+                    <a href="javascript:;" class="thumb_button">
+                        <i class="far fa-thumbs-up"></i>
+                    </a>
+                    | {{ data.likes_count }}
+                </span>
+            </div>
+            <div class="main_reply">
+                <p class="content_p">{{ data.content }}</p>
+                <div class="reply_base_info_div">
+                    <span class="created_time">{{ data.updated_at }}</span>
+                    <div class="up_reply_button">
+                        <a class="reply_button" href="javascript:;">回复</a>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
     </div>
 </template>
 <script type="text/javascript">
@@ -39,13 +47,20 @@ export default {
 .question_reply_item {
     margin-top: 30px;
     display: flex;
+    flex-direction: column;
+    /*justify-content: space-between;*/
 }
 
 .main_reply {
     display: flex;
     flex-direction: column;
-    margin-left: 5px;
+    margin-left: 50px;
     border-bottom: 1px solid #eee;
+}
+
+.question_reply_item_base_info {
+    display: flex;
+    justify-content: space-between;
 }
 
 .author {
@@ -64,6 +79,12 @@ export default {
     word-break: break-all;
 }
 
+
+.reply_base_info_div {
+    display: flex;
+    justify-content: space-between;
+}
+
 .created_time {
     display: inline-block;
     color: #a4a4a4;
@@ -75,9 +96,13 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
-    width: 6%;
+    /*width: 6%;*/
     font-size: 16px;
     color: #9f9c99;
+}
+
+.thumb {
+    align-self: flex-end;
 }
 
 .thumb_button {

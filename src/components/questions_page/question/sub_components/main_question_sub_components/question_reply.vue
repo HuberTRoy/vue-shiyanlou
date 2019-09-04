@@ -4,26 +4,29 @@
             全部回复
         </div>
         <div class="question_reply_items">
-            <ReplyItem v-for="(item, index) in question_reply.reply"
+            <ReplyItem v-for="(item, index) in question_reply.results"
                        :key="index"
                        :data="item"
             >
 
             </ReplyItem>
         </div>
+        <TabPage></TabPage>
         <ReplyForm></ReplyForm>
     </div>
 </template>
 <script type="text/javascript">
 import ReplyItem from './question_reply_sub_components/question_reply_item.vue'
 import ReplyForm from './question_reply_sub_components/reply_form.vue'
+import TabPage from './question_reply_sub_components/tab_page.vue'
 
 import { mapState, mapActions } from 'vuex'
 
 export default {
     components: {
         ReplyItem,
-        ReplyForm
+        ReplyForm,
+        TabPage
     },
     computed: {
         ...mapState({

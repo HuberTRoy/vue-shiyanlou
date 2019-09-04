@@ -1,6 +1,6 @@
 <template>
     <div class="question_list">
-        <QuestionItem v-for="(question, index) in question_list_info.question_list"
+        <QuestionItem v-for="(question, index) in question_list_info.results"
                       :key="index"
                       :data="question"
 

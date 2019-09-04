@@ -12,7 +12,7 @@
         <HotPath></HotPath>
         <div class="wechat_pic_div">
             <Card class="wechat_pic"
-            :data="{ 'img_url': 'https://static.shiyanlou.com/img/ShiyanlouQRCode.png'}"
+            :data="{ 'picture_url': 'https://static.shiyanlou.com/img/ShiyanlouQRCode.png'}"
             ></Card>
         </div>
     </div>

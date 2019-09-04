@@ -1,7 +1,7 @@
 <template>
     <div class="questions_root_div">
         <MainQuestions class="main_questions"></MainQuestions>
-        <Side></Side>
+        <Side class="side_questions"></Side>
     </div>
 </template>
 
@@ -30,4 +30,7 @@ export default {
     width: 75%;
 }
 
+.side_questions {
+    width: 25%;
+}
 </style>
