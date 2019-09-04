@@ -177,46 +177,49 @@ export default {
     get_related_question (questionArgs) {
         // questionArgs
         // id
-        return {
-            'total': 10,
-            'items': [
-                {
-                    'title': '不觉晴光老',
-                    'id': 9998
-                },
-                {
-                    'title': '不觉晴光老',
-                    'id': 9997
-                },
-                {
-                    'title': '不觉晴光老',
-                    'id': 9996
-                },
-                {
-                    'title': '不觉晴光老',
-                    'id': 9995
-                },
-                {
-                    'title': '不觉晴光老',
-                    'id': 9994
-                },
-                {
-                    'title': '不觉晴光老',
-                    'id': 9993
-                },
-                {
-                    'title': '不觉晴光老',
-                    'id': 9992
-                },
-                {
-                    'title': '不觉晴光老',
-                    'id': 9991
-                },
-                {
-                    'title': '不觉晴光老',
-                    'id': 9999
-                }
-            ]
-        }
+        // return {
+        //     'total': 10,
+        //     'items': [
+        //         {
+        //             'title': '不觉晴光老',
+        //             'id': 9998
+        //         },
+        //         {
+        //             'title': '不觉晴光老',
+        //             'id': 9997
+        //         },
+        //         {
+        //             'title': '不觉晴光老',
+        //             'id': 9996
+        //         },
+        //         {
+        //             'title': '不觉晴光老',
+        //             'id': 9995
+        //         },
+        //         {
+        //             'title': '不觉晴光老',
+        //             'id': 9994
+        //         },
+        //         {
+        //             'title': '不觉晴光老',
+        //             'id': 9993
+        //         },
+        //         {
+        //             'title': '不觉晴光老',
+        //             'id': 9992
+        //         },
+        //         {
+        //             'title': '不觉晴光老',
+        //             'id': 9991
+        //         },
+        //         {
+        //             'title': '不觉晴光老',
+        //             'id': 9999
+        //         }
+        //     ]
+        // }
+        let id = questionArgs.id
+
+        return axios.get(`${apiUrl}v2/questions/${id}/related-questions/`)
     }
 }

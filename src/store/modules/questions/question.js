@@ -63,8 +63,10 @@ const actions = {
     },
 
     change_related_question_information ({ getters, commit }) {
-        let rQInfo = QuestionApi.get_related_question(getters.question_args)
-        commit('change_related_question_information', rQInfo)
+        // let rQInfo = QuestionApi.get_related_question(getters.question_args)
+        QuestionApi.get_related_question(getters.question_args).then((response) => {
+            commit('change_related_question_information', response.data)
+        })
     },
 
     change_cursor (context, cursor) {

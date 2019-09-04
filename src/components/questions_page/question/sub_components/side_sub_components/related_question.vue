@@ -8,11 +8,12 @@
             </li>
         </ul>
         <ul class="related_question_ul">
-            <li v-for="(question, index) in related_question.items"
+            <li v-for="(question, index) in related_question"
                 :key="index"
                 class="related_question_li"
             >
                 <router-link tag="a"
+                             target="_blank"
                              :to="{ name: 'question', params: { id: question.id} }"
                              class="related_question_a"
                 >
