@@ -74,6 +74,7 @@ export default {
     padding: 6px 0 0 30px;
     color: #fff;
     transition: opacity 1s;
+    z-index: 8;
 }
 
 .course_header_bar_layout_div {
