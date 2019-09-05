@@ -9,10 +9,12 @@ const state = {
     comment_information: {},
     courses_path_id: 0,
     comment_args: {
-        'page_size': 10,
-        'current_page': 1,
-        'total_page': 1
-    }
+        'page_size': 15,
+        'topic_id': 0,
+        'topic_type': 'path'
+    },
+    stages: [],
+    cursor: ''
 }
 
 const getters = {
@@ -39,6 +41,10 @@ const mutations = {
         state.course_path_information = coursePathInformation
     },
 
+    change_course_path_stage_information (state, stageInformation) {
+        state.stages = stageInformation
+    },
+
     change_path_courses_detail_nav (state, pathCoursesNav) {
         state.path_courses_detail_nav = pathCoursesNav
     },
@@ -50,18 +56,38 @@ const mutations = {
 
     change_comment_current_page (state, page) {
         state.comment_args.current_page = page
+    },
+
+    change_cursor (state, cursor) {
+        state.cursor = cursor
+    },
+
+    change_recently_louplus (state, recently_louplus) {
+        state.course_path_information['recently_louplus'] = recently_louplus
     }
 }
 
 const actions = {
     change_path_information (context) {
-        let pathInformation = PathApi.get_path_information()
-        context.commit('change_path_information', pathInformation)
+        // let pathInformation = PathApi.get_path_information()
+        PathApi.get_path_information().then((response) => {
+            context.commit('change_path_information', response.data)
+        })
     },
 
     change_course_path_information (context, pathId) {
-        let coursePathInformation = CoursePathApi.get_course_path_information(pathId)
-        context.commit('change_course_path_information', coursePathInformation)
+        // path basic information
+        CoursePathApi.get_course_path_information(pathId).then((response) => {
+            context.commit('change_course_path_information', response.data)
+        })
+
+        CoursePathApi.get_path_stages(pathId).then((response) => {
+            context.commit('change_course_path_stage_information', response.data)
+        })
+
+        CoursePathApi.get_louplus().then((response)=> {
+            context.commit('change_recently_louplus', response.data)
+        })
     },
 
     change_path_courses_detail_nav (context, pathCoursesNav) {
@@ -69,8 +95,10 @@ const actions = {
     },
 
     change_comment_information (context, commentArgs) {
-        let commentInformation = CommentApi.get_comments(commentArgs)
-        context.commit('change_comment_information', commentInformation)
+        // let commentInformation = CommentApi.get_comments(commentArgs)
+        CommentApi.get_comments(commentArgs).then((response) => {
+            context.commit('change_comment_information', response.data)
+        })
     },
 
     change_comment_current_page (context, commentPageArgs) {
@@ -79,6 +107,10 @@ const actions = {
             return
         }
         context.commit('change_comment_current_page', commentPageArgs.pageNumber)
+    },
+
+    change_cursor (context, cursor) {
+        context.commit('change_cursor', cursor)
     }
 }
 

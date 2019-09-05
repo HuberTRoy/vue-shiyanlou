@@ -12,7 +12,7 @@
         <div class="phase_card_div">
             <CourseCard class="phase_course_card"
                         v-for="course in data.courses"
-                        :key="course.course_id"
+                        :key="course.id"
                         :data="course"
             >
             </CourseCard>

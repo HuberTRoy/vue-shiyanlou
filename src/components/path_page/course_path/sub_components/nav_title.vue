@@ -21,7 +21,7 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            course_path_title: state => state.path.course_path_information.path_title
+            course_path_title: state => state.path.course_path_information.name
         })
     }
 }

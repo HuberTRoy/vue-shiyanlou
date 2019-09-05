@@ -1,99 +1,87 @@
 <template>
-    <div class="tab_page_div">
-            <a href="javascript:;"
-               class="tab_page_a"
-               @click="change_current_page({
-                'pageNumber': current_page - 1,
-                'pageType': pageType
-               })"
-            >
-                上一页
-            </a>
-            <!-- 具体的页数有3种显示模式：
-                 1. 当前页的前后4个。
-                 2. '...' 会在当前页的前后4个没有涉及到third 和 last-third 时出现。
-                 3. 最前面的一个和最后面的一个恒出现。
-
-                 为了区分：
-                 前面一个...用了'...'，
-                 后面一个...用了'... '。
-             -->
-            <a href="javascript:;" class="tab_page_a"
-               v-for="(page_info, page_index) in showing_page_info"
-               :key="page_index"
-               :class="current_page==page_info ? 'page_active':''"
-               v-show="(current_page - 3 <= page_info && page_info <= current_page + 3)
-                        || (page_info == 1)
-                        || (page_info == total_page)
-                        || (page_info == '...' && current_page - 3 > 1)
-                        || (page_info == '... ' && current_page + 3 < total_page - 1)"
-               @click="change_current_page({
-                'pageNumber': page_info,
-                'pageType': pageType
-               })"
-            >
-            {{ page_info }}
-            </a>
-
-            <a href="javascript:;"
-               class="tab_page_a"
-               @click="change_current_page({
-                'pageNumber': current_page + 1,
-                'pageType': pageType
-               })"
-            >
-                下一页
-            </a>
-    </div>
+    <div class="comment_tab_page_div">
+        <button class="comment_tab_page_button comment_tab_page_button_prev"
+        @click="tab_page(prev)">«上一页</button>
+        <button class="comment_tab_page_button comment_tab_page_button_next"
+        @click="tab_page(next)">下一页»</button>
+    </div>    
 </template>
 <script type="text/javascript">
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
-    props: {
-        pageType: {
-            type: String,
-            require: true
-        }
-    },
     computed: {
         ...mapState({
-            current_page: function (state) { return state.path.comment_args.current_page },
-            total_page: function (state) { return state.path.comment_args.total_page }
-        }),
-        ...mapGetters({
-            showing_page_info: 'path/showing_page_info'
+            prev: state => { 
+                let p = state.path.comment_information.previous
+                if (p) {
+                    p = p.substr(1).split('&')[0]
+                    p = p.split('=')[1]
+                    p = decodeURIComponent(p)
+                    return p
+                }
+                return ''
+            },
+            next: state => {
+                let n = state.path.comment_information.next
+                if (n) {
+                    n = n.substr(1).split('&')[0]
+                    n = n.split('=')[1]
+                    n = decodeURIComponent(n)
+                    return n
+                }
+                return ''
+            }
         })
-
     },
-
     methods: {
         ...mapActions({
-            change_current_page: 'path/change_comment_current_page'
-        })
+            change_cursor: 'path/change_cursor',
+            get_comments: 'path/change_comment_information' 
+        }),
+        tab_page: function (cursor) {
+            this.change_cursor(cursor)
+            this.get_comments({
+                'topic_id': this.$route.params.id,
+                'topic_type': 'path',
+                'page_size': 15,
+                'cursor': cursor
+            })
+        }
     }
 }
 
 </script>
 <style type="text/css">
-.tab_page_div {
+.comment_tab_page_div {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
 }
 
-.tab_page_a {
-    display: block;
-    font-size: 14px;
-    color: #565a61;
-    background: #fff;
-    padding: 6px 12px;
-    margin: 0 2px;
+.comment_tab_page_button {
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #08bf91;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
 }
 
-.tab_page_a:hover, .page_active {
-    color: #fff;
-    background: #0c9;
+.comment_tab_page_button_next {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
 }
 
+.comment_tab_page_button_prev {
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+
+.comment_tab_page_button:hover {
+    z-index: 2;
+    color: #057659;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
 </style>

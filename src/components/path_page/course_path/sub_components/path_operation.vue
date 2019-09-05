@@ -12,13 +12,13 @@
         </div>
         <div class="path_learning_info_div">
             <span class="path_learning_info_span">
-                学习人数{{ path_learning_info.learning_number }}
+                学习人数{{ path_learning_info.students_count }}
             </span>
             <span class="path_learning_info_span">
-                课程 {{ path_learning_info.courses_number }}
+                课程 {{ path_learning_info.courses_count }}
             </span>
             <span class="path_learning_info_span">
-                预计学习 {{ path_learning_info.learning_time }} 小时
+                预计学习 {{ path_learning_info.estimated_study_hours }} 小时
             </span>
         </div>
     </div>

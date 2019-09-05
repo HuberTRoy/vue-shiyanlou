@@ -6,7 +6,7 @@
                          target="_blank"
                          :to="{ name: 'user', params: { id: data.author.id } }"
                          >
-                <img :src="data.author.avatar" class="avatar" />
+                <img :src="data.author.avatar_url" class="avatar" />
             </router-link>
         </div>
 
@@ -32,8 +32,8 @@
 
             <div class="comment_info_div">
                 <p class="comment_info_p">
-                    {{ data.created_time }}
-                    {{ data.source_lab }}
+                    {{ data.created_at }}
+                    <!-- {{ data.source_lab }} -->
                 </p>
                 <a class="reply_a">
                     <i class="far fa-comment-dots reply_icon"></i>

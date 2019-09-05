@@ -1,11 +1,11 @@
 <template>
     <div class="path_description_div">
-        <div class="path_description_background" :style="{ 'background': 'url('+path_info.path_background+')' + 'no-repeat' }">
+        <div class="path_description_background" :style="{ 'background': 'url('+path_info.background_image+')' + 'no-repeat' }">
             <h4 class="path_name">
-                {{ path_info.path_title }}
+                {{ path_info.name }}
             </h4>
             <span class="path_description">
-                {{ path_info.path_description }}
+                {{ path_info.description }}
             </span>
         </div>
     </div>

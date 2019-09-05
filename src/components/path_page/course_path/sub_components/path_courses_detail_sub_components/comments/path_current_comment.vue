@@ -10,8 +10,8 @@
             </ul>
         </div>
         <div class="current_comments">
-            <CommentsItem v-for="item in comments.items"
-                          :key="item.comment_id"
+            <CommentsItem v-for="item in comments.results"
+                          :key="item.id"
                           :data="item"
             ></CommentsItem>
             <TabPage
@@ -32,14 +32,16 @@ export default {
             comments: state => state.path.comment_information,
             page_size: state => state.path.comment_args.page_size,
             current_page: state => state.path.comment_args.current_page,
-            courses_path_id: function () { return this.$route.params.id }
-        })
+        }),
+        course_path_id: function () { 
+            return this.$route.params.id
+        }
     },
 
     methods: {
         ...mapActions({
             get_comments: 'path/change_comment_information'
-        })
+        }),
     },
     components: {
         CommentsItem,
@@ -47,9 +49,14 @@ export default {
     },
 
     created: function () {
+        // console.log({
+        //     'topic_id': this.course_path_id,
+        //     'topic_type': 'path',
+        //     'page_size': this.page_size
+        // })
         this.get_comments({
-            'courses_path_id': this.course_id,
-            'page': this.current_page,
+            'topic_id': this.course_path_id,
+            'topic_type': 'path',
             'page_size': this.page_size
         })
     }

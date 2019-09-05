@@ -23,7 +23,7 @@
             </ul>
         </div>
         <div class="all_phase_div" v-show="nav==='detail'">
-            <PhaseCard v-for="(course, index) in courses"
+            <PhaseCard v-for="(course, index) in stages"
                        :key="index"
                        :data="course">
             </PhaseCard>
@@ -55,8 +55,8 @@ export default {
     computed: {
         ...mapState({
             nav: state => state.path.path_courses_detail_nav,
-            comment_number: state => state.path.course_path_information.comment_number,
-            courses: state => state.path.course_path_information.courses
+            comment_number: state => state.path.course_path_information.comments_count,
+            stages: state => state.path.stages
         })
     },
 

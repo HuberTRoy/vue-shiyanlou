@@ -1,7 +1,7 @@
 <template>
     <div class="paths_card_div">
             <FloatCard class="path_card"
-                       v-for="path_info in path_information['path_items']"
+                       v-for="path_info in path_information.results"
                        :key="path_info.path_id"
                        :data="path_info"
             >

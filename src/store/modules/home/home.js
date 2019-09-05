@@ -14,7 +14,7 @@ const state = {
                            'title': ''}],
         'classfication_courses': [{},{},{},{},{}],
         'bootcamps': [],
-        'path': []
+        'paths': []
     }
 }
 
