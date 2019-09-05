@@ -24,18 +24,20 @@
             <router-link class="question_content_info" tag="a" :to="{ name: 'questions', query: { type:question_info.type } }">{{ tag_type[question_info.type] }}</router-link>
         </div>
         <div class="_question_content">
-            {{ question_info.content }}
+            <VueMarkDown>{{ question_info.content }}</VueMarkDown>
         </div>
         <QuestionReply></QuestionReply>
     </div>
 </template>
 <script type="text/javascript">
+import VueMarkDown from 'vue-markdown'
 import QuestionReply from './question_reply.vue'
 
 import { mapState } from 'vuex'
 
 export default {
     components: {
+        VueMarkDown,
         QuestionReply
     },
     data: function () {

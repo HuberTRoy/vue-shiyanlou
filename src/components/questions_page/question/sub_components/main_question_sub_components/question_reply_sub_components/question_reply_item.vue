@@ -21,7 +21,9 @@
                 </span>
             </div>
             <div class="main_reply">
-                <p class="content_p">{{ data.content }}</p>
+                <p class="content_p">
+                    <VueMarkDown>{{ data.content }}</VueMarkDown>
+                </p>
                 <div class="reply_base_info_div">
                     <span class="created_time">{{ data.updated_at }}</span>
                     <div class="up_reply_button">
@@ -33,7 +35,12 @@
     </div>
 </template>
 <script type="text/javascript">
+import VueMarkDown from 'vue-markdown'
+
 export default {
+    components: {
+        VueMarkDown
+    },
     props: {
         data: {
             type: Object,
