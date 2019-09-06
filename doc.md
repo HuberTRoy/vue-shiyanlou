@@ -212,9 +212,12 @@ TODO 前端部分
 - [ ] Markdown 编辑器。
 
 TODO 后端配合部分
-
-- [ ] 实现用户系统，首先是自己搭建简单用户体系，之后尝试对接实验楼的用户体系。
-- [ ] 完整实现社区的讨论，小论坛。
+- [x] 对接主页API.
+- [x] 对接课程页API.
+- [x] 对接路径页API.
+- [x] 对接问答区API.
+- [ ] 对接用户主页API.
+- [ ] 对接登陆.
 
 
 因为一些原因项目耽搁了，现在重新开始，争取一个月内完成剩余部分。
@@ -223,9 +226,9 @@ TODO 后端配合部分
 可以直接抓取实验楼的API使用了。
 
 已知Api:
-获得所有课程分类：
+获得所有课程分类:
     https://www.shiyanlou.com/api/v2/courses/categories/
-获得所有的课程，参数
+获得所有的课程，参数:
     http://www.shiyanlou.com/api/v2/courses/
 获取主页中的内容:
     index/paths 获取路径
@@ -234,7 +237,19 @@ TODO 后端配合部分
     index/louplus 获取楼+
     index/banner-pictures 获取滚动的推广课程
     index/categories 获取主页的课程分类信息
-
-另外，单一课程仍然没有直接可用的API，而且已经更新了布局。
-单一课程的布局方面大概完成。
-
+获取单一课程数据:
+    courses/<int:courseId> 获取出基本信息
+    courses/<int:courseId>/labs 获取出全部课程，包括挑战。
+获取出实验报告:
+    labreports/
+获取出评论:
+    comments/ 具体用GET参数控制。
+获取问答区内容:
+    questions/ 获取所有的问答帖子,具体由GET参数控制。
+    questions/<int:questionId>/ 某一问题的基本信息。
+    questions/<int:questionId>/answers 获取问题的回复。
+    questions/<int:questionId>/related-questions/ 获取相关问题。
+获取路径部分:
+    paths/ 获取所有路径。
+    paths/<int:pathId>/ 获取单一路径信息。
+    paths/<int:pathId>/stages/ 获取路径每个阶段课程的信息。
