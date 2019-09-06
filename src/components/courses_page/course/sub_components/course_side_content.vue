@@ -10,12 +10,12 @@
                 hr
                 follow
              -->
-             <img class="course_info_img" :src="course_info.course_img">
+             <img class="course_info_img" :src="course_info.picture_url">
 
              <div class="course_info_box">
-                 <p>{{ course_info.course_type }}</p>
+                 <p>{{ course_info.fee_type }}</p>
                  <button class="btn join_in_course_button">加入课程</button>
-                 <p class="task_count_p">  &nbsp;{{ course_info.course_process.length }} 个在线动手实验</p>
+                 <p class="task_count_p">  &nbsp;{{ course_info.labs_count }} 个在线动手实验</p>
                  <!--  这边用 v-if 判断是否有挑战,后端数据格式还没有确定，暂时不做任何事 -->
                  <!-- <p></p> -->
                  <div class="follow_course_div">

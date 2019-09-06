@@ -6,24 +6,24 @@
             </li>
         </ul>
         <div class="knowledge_points_div">
-            <div class="points_div">
-                Bash 测试文本
-            </div>
-            <div class="points_div">
-                测试文本
-            </div>
-            <div class="points_div">
-                测试文本
-            </div>
-            <div class="points_div">
-                测试文本
+            <div class="points_div"
+                 v-for="points in course_knowledge_points"
+                 :key="points"
+            >
+                {{ points }}
             </div>
         </div>
     </div>
 </template>
 <script type="text/javascript">
-export default {
+import { mapState } from 'vuex'
 
+export default {
+    computed: {
+        ...mapState({
+            course_knowledge_points: state => state.course.course_information.points
+        })
+    }
 }
 </script>
 <style type="text/css">

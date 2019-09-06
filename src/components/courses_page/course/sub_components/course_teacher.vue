@@ -9,13 +9,16 @@
             <div class="author_base_info">
                 <div class="author_avatar">
                     <a href="javascript:;">
-                        <img :src="course_author_info.avatar" class="course_teacher_avatar">
+                        <img :src="course_author_info.teacher.avatar_url" class="course_teacher_avatar">
                     </a>
                 </div>
                 <div class="author_name_course_history">
                     <span class="author_name_span">
-                        {{ course_author_info.name }} 
-                        <span class="author_history_span">共发表过{{ course_author_info.published_courses_number }}门课程</span>
+                        {{ course_author_info.teacher.name }} 
+                        <span class="author_history_span">共发表过{{ course_author_info.teacher.published_courses_count }}门课程</span>
+                    </span>
+                    <span class="teacher_description">
+                        {{ course_author_info.teacher.teacher_info.description }}
                     </span>
                     <a href="javascript:;"
                        class="look_up_teacher"
@@ -46,7 +49,7 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            course_author_info: state => state.course.course_information.author
+            course_author_info: state => state.course.course_information
         })
     }
 }    
@@ -59,6 +62,11 @@ export default {
     flex-direction: column;
     padding: 30px;
     margin-bottom: 10px;
+}
+
+.course_author_main_div {
+    padding-top: 5px; 
+    margin-top: 20px;
 }
 
 .course_nav_ul {
@@ -95,7 +103,8 @@ export default {
     display: block;
     font-size: 15px;
     /*font-weight: bold;*/
-    margin: 5px 0;
+    /*margin: 5px 0;*/
+    margin-bottom: 10px;
 }
 
 .author_history_span {
@@ -120,9 +129,14 @@ export default {
 .look_up_teacher {
     color: #999;
     font-size: 14px;
+    margin-top: 10px;
 }
 
 .look_up_teacher:hover {
     color: #999;
+}
+
+.teacher_description {
+    font-size: 14px;
 }
 </style>

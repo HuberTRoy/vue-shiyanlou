@@ -34,8 +34,8 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            course_title: state => state.course.course_information.course_title,
-            course_tags: state => state.course.course_information.course_tags
+            course_title: state => state.course.course_information.name,
+            course_tags: state => state.course.course_information.tags
         })
     }
 }

@@ -3,23 +3,23 @@
         <div class="course_title_type_div">
             <h4>
                 <span class="course_title_span">
-                    {{ course_info.course_title }}
+                    {{ course_info.name }}
                 </span>
                 <span class="course_type_span"
-                :class="course_type_class[course_info.course_type]">
-                    {{ course_info.course_type }}
+                :class="course_type_class[course_info.fee_type]">
+                    {{ course_name_type[course_info.fee_type] }}
                 </span>
             </h4>
         </div>
         <div class="course_numbers_div">
-            <p class="course_numbers_p">{{ course_info.course_learning_information.learn_number}} 人学过</p>
+            <p class="course_numbers_p">{{ course_info.students_count}} 人学过</p>
             <span class="course_numbers_line">
             </span>
-            <p class="course_numbers_p"> {{ course_info.course_learning_information.favorite_number}} 人关注</p>
+            <p class="course_numbers_p"> {{ course_info.followers_count}} 人关注</p>
             <span class="course_numbers_line">
             </span>
             <p class="course_numbers_p">
-                作者: {{ course_info.author.name }}
+                作者: {{ course_info.teacher.name }}
             </p>
 <!--             <p class="course_numbers_p">{{ course_info.course_learning_information.comments_number}} 人评论</p> -->
         </div>
@@ -28,7 +28,7 @@
        <div class="course_operation_div"> 
             <!-- 包括一些价格表和具体的开始实验按钮等 -->
             <p class="course_description">
-                {{ course_info.course_description }}
+                {{ course_info.description }}
             </p>
             <!-- 下面更新后暂时不要了 -->
             <!-- <div class="price_info"> -->
@@ -49,10 +49,15 @@ export default {
     data () {
         return {
             course_type_class: {
-                '免费': 'free_course_p',
-                '会员': 'vip_course_p',
-                '训练营': 'training_course_p',
+                'free': 'free_course_p',
+                'member': 'vip_course_p',
+                'bootcamp': 'training_course_p',
                 '': ''
+            },
+            course_name_type: {
+                'free': '免费',
+                'member': '会员',
+                'bootcamp': '训练营'
             }
         }
     },

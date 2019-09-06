@@ -47,7 +47,7 @@
      -->
     <div class="course_content_box">
         <NavTitle></NavTitle>
-        <div class="course_main_content_div">
+        <div class="course_main_content_div" v-if="course_info">
             <div class="course_main_div">
                 <div class="course_info_div">
                     <CourseInfo></CourseInfo>

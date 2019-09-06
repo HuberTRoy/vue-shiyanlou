@@ -2,35 +2,36 @@
     <div class="comments_item">
         <div class="author_avatar_div">
             <a href="" class="avatar_a">
-                <img :src="avatar_url" class="avatar" />
+                <img :src="data.author.avatar_url" class="avatar" />
             </a>
         </div>
 
         <div class="author_main_div">
             <div class="author_info">
                 <a href="" class="name_a">
-                    {{ author_name }}
+                    {{ data.author.name }}
                 </a>
 
                 <span class="level_span">
-                    L{{ author_level }}
+                    L{{ data.author.level }}
                 </span>
             </div>
 
             <div class="comment_text_div">
                 <p class="comment_text_p">
-                    {{ comment_text }}
+                    {{ data.content }}
                 </p>
             </div>
 
             <div class="comment_info_div">
                 <p class="comment_info_p">
-                    {{ created_time }}
-                    {{ source_lab }}
+                    {{ data.created_at }}
+                    <span v-if="data.lab">
+                        来自: {{ data.lab.name }}
+                    </span>
                 </p>
                 <a href="" class="reply_a">
                     <i class="far fa-comment-dots reply_icon"></i>
-                    <!-- <img src="check-circle" /> -->
                     回复
                 </a>
             </div>
@@ -40,35 +41,39 @@
 <script type="text/javascript">
 export default {
     props: {
-        avatar_url: {
-            type: String,
-            require: true
-        },
-
-        author_name: {
-            type: String,
-            require: true
-        },
-
-        author_level: {
-            type: Number,
-            require: true
-        },
-
-        comment_text: {
-            type: String,
-            require: true
-        },
-
-        created_time: {
-            type: String,
-            require: true
-        },
-
-        source_lab: {
-            type: String,
+        data: {
+            type: Object,
             require: true
         }
+        // avatar_url: {
+        //     type: String,
+        //     require: true
+        // },
+
+        // author_name: {
+        //     type: String,
+        //     require: true
+        // },
+
+        // author_level: {
+        //     type: Number,
+        //     require: true
+        // },
+
+        // comment_text: {
+        //     type: String,
+        //     require: true
+        // },
+
+        // created_time: {
+        //     type: String,
+        //     require: true
+        // },
+
+        // source_lab: {
+        //     type: String,
+        //     require: true
+        // }
     }
 }
 </script>

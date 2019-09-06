@@ -10,15 +10,16 @@
             </ul>
         </div>
         <div class="current_comments">
-            <CommentsItem v-for="item in comments.items"
-                          :key="item.comment_id"
-                          :avatar_url="item.author.avatar"
+            <CommentsItem v-for="item in comments.results"
+                          :key="item.id"
+                          :data="item"
+            ></CommentsItem>
+<!--                           :avatar_url="item.author.avatar_url"
                           :author_name="item.author.name"
                           :author_level="item.author.level"
                           :comment_text="item.content"
-                          :created_time="item.created_time"
-                          :source_lab="item.source_lab"
-            ></CommentsItem>
+                          :created_time="item.created_at"
+                          :source_lab="item.lab.name" -->
             <TabPage
             :pageType="'comment'"
             ></TabPage>
@@ -29,7 +30,7 @@
 import { mapState, mapActions } from 'vuex'
 
 import CommentsItem from './comments_item.vue'
-import TabPage from '../tab_page.vue'
+import TabPage from './comments_tab_page.vue'
 
 export default {
     computed: {
@@ -53,9 +54,9 @@ export default {
 
     created: function () {
         this.get_comments({
-            'course_id': this.course_id,
-            'page': this.current_page,
-            'page_size': this.page_size
+            'topic_id': this.course_id,
+            'page_size': this.page_size,
+            'topic_type': 'course'
         })
     }
 }

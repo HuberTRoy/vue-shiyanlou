@@ -15,7 +15,7 @@
 
                 <div class="report_content_length">
                     <p class="report_content_item_p length">
-                        {{ data.length }}
+                        {{ data.word_count }}
                     </p>
                     <div class="label">
                     </div>
@@ -24,9 +24,11 @@
         </div>
         <div class="report_author_item_div">
             <div class="avatar_and_level">
-                <img :src="data.author.avatar" class="report_author_avatar" />
+                <img :src="data.author.avatar_url" class="report_author_avatar" />
                 <span class="author_name">
-                    {{ data.author.name }}
+                    <span class="author_name_span_for_hide">
+                        {{ data.author.name }}
+                    </span>
                     <span class="level">
                         L{{ data.author.level }}
                     </span>
@@ -34,11 +36,11 @@
             </div>
             <div class="report_comments">
                 <i class="far fa-comments comments_icon"></i>
-                {{ data.comment_number }}
+                {{ data.comments_count }}
             </div>
         </div>
         <div class="report_update_time_div">
-            {{ data.update_time }}
+            {{ data.updated_at }}
         </div>
     </div>
 </template>
@@ -144,9 +146,28 @@ export default {
     border-radius: 50%;
 }
 
+.avatar_and_level {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    width: 80%;
+}
+
 .author_name {
+    width: 70%;
+    display: flex;
     color: #9b9da2;
     overflow: hidden;
+}
+
+.author_name_span_for_hide {
+    width: 70%;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .level {

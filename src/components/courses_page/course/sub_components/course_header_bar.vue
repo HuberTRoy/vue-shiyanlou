@@ -6,16 +6,16 @@
          -->
         <div class="course_header_bar_layout_div">
             <div class="course_header_bar_course_info_top">
-                <span class="course_header_bar_course_title">{{ course_info.course_title }}</span>
+                <span class="course_header_bar_course_title">{{ course_info.name }}</span>
                 <span class="course_type_span"
-                :class="course_type_class[course_info.course_type]">
-                    {{ course_info.course_type }}
+                :class="course_type_class[course_info.fee_type]">
+                    {{ type_dict[course_info.fee_type] }}
                 </span>
             </div>
             <div class="course_header_bar_course_info_bottom">
-                <span>{{ course_info.course_learning_information.learn_number }} 人学过</span>
-                <span class="span_split">{{ course_info.course_learning_information.favorite_number }} 人关注</span>
-                <span class="span_split">作者: {{ course_info.author.name }}</span>
+                <span>{{ course_info.students_count }} 人学过</span>
+                <span class="span_split">{{ course_info.followers_count }} 人关注</span>
+                <span class="span_split">作者: {{ course_info.teacher.name }}</span>
             </div>
         </div>
         
@@ -28,11 +28,16 @@ export default {
     data () {
         return {
             course_type_class: {
-                '免费': 'free_course_p',
-                '会员': 'vip_course_p',
-                '训练营': 'training_course_p',
+                'free': 'free_course_p',
+                'member': 'vip_course_p',
+                'bootcamp': 'training_course_p',
                 '': ''
-            }
+            },
+            type_dict: {
+                'free': '免费',
+                'member': '会员',
+                'bootcamp': '训练营'
+            } 
         }
     },
     computed: {

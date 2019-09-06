@@ -8,7 +8,7 @@
                        @click="change_discuss_nav('comment')"
                        :class="nav === 'comment' ? 'active_discuss_nav_a' : ''"
                     >
-                        课程评论 ({{ course_base_information.course_comments_number }})
+                        课程评论 ({{ course_base_information.comments_count }})
                     </a>
                 </li>
                 <li class="discuss_nav_li">
@@ -17,7 +17,7 @@
                        @click="change_discuss_nav('report')"
                        :class="nav === 'report' ? 'active_discuss_nav_a' : ''"
                     >
-                        实验报告 ({{ course_base_information.course_report_number }})
+                        实验报告 ({{ course_base_information.labreports_count }})
                     </a>
                 </li>
                 <li class="discuss_nav_li">
@@ -26,7 +26,7 @@
                        @click="change_discuss_nav('qa')"
                        :class="nav === 'qa' ? 'active_discuss_nav_a' : ''"
                     >
-                        实验问答 ({{ course_base_information.course_QA_number }})
+                        实验问答 ({{ course_base_information.questions_count }})
                     </a>
                 </li>
             </ul>

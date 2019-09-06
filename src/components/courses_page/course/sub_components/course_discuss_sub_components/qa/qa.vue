@@ -1,12 +1,12 @@
 <template>
    <div class="qa_div">
-       <a href="javascript:;" class="submit_qa">
+<!--        <a href="javascript:;" class="submit_qa">
            我要提问
        </a>
-       <hr class="split_hr">
+       <hr class="split_hr"> -->
 
        <div class="question_div">
-           <QaItem v-for="(qa, index) in qa_information.items"
+           <QaItem v-for="(qa, index) in qa_information.results"
                    :key="index"
                    :data="qa"
             >
@@ -20,7 +20,7 @@
 <script type="text/javascript">
 import { mapState, mapActions } from 'vuex'
 import QaItem from '@/components/common_components/qa_item/qa_item.vue'
-import TabPage from '../tab_page.vue'
+import TabPage from './qa_tab_page.vue'
 
 export default {
     components: {
@@ -43,9 +43,8 @@ export default {
 
     created: function () {
         this.get_qa({
-            'course_id': this.course_id,
-            'page': 1,
-            'page_size': 10
+            'course_id': this.$route.params.id,
+            'page': 1
         })
     }
 }

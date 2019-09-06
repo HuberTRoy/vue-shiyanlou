@@ -1,6 +1,6 @@
 <template>
     <div class="report_content">
-        <ReportContentItem v-for="(item, index) in report_info.items"
+        <ReportContentItem v-for="(item, index) in report_info.results"
                            :key="index"
                            :data="item"
         >
@@ -31,11 +31,11 @@ export default {
             get_report: 'course/change_report_information'
         })
     },
+
+    // 应该放到父组件 report.vue 里。
     created: function () {
         this.get_report({
             'course_id': this.course_id,
-            'category_id': 0,
-            'page': 1,
             'page_size': this.args.page_size
         })
     }

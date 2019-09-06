@@ -3,7 +3,7 @@
         <a href="javascript:;"
            class="report_category_a"
            :class="current_category === category_id ? 'active' : ''"
-           @click="change_category({'key': 'category_id', 'value': category_id})"
+           @click="change_category_and_get_report({'key': 'lab_id', 'value': category_id})"
         >
             {{ category }}
         </a>
@@ -27,14 +27,26 @@ export default {
 
     computed: {
         ...mapState({
-            current_category: state => state.course.course_report_args.category_id
+            current_category: state => state.course.course_report_args.lab_id,
+            course_id: state => state.course.course_id,
+            report_args: state => state.course.course_report_args
         })
     },
 
     methods: {
         ...mapActions({
-            change_category: 'course/change_report_args'
-        })
+            change_category: 'course/change_report_args',
+            change_report_information: 'course/change_report_information'
+        }),
+
+        change_category_and_get_report: function (args) {
+            this.change_category(args)
+            this.change_report_information({
+                'course_id': this.course_id,
+                'lab_id': this.category_id,
+                'page_size': this.report_args.page_size
+            })
+        }
     }
 }
 
