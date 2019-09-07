@@ -1,18 +1,18 @@
 <template>
     <div class="input_bar">
         <div class="input-group input_group">
-            <div class="input_icon">
+<!--             <div class="input_icon">
                 <i class="fa fa-envelope fa-fw"></i>
-            </div>
+            </div> -->
             <input class="form-control text_input"
                    type="text"
-                   v-model="username"
-                   placeholder="请输入邮箱">
+                   v-model="login"
+                   placeholder="请输入手机/邮箱">
         </div>
         <div class="input-group input_group">
-          <div class="input_icon">
+<!--           <div class="input_icon">
             <i class="fa fa-lock fa-fw"></i>
-          </div>
+          </div> -->
           <input class="form-control text_input"
                  type="password"
                  v-model="password"
@@ -25,14 +25,14 @@
 export default {
     data () {
         return {
-            username: '',
+            login: '',
             password: ''
         }
     },
     computed: {
         sign_on_info: function () {
             return {
-                'username': this.username,
+                'login': this.login,
                 'password': this.password
             }
         }
@@ -67,6 +67,15 @@ export default {
 
 .text_input {
     font-size: 14px;
+}
+
+.text_input::placeholder {
+    color: #c6c6c6;
+}
+
+.text_input:focus {
+    box-shadow: none;
+    border-color: #08bf91;
 }
 
 </style>

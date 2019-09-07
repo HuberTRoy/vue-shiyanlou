@@ -227,29 +227,51 @@ TODO 后端配合部分
 
 已知Api:
 获得所有课程分类:
+
     https://www.shiyanlou.com/api/v2/courses/categories/
+
 获得所有的课程，参数:
+
     http://www.shiyanlou.com/api/v2/courses/
+
 获取主页中的内容:
+
     index/paths 获取路径
     index/bootcamps 获取推荐的训练营
     index/classfication-courses 获取推荐的各类课程
     index/louplus 获取楼+
     index/banner-pictures 获取滚动的推广课程
     index/categories 获取主页的课程分类信息
+
 获取单一课程数据:
+    
     courses/<int:courseId> 获取出基本信息
     courses/<int:courseId>/labs 获取出全部课程，包括挑战。
+
 获取出实验报告:
+
     labreports/
+
 获取出评论:
+
     comments/ 具体用GET参数控制。
+
 获取问答区内容:
+
     questions/ 获取所有的问答帖子,具体由GET参数控制。
     questions/<int:questionId>/ 某一问题的基本信息。
     questions/<int:questionId>/answers 获取问题的回复。
     questions/<int:questionId>/related-questions/ 获取相关问题。
+
 获取路径部分:
+
     paths/ 获取所有路径。
     paths/<int:pathId>/ 获取单一路径信息。
     paths/<int:pathId>/stages/ 获取路径每个阶段课程的信息。
+
+登陆部分:
+
+    services/sms/send-code/?way=register {} 参数过长,又未计划实现,暂且留着研究。
+    services/sms/verify-code/?way=register {code: "728586", phone_number: "+8618888888888"} 验证注册信息
+    auth/register/ 进行注册设置密码 {captcha: "728586", phone: "+8618888888888", password: "needWordAndNumber"}
+    auth/login/ { login:"username(email or phone)", password:noEncryption, remember:falseOrTrue } 登录

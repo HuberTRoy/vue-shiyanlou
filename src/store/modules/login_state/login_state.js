@@ -1,4 +1,5 @@
 import loginApi from '@/api/login/login.js'
+import cookies from 'vue-cookies'
 
 const state = {
     show_login_dialog: false,
@@ -6,11 +7,7 @@ const state = {
     onOrUp: 'on',
     sign_on: false,
     login_info: {
-        'state': true,
-        'state_message': '',
-        'avatar': '',
-        'history': [],
-        'id': 0
+        'message': ''
     }
 }
 
@@ -37,18 +34,29 @@ const mutations = {
         state.sign_on = false
         state.show_login_dialog = false
         // state.login_info
+    },
+    change_message (state, message) {
+        state.login_info.message = message
     }
 }
 
 const actions = {
     get_and_change_all_login (context, loginArgs) {
-        let loginInfo = loginApi.login(loginArgs)
+        // let loginInfo = loginApi.login(loginArgs)
+        loginApi.login(loginArgs).then((response) => {
+            if (response.data.comet_token) {
+                context.commit('change_sign_on_state', true)
+                context.commit('change_show_state', null)
+                cookies.set('session', response.data.session)
+            }
 
-        context.commit('change_sign_on_state', loginInfo.state)
-        context.commit('change_login_info', loginInfo)
+            context.commit('change_login_info', response.data)
 
-        return {'state': loginInfo.state,
-                'state_message': loginInfo.state_message}
+        })
+
+
+        // return {'state': loginInfo.state,
+                // 'state_message': loginInfo.state_message}
     },
     change_show_state (context, onOrUp) {
         context.commit('change_show_state', onOrUp)
@@ -58,6 +66,9 @@ const actions = {
     },
     log_out (context) {
         context.commit('log_out')
+    },
+    change_message (context, message) {
+        context.commit('change_message', message)
     }
 }
 

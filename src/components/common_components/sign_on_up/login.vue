@@ -3,6 +3,11 @@
         <div class="login_div"
              v-show="show_login_dialog"
         >
+            <div class="login_error_message alert alert-danger"
+                 :class="[show_login_error_message ? 'show_login_error_message' : '']"
+            >
+                {{ message }}
+            </div>
             <transition name="login_dialog_transition">
                 <div class="login_dialog_div"
                      v-show="show_login_dialog"
@@ -28,7 +33,7 @@
                                 <a href="javascript:;"
                                    class="nav_bar_a"
                                    @click="change_on_up_state('up')"
-                                >注册</a>
+                                >注册(未实现)</a>
                             </li>
                         </ul>
                     </div>
@@ -47,6 +52,11 @@ import SignUp from './sign_up.vue'
 import {mapState, mapActions} from 'vuex'
 
 export default {
+    data: function () {
+        return {
+            show_login_error_message: false
+        } 
+    },
     components: {
         SignOn,
         SignUp
@@ -55,14 +65,29 @@ export default {
     computed: {
         ...mapState({
             show_login_dialog: state => state.loginState.show_login_dialog,
-            onOrUp: state => state.loginState.onOrUp
+            onOrUp: state => state.loginState.onOrUp,
+            message: state => { 
+                // this.show_login_error_message = true
+                return state.loginState.login_info.message
+            }
         })
     },
-
+    watch: {
+        message: function (newMessage, oldMesssage) {
+            if (newMessage) {
+                this.show_login_error_message = true
+                setTimeout(()=>{
+                    this.change_message('')
+                    this.show_login_error_message = false
+                }, 3000)
+            }
+        }
+    },
     methods: {
         ...mapActions({
             change_show_state: 'loginState/change_show_state',
-            change_on_up_state: 'loginState/change_on_up_state'
+            change_on_up_state: 'loginState/change_on_up_state',
+            change_message: 'loginState/change_message'
         })
     }
 }
@@ -84,10 +109,24 @@ export default {
     opacity: 1;
     width: 350px;
     margin: 80px auto;
+    margin-top: 10px;
     background: #fff;
     padding: 10px 20px;
     border-radius: 4px;
     border: 1px solid rgba(0,0,0,0.2);
+}
+
+.login_error_message {
+    opacity: 0;
+    width: 170px;
+    margin: auto;
+    margin-top: 80px;
+    text-align: center;
+    transition: opacity 1s;
+}
+
+.show_login_error_message {
+    opacity: 1;
 }
 
 /* 登陆背景会淡出 */
