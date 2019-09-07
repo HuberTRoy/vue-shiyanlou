@@ -20,7 +20,7 @@ export default {
 
     computed: {
         ...mapState({
-            course_id: state => state.course.course_id,
+            course_id: state => state.course.course_information.id,
             report_info: state => state.course.report_information,
             args: state => state.course.course_report_args
          })
@@ -33,7 +33,7 @@ export default {
     },
 
     // 应该放到父组件 report.vue 里。
-    created: function () {
+    mounted: function () {
         this.get_report({
             'course_id': this.course_id,
             'page_size': this.args.page_size
