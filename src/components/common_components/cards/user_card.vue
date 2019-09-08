@@ -12,15 +12,15 @@
                              target="_blank"
                              :to="{ name: 'user', params: {id: data.id} }">
                     <img class="avatar"
-                         :src="data.avatar"
+                         :src="data.avatar_url"
                     >
                 </router-link>
                 <div class="base_info_card">
                     <div class="base_info_card_header">
-                        <span class="nickname">{{ data.nickname }}</span>
+                        <span class="nickname">{{ data.name }}</span>
                         <span class="level">L{{ data.level }}</span>
                     </div>
-                    <p class="learn_time_p">今日有效学习时间{{ data.learn_time }}分钟</p>
+                    <p class="learn_time_p">今日有效学习时间{{ data.study_minutes }}分钟</p>
                 </div>
             </div>
             <div class="vip_button_div">
@@ -35,7 +35,7 @@
                     3 4
                     flex wrap 50% 50%
                  -->
-                 <router-link tag="p" to="#" class="user_operation_button">
+                 <router-link tag="a" target="_blank" :to="{name: 'user', params: {id: data.id}}" class="user_operation_button">
                      我的主页
                  </router-link>
                  <router-link tag="p" to="#" class="user_operation_button">
@@ -196,6 +196,7 @@ https://stackoverflow.com/questions/27221086/how-to-create-a-triangle-arrow-shap
     color: #3a3a3a;
     border-radius: 25px;
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 .user_operation_button:hover {

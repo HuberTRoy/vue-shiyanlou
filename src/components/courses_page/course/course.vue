@@ -161,7 +161,8 @@ export default {
     ...mapState({
       course_info: state => state.course.course_information,
       scrolled: state => state.scrollBar.currentScrolledValue > 50,
-      scrollValue: state => state.scrollBar.currentScrolledValue
+      scrollValue: state => state.scrollBar.currentScrolledValue,
+      isLogin: state => state.loginState.sign_on
     }),
     ...mapGetters({
         documentHeight: 'scrollBar/documentHeight'
@@ -180,12 +181,16 @@ export default {
   },
   methods: {
     ...mapActions({
-      get_and_change_course_information: 'course/get_and_change_course_information'
+      get_and_change_course_information: 'course/get_and_change_course_information',
+      get_course_userstatus: 'course/change_course_userstatus'
     })
   },
   created: function () {
     let courseId = this.$route.params.id
     this.get_and_change_course_information(courseId)
+    if (this.isLogin) {
+        this.get_course_userstatus({'course_ids': courseId})
+    }
   }
 }
 </script>

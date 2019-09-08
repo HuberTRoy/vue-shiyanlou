@@ -38,12 +38,12 @@
                         </router-link>
                     </li>
                     <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
-                        <a href="#7" id="lou_puls_button" class="scroll_sub_selection_a">
+                        <a href="https://www.shiyanlou.com/louplus/" id="lou_puls_button" class="scroll_sub_selection_a">
                             楼+
                         </a>
                     </li>
                     <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
-                        <a href="#6" id="VIP_button" class="scroll_sub_selection_a">
+                        <a href="https://www.shiyanlou.com/vip" id="VIP_button" class="scroll_sub_selection_a">
                             会员
                         </a>
                     </li>
@@ -116,7 +116,7 @@
                                     我的课程
                                 </a>
                                 <HistoryCoursesCard class="scroll_bar_history_courses_card"
-                                :data="login_info.history"
+                                :data="studied_info.results"
                                 ></HistoryCoursesCard>
 
                             </li>
@@ -130,15 +130,15 @@
                             <li class="feature_li avatar_li">
                                 <router-link tag="a"
                                              target="_blank"
-                                             :to="{ name: 'user', params: { id : login_info.id } }"
+                                             :to="{ name: 'user', params: { id : user_info.id } }"
                                    class="feature_a avatar_a"
                                 >
-                                    <img class="avatar_img" :src="login_info.avatar"
+                                    <img class="avatar_img" :src="user_info.avatar_url"
                                     title="Avatar"
                                     >
                                 </router-link>
                                 <UserCard class="scroll_bar_user_card"
-                                :data="login_info"
+                                :data="user_info"
                                 ></UserCard>
                             </li>
                         </div>
@@ -161,7 +161,8 @@ export default {
     computed: {
         ...mapState({
             login_state: state => state.loginState.sign_on,
-            login_info: state => state.loginState.login_info
+            user_info: state => state.loginState.user_info,
+            studied_info: state => state.loggedInfo.user_studied_courses
         })
     },
     methods: {

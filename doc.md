@@ -275,3 +275,18 @@ TODO 后端配合部分
     services/sms/verify-code/?way=register {code: "728586", phone_number: "+8618888888888"} 验证注册信息
     auth/register/ 进行注册设置密码 {captcha: "728586", phone: "+8618888888888", password: "needWordAndNumber"}
     auth/login/ { login:"username(email or phone)", password:noEncryption, remember:falseOrTrue } 登录
+
+登录后解锁的内容:
+
+    courses/<int:courseId>/follow/ 是否关注某课程 PUT/DELETE
+    courses/userstatus/ ?course_ids=1,2 需cookies 用户对这个课程的状态。
+    user/ 需cookies 用户的基本信息
+    users/<int:userId>/courses/ ?page_size=5&type=studied  某用户学过的课程.
+    users/<int:userId>/courses/?userId=<int:userId>&type=followed 某用户关注的课程
+                                                         bought 购买的
+    users/<int:userId>/paths/ 某用户加入的路径
+                       labreports/ 发表的实验报告
+                       questions/?type=answered 发布的问答帖子。
+    courses/<int:courseId>/join/ 需cookies 加入某课程 POST.
+    labtask/ 需cookies 返回某实验的信息。
+

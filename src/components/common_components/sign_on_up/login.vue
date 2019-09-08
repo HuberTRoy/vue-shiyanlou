@@ -69,6 +69,9 @@ export default {
             message: state => { 
                 // this.show_login_error_message = true
                 return state.loginState.login_info.message
+            },
+            isLogin: state => {
+                return state.loginState.sign_on
             }
         })
     },
@@ -81,13 +84,20 @@ export default {
                     this.show_login_error_message = false
                 }, 3000)
             }
+        },
+        isLogin: function (newState, oldState) {
+            console.log(newState)
+            if (newState === true) {
+                this.change_user_info()
+            }
         }
     },
     methods: {
         ...mapActions({
             change_show_state: 'loginState/change_show_state',
             change_on_up_state: 'loginState/change_on_up_state',
-            change_message: 'loginState/change_message'
+            change_message: 'loginState/change_message',
+            change_user_info: 'loginState/change_user_info'
         })
     }
 }

@@ -5,14 +5,29 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'App',
   methods: {
     ...mapActions({
-        monitingScroll: 'scrollBar/updateScrollValue'
+        monitingScroll: 'scrollBar/updateScrollValue',
+        get_user_info: 'loginState/change_user_info',
+        get_studied_courses: 'loggedInfo/change_user_studied_courses'
     })
+  },
+  
+  computed: {
+    ...mapState({
+      isLogin: state => state.loginState.sign_on
+    })
+  },
+
+  created () {
+    if (this.isLogin) {
+      this.get_user_info()
+      this.get_studied_courses()
+    }
   },
 
   mounted () {

@@ -2,6 +2,8 @@ import axios from 'axios'
 
 import {apiUrl} from '@/api/base.js'
 
+axios.defaults.withCredentials = true
+
 export default {
     get_index_categories () {
         // [{
@@ -30,6 +32,7 @@ export default {
         //    title: "6周成为深度学习工程师" 
         // }]
         return axios.get(apiUrl + 'v2/index/louplus')
+        // return axios.get("http://localhost/api/v2/index/louplus", { withCredentials: true })
     },
 
     // 实验楼官方这里少写了一个i, class i fication 不过无伤大雅。

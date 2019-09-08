@@ -5,9 +5,12 @@ const state = {
     show_login_dialog: false,
     // on 表示 显示的是登录框，up 则是注册框
     onOrUp: 'on',
-    sign_on: false,
+    sign_on: cookies.get('userId') ? true : false,
     login_info: {
         'message': ''
+    },
+    user_info: {
+
     }
 }
 
@@ -33,10 +36,15 @@ const mutations = {
         // 登出操作
         state.sign_on = false
         state.show_login_dialog = false
+        cookies.remove('userId')
+        cookies.remove('session')
         // state.login_info
     },
     change_message (state, message) {
         state.login_info.message = message
+    },
+    change_user_info (state, userInfo) {
+        state.user_info = userInfo
     }
 }
 
@@ -69,6 +77,12 @@ const actions = {
     },
     change_message (context, message) {
         context.commit('change_message', message)
+    },
+    change_user_info (context) {
+        loginApi.get_user_info().then((response) => {
+            context.commit('change_user_info', response.data)
+            cookies.set('userId', response.data.id)
+        })
     }
 }
 

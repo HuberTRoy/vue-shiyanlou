@@ -38,7 +38,9 @@ const state = {
         page_size: 10,
         total_page: 1,
         current_page: 1
-    }
+    },
+
+    course_userstatus: [{}]
 }
 
 const getters = {
@@ -105,6 +107,10 @@ const mutations = {
 
     change_qa_args (state, qaArgs) {
         state.course_report_args[qaArgs.key] = qaArgs.value
+    },
+
+    change_course_userstatus (state, courseUserstatus) {
+        state.course_userstatus = courseUserstatus
     }
 
 }
@@ -192,6 +198,12 @@ const actions = {
         //     'page_size': state.page_size
         // }
         commit('change_current_page', pageNumber)
+    },
+
+    change_course_userstatus (context, query) {
+        courseApi.get_course_userstatus(query).then((response) => {
+            context.commit('change_course_userstatus', response.data)
+        })
     }
 }
 

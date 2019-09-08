@@ -44,7 +44,7 @@
                                     我的课程
                                 </a>
                                 <HistoryCoursesCard class="history_courses_card"
-                                                    :data="login_info.history"
+                                                    :data="studied_info.results"
                                 ></HistoryCoursesCard>
                             </li>
                             <li class="navigation_feature_li">
@@ -55,16 +55,16 @@
                                 </a>
                             </li>
                             <li class="navigation_feature_li avatar_li">
-                                <router-link :to="{ name: 'user', params: {id: login_info.id} }"
+                                <router-link :to="{ name: 'user', params: {id: user_info.id} }"
                                              class="navigation_feature_a navigation_avatar_a"
                                              target="_blank"
                                 >
-                                    <img class="navigation_avatar_img" :src="login_info.avatar"
+                                    <img class="navigation_avatar_img" :src="user_info.avatar_url"
                                     title="Avatar"
                                     >
                                 </router-link>
                                 <UserCard class="user_card"
-                                          :data="login_info"
+                                          :data="user_info"
                                 ></UserCard>
                             </li>
                     </div>
@@ -142,7 +142,8 @@ export default {
     computed: {
         ...mapState({
             login_state: state => state.loginState.sign_on,
-            login_info: state => state.loginState.login_info
+            user_info: state => state.loginState.user_info,
+            studied_info: state => state.loggedInfo.user_studied_courses
         })
     },
     methods: {

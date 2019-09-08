@@ -6,16 +6,18 @@
             </li>
             <li class="history_courses_card_li"
                 v-for="history in data"
-                :key="history.course_id"
+                :key="history.id"
             >
-                <a :href="history.course_id"
+                <router-link :to="{ name: 'course', params: {id: history.id} }"
+                             tag="a"
+                             target="_blank"
                     class="history_courses_card_a"
                 >
-                    {{ history.course_title }}
-                </a>
+                    {{ history.name }}
+                </router-link>
             </li>
             <li class="detail_history_courses_button_li">
-                <router-link to="#" tag="p" class="detail_history_courses_button_p">
+                <router-link :to="{ name:'user', params: {id: user_id} }" tag="p" class="detail_history_courses_button_p">
                     查看更多
                 </router-link>
             </li>
@@ -23,11 +25,18 @@
     </div>
 </template>
 <script type="text/javascript">
+import cookies from 'vue-cookies'
+
 export default {
     props: {
         data: {
             type: Array,
             require: true
+        }
+    },
+    data: function () {
+        return {
+            user_id: cookies.get('userId')
         }
     }
 }
