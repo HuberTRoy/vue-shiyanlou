@@ -14,20 +14,44 @@
 
              <div class="course_info_box">
                  <p>{{ course_info.fee_type }}</p>
-                 <button class="btn join_in_course_button">加入课程</button>
+
+                 <!-- 这边之后会根据不同的 fee_type 和 userstatus_info 的 status 进行不同的展示，
+                      目前已知的:
+                      1. 加入会员免费学.
+                      2. 训练营的需要额外付费或者开通高级会员.
+                      3. 免费的加入课程.
+                      4. 已经加入课程后显示继续学习
+                  -->
+                 <button class="btn join_in_course_button" 
+                         v-if="course_info.fee_type==='free' && userstatus_info.status==='not_joined'"
+                         @click="join_course()"
+                         >加入课程
+                 </button>
+                 <a :href="'http://www.shiyanlou.com/courses/'+ userstatus_info.course_id +'/learning/?id='+ userstatus_info.last_learned_lab_id" target='_blank'>
+                     <button class="btn join_in_course_button" 
+                             v-if="userstatus_info.status==='active'">
+                              继续学习
+                     </button>
+                 </a>
                  <p class="task_count_p">  &nbsp;{{ course_info.labs_count }} 个在线动手实验</p>
                  <!--  这边用 v-if 判断是否有挑战,后端数据格式还没有确定，暂时不做任何事 -->
                  <!-- <p></p> -->
                  <div class="follow_course_div">
-                     <span class="follow_span" v-if="!userstatus_info.is_followed"> 关注</span>
-                     <span class="followed_span" v-if="userstatus_info.is_followed">已关注</span>
+                     <span class="follow_span" 
+                           v-if="!userstatus_info.is_followed"
+                           @click="_change_follow(true)"
+                     > 关注</span>
+                     <span class="followed_span" 
+                           v-if="userstatus_info.is_followed"
+                           @click="_change_follow(false)"
+                     >已关注</span>
                  </div>
              </div>
         </div>
     </div>
 </template>
 <script type="text/javascript">
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     computed: {
@@ -36,6 +60,25 @@ export default {
             userstatus_info: state => state.course.course_userstatus[0]
         })
     },
+    methods: {
+        ...mapActions({
+            change_follow: 'course/change_follow',
+            join: 'course/join_course'
+        }),
+
+        _change_follow: function (isFollow) {
+            let id = this.$route.params.id
+            this.change_follow({
+                'is_follow': isFollow,
+                'id': id
+            })
+        },
+        join_course: function () {
+            this.join({
+                id: this.$route.params.id
+            })
+        }
+    }
 }
 </script>
 <style type="text/css">

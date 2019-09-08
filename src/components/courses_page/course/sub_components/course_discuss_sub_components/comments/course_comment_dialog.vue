@@ -5,8 +5,10 @@
             <div class="send_comment_div"
                  v-if="sign_on"
             >
-                <textarea class="comment_text_area" placeholder="请输入您想说的话..."></textarea>
-                <button class="post_comment_button">发表评论</button>
+                <textarea class="comment_text_area" placeholder="请输入您想说的话..." v-model="comment_content"></textarea>
+                <button class="post_comment_button"
+
+                >发表评论</button>
             </div>
 
             <div class="unlogin_dialog_div"
@@ -28,6 +30,11 @@
 import { mapState } from 'vuex'
 
 export default {
+    data: function () {
+        return {
+            comment_content: ''
+        }
+    },
     computed: {
         ...mapState({
             sign_on: state => state.loginState.sign_on

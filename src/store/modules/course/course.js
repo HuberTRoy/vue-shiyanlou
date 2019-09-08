@@ -111,6 +111,10 @@ const mutations = {
 
     change_course_userstatus (state, courseUserstatus) {
         state.course_userstatus = courseUserstatus
+    },
+
+    change_follow (state, isFollow) {
+        state.course_userstatus[0].is_followed = isFollow
     }
 
 }
@@ -204,7 +208,27 @@ const actions = {
         courseApi.get_course_userstatus(query).then((response) => {
             context.commit('change_course_userstatus', response.data)
         })
+    },
+
+    change_follow (context, query) {
+        if (query.is_follow === true) {
+            courseApi.follow(query).then((response)=> {
+                context.commit('change_follow', true)
+            })
+        } else {
+            courseApi.unfollow(query).then((response)=> {
+                context.commit('change_follow', false)
+            })
+        }
+    },
+
+    join_course (context, query) {
+        let id = query.id
+        courseApi.join_course(query).then((response) => {
+            window.location = 'http://www.shiyanlou.com/courses/' + id + '/learning/'
+        })
     }
+
 }
 
 export default {
