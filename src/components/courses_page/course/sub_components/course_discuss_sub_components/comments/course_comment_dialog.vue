@@ -7,7 +7,7 @@
             >
                 <textarea class="comment_text_area" placeholder="请输入您想说的话..." v-model="comment_content"></textarea>
                 <button class="post_comment_button"
-
+                        @click="_post_comment()"
                 >发表评论</button>
             </div>
 
@@ -27,7 +27,7 @@
     </div>
 </template>
 <script type="text/javascript">
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     data: function () {
@@ -42,8 +42,19 @@ export default {
     },
 
     methods: {
+        ...mapActions({
+            post_comment: 'course/post_comment'
+        }),
         show_login: function () {
             this.$store.dispatch('loginState/change_show_state', 'on')
+        },
+
+        _post_comment: function () {
+            this.post_comment({
+                'content': this.comment_content,
+                'topic_id': this.$route.params.id,
+                'topic_type': "course"
+            })
         }
     }
 }

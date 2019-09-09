@@ -30,51 +30,51 @@
                         来自: {{ data.lab.name }}
                     </span>
                 </p>
-                <a href="" class="reply_a">
-                    <i class="far fa-comment-dots reply_icon"></i>
-                    回复
-                </a>
+
+                <div>
+                    <a href="" class="operation_a">
+                        <i class="far fa-comment-dots reply_icon"></i>
+                        回复
+                    </a>
+                    <a href="javascript:;" 
+                       class="operation_a" 
+                       v-if="comments_userstatus[data.id] && comments_userstatus[data.id].can_delete"
+                       @click="delete_comment()">
+                        删除
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </template>
 <script type="text/javascript">
+import { mapState, mapActions } from 'vuex'
+
 export default {
     props: {
         data: {
             type: Object,
             require: true
         }
-        // avatar_url: {
-        //     type: String,
-        //     require: true
-        // },
+    },
 
-        // author_name: {
-        //     type: String,
-        //     require: true
-        // },
-
-        // author_level: {
-        //     type: Number,
-        //     require: true
-        // },
-
-        // comment_text: {
-        //     type: String,
-        //     require: true
-        // },
-
-        // created_time: {
-        //     type: String,
-        //     require: true
-        // },
-
-        // source_lab: {
-        //     type: String,
-        //     require: true
-        // }
+    computed: {
+        ...mapState({
+            comments_userstatus: state => state.course.comments_userstatus
+        })
+    },
+    methods: {
+        ...mapActions({
+            delete: 'course/delete_comment'
+        }),
+        delete_comment: function () {
+            let c = confirm("确认删除本条评论？")
+            if (c) {
+                this.delete({'id': this.data.id})
+            }
+        }
     }
+
 }
 </script>
 <style type="text/css">
@@ -146,7 +146,7 @@ export default {
     color: #a4a4a4;
 }
 
-.reply_a, .reply_a:hover {
+.operation_a, .operation_a:hover {
     font-size: 14px;
     color: #464646;
 }

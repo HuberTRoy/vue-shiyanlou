@@ -40,7 +40,8 @@ const state = {
         current_page: 1
     },
 
-    course_userstatus: [{}]
+    course_userstatus: [{}],
+    comments_userstatus: {0:0}
 }
 
 const getters = {
@@ -115,6 +116,15 @@ const mutations = {
 
     change_follow (state, isFollow) {
         state.course_userstatus[0].is_followed = isFollow
+    },
+
+    add_comment (state, comment) {
+        // post_comment insert it on current page.
+        state.course_comment_information.results.unshift(comment)
+    },
+
+    change_comments_userstatus (state, commentsUserstatus) {
+        state.comments_userstatus = commentsUserstatus
     }
 
 }
@@ -226,6 +236,41 @@ const actions = {
         let id = query.id
         courseApi.join_course(query).then((response) => {
             window.location = 'http://www.shiyanlou.com/courses/' + id + '/learning/'
+        })
+    },
+
+    post_comment (context, query) {
+        courseCommentApi.post_comment(query).then((response) => {
+            context.commit('add_comment', response.data)
+        })
+    },
+
+    change_comments_userstatus (context, query) {
+        // query
+        // comment_ids=1,2,3,4
+        // 这里对返回值做一下调整, 返回值是 [{state}, {}, {}...]
+        // 这里要调整为
+        // {1:{state},
+        //  2:{}}
+        // 
+        courseCommentApi.get_comments_userstatus(query).then((response) => {
+            let newData = {}
+            let comment_ids = query['comment_ids'].split(',')
+            for (var i = comment_ids.length - 1; i >= 0; i--) {
+                newData[comment_ids[i]] = response.data[i]
+            }
+            context.commit('change_comments_userstatus', newData)
+        })
+    },
+
+    delete_comment (context, query) {
+        courseCommentApi.delete_comment(query).then((response) => {
+            // context.commit('delete_comment', query.id)
+            context.dispatch('change_comment_information', {
+                'topic_id': context.state.course_id,
+                'page_size': 15,
+                'topic_type': 'course'
+            })
         })
     }
 

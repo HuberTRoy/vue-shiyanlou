@@ -38,13 +38,15 @@ export default {
             comments: state => state.course.course_comment_information,
             page_size: state => state.course.course_comment_args.page_size,
             current_page: state => state.course.course_comment_args.current_page,
-            course_id: function () { return this.$route.params.id }
+            course_id: function () { return this.$route.params.id },
+            isLogin: state => state.loginState.sign_on
         })
     },
 
     methods: {
         ...mapActions({
-            get_comments: 'course/change_comment_information'
+            get_comments: 'course/change_comment_information',
+            change_comments_userstatus: 'course/change_comments_userstatus'
         })
     },
     components: {
@@ -58,6 +60,19 @@ export default {
             'page_size': this.page_size,
             'topic_type': 'course'
         })
+    },
+
+    watch: {
+        comments: function (newComments, oldComments) {
+            if (!this.isLogin) {
+                return
+            }
+            let comment_ids = []
+            for (let i of newComments.results) {
+                comment_ids.push(i.id)
+            }
+            this.change_comments_userstatus({'comment_ids': comment_ids.join(',')})
+        }
     }
 }
 </script>
