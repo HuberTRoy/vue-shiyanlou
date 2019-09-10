@@ -41,7 +41,10 @@ const state = {
     },
 
     course_userstatus: [{}],
-    comments_userstatus: {0:0}
+    comments_userstatus: {0:0},
+    reply_id: 0,
+    text_placeholder: "请输入您想说的话..."
+
 }
 
 const getters = {
@@ -125,6 +128,14 @@ const mutations = {
 
     change_comments_userstatus (state, commentsUserstatus) {
         state.comments_userstatus = commentsUserstatus
+    },
+
+    change_reply_id (state, id) {
+        state.reply_id = id
+    },
+
+    change_text_placeholder (state, text) {
+        state.text_placeholder = text
     }
 
 }
@@ -271,6 +282,23 @@ const actions = {
                 'page_size': 15,
                 'topic_type': 'course'
             })
+        })
+    },
+
+    change_reply_id (context, id) {
+        context.commit('change_reply_id', id)
+    },
+
+    change_text_placeholder (context, text) {
+        context.commit('change_text_placeholder', text)
+    },
+
+    reply_comment (context, query) {
+        // console.log(1)
+        courseCommentApi.reply_comment(query).then((response) => {
+            context.commit('add_comment', response.data)
+            context.commit('change_reply_id', 0)
+            context.commit('change_text_placeholder', '请输入您想说的话...')
         })
     }
 

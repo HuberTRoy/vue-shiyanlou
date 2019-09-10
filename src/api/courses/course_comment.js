@@ -20,5 +20,13 @@ export default {
         let id = commentArgs.id
         let session = cookies.get('session')
         return axios.delete(`${apiUrl}v2/comments/${id}/`, { params: {'session': session} })
+    },
+    reply_comment (commentArgs) {
+        // commentArgs
+        // ...
+        // parent_id: 111
+        let session = cookies.get('session')
+        commentArgs['session'] = session
+        return axios.post(`${apiUrl}v2/comments/`, commentArgs)       
     }
 }

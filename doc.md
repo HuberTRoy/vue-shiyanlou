@@ -255,7 +255,7 @@ TODO 后端配合部分
 获取出评论:
 
     comments/ 具体用GET参数控制。
-    comments/ 需cookies POST 用来评论 {content: "喔...",topic_id: 1,topic_type: "course"} 目前只知道这个。
+    comments/ 需cookies POST 用来评论 {content: "喔...",topic_id: 1,topic_type: "course", parent_id: 90413} 目前只知道这个,parent_id用来表明回复的是哪个。
     comments/<int:commentId> 需cookies DELETE 用来删除评论。
     comments/userstatus/?comment_ids= 需cookies 用来获取评论有哪些权限。
 

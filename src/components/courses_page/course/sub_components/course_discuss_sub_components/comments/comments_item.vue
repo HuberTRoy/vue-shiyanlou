@@ -15,6 +15,16 @@
                 <span class="level_span">
                     L{{ data.author.level }}
                 </span>
+                <div v-if="data.parent">
+                    回复
+                    <a href="" class="name_a">
+                        {{ data.parent.author.name }}
+                    </a>
+
+                    <span class="level_span">
+                        L{{ data.parent.author.level }}
+                    </span>
+                </div>
             </div>
 
             <div class="comment_text_div">
@@ -32,7 +42,9 @@
                 </p>
 
                 <div>
-                    <a href="" class="operation_a">
+                    <a href="javascript:;" 
+                       class="operation_a"
+                       @click="_reply(data.id, data.author.name)">
                         <i class="far fa-comment-dots reply_icon"></i>
                         回复
                     </a>
@@ -65,13 +77,22 @@ export default {
     },
     methods: {
         ...mapActions({
-            delete: 'course/delete_comment'
+            delete: 'course/delete_comment',
+            reply: 'course/change_reply_id',
+            change_text_placeholder: 'course/change_text_placeholder'
         }),
         delete_comment: function () {
             let c = confirm("确认删除本条评论？")
             if (c) {
                 this.delete({'id': this.data.id})
             }
+        },
+
+        _reply: function (id, name) {
+            let text = document.getElementsByClassName("course_teacher_div")[0]
+            text.scrollIntoView(true)
+            this.reply(id)
+            this.change_text_placeholder("回复: " + name)
         }
     }
 
