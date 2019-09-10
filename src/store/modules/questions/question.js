@@ -8,7 +8,9 @@ const state = {
     // cursor 是翻页用的一个参数
     cursor: '',
     prev: null,
-    next: null
+    next: null,
+    text_placeholder: "",
+    reply_id: 0
 }
 
 const getters = {
@@ -39,6 +41,18 @@ const mutations = {
 
     change_cursor (state, cursor) {
         state.cursor = cursor
+    },
+
+    add_reply (state, replyInfo) {
+        state.question_reply_information.results.push(replyInfo)
+    },
+
+    change_text_placeholder (state, text) {
+        state.text_placeholder = text
+    },
+
+    change_reply_id (state, id) {
+        state.reply_id = id
     }
 
 }
@@ -71,6 +85,28 @@ const actions = {
 
     change_cursor (context, cursor) {
         context.commit('change_cursor', cursor)
+    },
+
+    reply_question (context, questionArgs) {
+        QuestionApi.reply_question(questionArgs).then((response) => {
+            context.commit('add_reply', response.data)
+        })
+    },
+
+    change_reply_id (context, id) {
+        context.commit('change_reply_id', id)
+    },
+
+    change_text_placeholder (context, text) {
+        context.commit('change_text_placeholder', text)
+    },
+
+    reply_question_comment (context, questionArgs) {
+        QuestionApi.reply_question_comment(questionArgs).then((response) => {
+            context.commit('add_reply', response.data)
+            context.change_reply_id(0)
+            context.change_text_placeholder("")
+        })
     }
 }
 

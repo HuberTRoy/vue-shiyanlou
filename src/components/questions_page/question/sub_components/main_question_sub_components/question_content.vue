@@ -16,9 +16,9 @@
                 <a href="javascript:;" class="favourite_button">收藏</a>
             </div>
         </div>
-        <div class="question_content_information">
+        <div class="question_content_information" v-if="question_info.author">
             <img class="question_content_info avatar" :src="question_info.author.avatar_url" />
-            <span class="question_content_info author_name">{{ question_info.author.name }}</span>
+            <span class="question_content_info question_author_name">{{ question_info.author.name }}</span>
             <span class="question_content_info level">L{{ question_info.author.level }}</span>
             <span class="question_content_info created_time">{{ question_info.created_at }}</span>
             <router-link class="question_content_info" tag="a" :to="{ name: 'questions', query: { type:question_info.type } }">{{ tag_type[question_info.type] }}</router-link>
@@ -104,6 +104,9 @@ export default {
 
 /* */
 .question_content_information {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     margin-top: 16px;
 }
 
@@ -117,7 +120,7 @@ export default {
     font-size: 13px;
 }
 
-.author_name {
+.question_author_name {
     color: #999;
     font-size: 14px;
 }

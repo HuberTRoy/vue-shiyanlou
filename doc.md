@@ -293,3 +293,7 @@ TODO 后端配合部分
     courses/<int:courseId>/join/ 需cookies 加入某课程 POST.
     labtask/ 需cookies 返回某实验的信息。
 
+帖子部分内容:
+  
+    answers/46492/ PATCH 编辑回复的内容, 携带的内容有点多, 暂时先搞下回复, 编辑容后。
+    answers/userstatus/?answer_ids=46485,46489 需cookies 用户对这些回答的状态。
