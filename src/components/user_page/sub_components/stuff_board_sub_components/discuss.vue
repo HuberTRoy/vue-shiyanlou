@@ -1,8 +1,8 @@
 <template>
     <div class="stuff_board_discuss">
         <DiscussItem class="stuff_board_discuss_item"
-                    v-for="discuss in discuss_content.items"
-                    :key="discuss.id"
+                    v-for="(discuss, index) in discuss_content.results"
+                    :key="index"
                     :data="discuss"
         ></DiscussItem>
     </div>
@@ -20,6 +20,12 @@ export default {
         ...mapState({
             user_id: state => state.user.user_id,
             discuss_content: state => state.user.discuss_content
+        })
+    },
+    created: function () {
+        this.$store.dispatch('user/get_and_change_discuss_content', {
+            'id': this.user_id,
+            'type': 'answered'
         })
     }
 }

@@ -21,6 +21,11 @@ export default {
             user_id: state => state.user.user_id,
             report_content: state => state.user.report_content
         })
+    },
+    created: function () {
+        this.$store.dispatch('user/get_and_change_report_content', {
+            'id': this.user_id,
+        })
     }
 }
 </script>

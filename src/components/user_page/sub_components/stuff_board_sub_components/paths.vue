@@ -28,7 +28,6 @@ export default {
     created: function () {
         this.$store.dispatch('user/get_and_change_path_content', {
             'id': this.user_id,
-            'page': 0
         })
     }
 }

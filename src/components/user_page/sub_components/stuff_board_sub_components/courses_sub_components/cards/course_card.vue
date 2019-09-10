@@ -7,42 +7,46 @@
                   ↑
                 detail (args -> course_id, user_id)
          -->
-         <div class="stuff_board_course_card_top">
+         <div class="stuff_board_course_card_top" v-if="userstatus[data.id]">
              <div class="stuff_board_course_card_left">
                 <router-link tag="img"
-                             :to="{ name: 'course', params: {id: data.course_id} }"
-                             :src="data.img"
+                             :to="{ name: 'course', params: {id: data.id} }"
+                             :src="data.picture_url"
                              class="stuff_board_course_img">
                 </router-link>
              </div>
              <div class="stuff_board_course_card_right">
                 <router-link tag="span"
-                             :to="{ name: 'course', params: {id: data.course_id} }"
+                             :to="{ name: 'course', params: {id: data.id} }"
                              class="stuff_board_course_name"
-                >{{ data.course_name }}</router-link>
+                >{{ data.name }}</router-link>
 
-                <span class="stuff_board_course_process">上次学到：{{ data.course_process }}</span>
+                <span class="stuff_board_course_process">上次学到：{{ userstatus[data.id].progress.current_lab.name }} ({{ userstatus[data.id].progress.rate }})</span>
 
                 <div class="stuff_board_course_card_right_end">
                     <div class="question_report_buttons">
                         <span class="q_r_button report_button"
-                              @click="tab_show_q_r_content('r')"
+                              @click="tab_show_q_r_content('r', userstatus[data.id].labreports_count)"
                         >
-                            {{ data.count_report }} 篇实验报告
+                            {{ userstatus[data.id].labreports_count }} 篇实验报告
                             <i class="fas fa-angle-down angle"
                                :class="q_r_transform==='r' ? 'q_r_transform' : ''"
                             ></i>
                         </span>
                         <span class="q_r_button question_button"
-                              @click="tab_show_q_r_content('q')"
+                              @click="tab_show_q_r_content('q', userstatus[data.id].questions_count)"
                         >
-                            {{ data.count_question }} 个提问
+                            {{ userstatus[data.id].questions_count }} 个提问
                             <i class="fas fa-angle-down angle"
                                :class="q_r_transform==='q' ? 'q_r_transform' : ''"
                             ></i>
                         </span>
                     </div>
-                    <span class="start_button">进入实验</span>
+                    <router-link class="start_button"
+                                 tag="a"
+                                 :to="{ name: 'course', params: { 'id': data.id }}"
+                                 target="_blank"
+                    >进入实验</router-link>
                 </div>
              </div>
          </div>
@@ -61,7 +65,7 @@
                 </div>
                 <div class="course_card_question_content" v-if="q_r_transform==='q' && loading_state===false">
                     <QaItem class="course_card_qa_item"
-                            v-for="(question, index) in course_question.items"
+                            v-for="(question, index) in course_question.results"
                             :key="index"
                             :data="question"
                     ></QaItem>
@@ -101,7 +105,8 @@ export default {
             user_id: state => state.user.user_id,
             course_question: state => state.user.courses_question,
             course_report: state => state.user.courses_report,
-            loading_state: state => state.user.loading_state
+            loading_state: state => state.user.loading_state,
+            userstatus: state => state.user.courses_content_userstatus
         }),
         api: function () {
             return {
@@ -116,17 +121,18 @@ export default {
             get_report: 'user/get_user_courses_report'
         }),
         get_args: function (page) {
+            // page has expired.
             let args = {}
             args['user_id'] = this.user_id
-            args['course_id'] = this.data.course_id
-            args['page'] = 0
-            if (page) {
-                args['page'] = page
-            }
+            args['course_id'] = this.data.id
             return args
         },
-        tab_show_q_r_content: function (qR) {
+        tab_show_q_r_content: function (qR, count) {
             //
+            // if (count == 0) {
+            //     return
+            // }
+
             if (qR === this.q_r_transform || this.q_r_transform === '') {
                 this.show_q_r_content = !this.show_q_r_content
                 if (!this.show_q_r_content === false) {

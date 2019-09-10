@@ -5,17 +5,17 @@
             avatar created_time          meaal
          -->
         <div class="base_info_left">
-            <img :src="user_info.avatar" class="big_avatar">
+            <img :src="user_info.avatar_url" class="big_avatar">
             <div class="base_info">
                 <div class="nickname_level">
-                    <span class="big_nickname">{{ user_info.nickname }}</span>
+                    <span class="big_nickname">{{ user_info.name }}</span>
                     <span class="big_level">L{{ user_info.level }}</span>
                     <a href="javascript:;" class="edit_base_info_button">
                         <i class="edit_icon fas fa-edit"></i>
                     </a>
                 </div>
                 <div class="created_time">
-                    <span class="created_time">{{ user_info.created_time }} 加入实验楼</span>
+                    <span class="created_time">{{ user_info.join_date }} 加入实验楼</span>
                 </div>
             </div>
         </div>

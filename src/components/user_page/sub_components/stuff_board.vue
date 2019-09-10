@@ -58,11 +58,10 @@ export default {
     },
     methods: {
         tab_nav: function (title) {
-            this.$store.dispatch('user/change_user_stuff_and_get_content', {
+            this.$store.dispatch('user/change_user_stuff', {
                 'nav_title': title,
-                'id': this.user_id,
-                'page': 0,
-                'type': 'history'
+                // 'id': this.user_id,
+                // 'type': 'studied'
             })
         }
     },
