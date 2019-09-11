@@ -2,7 +2,7 @@
     <div class="user_base_info">
         <!--
             avatar nickname level edit   medal
-            avatar created_time          meaal
+            avatar join_date          meaal
          -->
         <div class="base_info_left">
             <img :src="user_info.avatar_url" class="big_avatar">
@@ -14,8 +14,8 @@
                         <i class="edit_icon fas fa-edit"></i>
                     </a>
                 </div>
-                <div class="created_time">
-                    <span class="created_time">{{ user_info.join_date }} 加入实验楼</span>
+                <div class="join_date">
+                    <span class="join_date">{{ user_info.join_date }} 加入实验楼</span>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@ export default {
     font-weight: 700;
 }
 
-.created_time {
+.join_date {
     margin-top: 18px;
     font-size: 14px;
     color: #666;

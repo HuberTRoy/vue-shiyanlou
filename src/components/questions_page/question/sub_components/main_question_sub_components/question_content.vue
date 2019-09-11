@@ -23,21 +23,21 @@
             <span class="question_content_info created_time">{{ question_info.created_at }}</span>
             <router-link class="question_content_info" tag="a" :to="{ name: 'questions', query: { type:question_info.type } }">{{ tag_type[question_info.type] }}</router-link>
         </div>
-        <div class="_question_content">
-            <VueMarkDown>{{ question_info.content }}</VueMarkDown>
+        <div class="_question_content" v-if="question_info.content">
+            <VueMarkdown>{{ question_info.content }}</VueMarkdown>
         </div>
         <QuestionReply></QuestionReply>
     </div>
 </template>
 <script type="text/javascript">
-import VueMarkDown from 'vue-markdown'
+import VueMarkdown from 'vue-markdown'
 import QuestionReply from './question_reply.vue'
 
 import { mapState } from 'vuex'
 
 export default {
     components: {
-        VueMarkDown,
+        VueMarkdown,
         QuestionReply
     },
     data: function () {

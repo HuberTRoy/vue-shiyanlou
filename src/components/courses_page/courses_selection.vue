@@ -54,7 +54,7 @@
                 </div>
                 <div class="right_order_button_div">
                     <div class="type_order_div">
-                        <a href="#8" id="type_order_button" class="sub_selection_a">
+                        <a href="#8" id="type_order_button" class="courses_selection_sub_selection_a">
                             {{ current_type_order }}
                             <span class="spread"></span>
                         </a>
@@ -95,6 +95,7 @@
         </div>
         <div class="courses_div">
             <CourseCard
+                class="courses_selection_course_card"
                 v-for="(course_info, index) in courses_content['results']"
                 :key="index"
                 :data="course_info"
@@ -269,14 +270,14 @@ export default {
     margin-bottom: 5px;
 }
 
-.sub_type_order_a, .sub_selection_a {
+.sub_type_order_a, .courses_selection_sub_selection_a {
     display: block;
     color: #3a3a3a;
     padding: 6px 0 0;
     font-size: 14px;
 }
 
-.sub_type_order_a:hover, .sub_selection_a:hover{
+.sub_type_order_a:hover, .courses_selection_sub_selection_a:hover{
     color: #08bf91;
 }
 
@@ -316,7 +317,7 @@ export default {
     margin: 0 -15px;
 }
 
-.course_card_div {
+.courses_selection_course_card {
     width: 25%;
     margin: 0 0 20px;
     padding: 0 15px;

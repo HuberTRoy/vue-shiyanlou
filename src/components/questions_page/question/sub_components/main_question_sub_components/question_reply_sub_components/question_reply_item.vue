@@ -31,7 +31,7 @@
                     <VueMarkDown>{{ data.content }}</VueMarkDown>
                 </p>
                 <div class="reply_base_info_div">
-                    <span class="created_time">{{ data.updated_at }}</span>
+                    <span class="question_reply_item_created_time">{{ data.updated_at }}</span>
                     <div class="up_reply_button">
                         <a class="reply_button" href="javascript:;" @click="reply()">回复</a>
                     </div>
@@ -121,7 +121,7 @@ export default {
     justify-content: space-between;
 }
 
-.created_time {
+.question_reply_item_created_time {
     display: inline-block;
     color: #a4a4a4;
     padding: 15px 0 10px;
@@ -155,4 +155,10 @@ export default {
     padding: 15px 0 10px;
     margin-bottom: 20px;
 }
+
+.content_p img {
+    max-width: 100%;
+    height: auto !important;
+}
+
 </style>

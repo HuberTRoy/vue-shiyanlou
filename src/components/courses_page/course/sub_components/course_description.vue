@@ -1,5 +1,5 @@
 <template>
-    <div class="course_description_div">
+    <div class="course_long_description_div">
         <!-- 
             
          -->
@@ -31,7 +31,7 @@ export default {
 
 </script>
 <style type="text/css">
-.course_description_div {
+.course_long_description_div {
     background: #fff;
     border: 1px solid #eee;
     display: flex;
