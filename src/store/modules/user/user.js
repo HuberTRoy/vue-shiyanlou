@@ -1,4 +1,5 @@
 import UserApi from '@/api/user/user.js'
+import cookies from 'vue-cookies'
 
 const state = {
     user_id: 0,
@@ -27,7 +28,9 @@ const state = {
         '讨论': 'get_and_change_discuss_content'
     },
 
-    courses_content_userstatus: {}
+    courses_content_userstatus: {},
+
+    beans: cookies.get('beans') ? cookies.get('beans') : 0
 }
 
 const mutations = {
@@ -99,6 +102,11 @@ const actions = {
             commit('change_user_info', response.data)
         })
     },
+
+    set_user_info (context, userInfo) {
+        context.commit('change_user_info', userInfo)
+    },
+
     change_user_id (context, userId) {
         context.commit('change_user_id', userId)
     },
@@ -196,6 +204,17 @@ const actions = {
         UserApi.get_courses_content_userstatus(args).then((response) => {
             context.commit('change_courses_content_userstatus', response.data)
         })
+    },
+
+    async checkin (context, args) {
+        let beans = await UserApi.checkin()
+        if (beans.data.beans) {
+            cookies.set('beans', beans.data.beans)
+        } else {
+            cookies.set('beans', beans.data.beans_from_today_checkin)
+        }
+        location.reload()
+
     }
 }
 

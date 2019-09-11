@@ -36,9 +36,6 @@ const mutations = {
         // 登出操作
         state.sign_on = false
         state.show_login_dialog = false
-        cookies.remove('userId')
-        cookies.remove('session')
-        // state.login_info
     },
     change_message (state, message) {
         state.login_info.message = message
@@ -74,6 +71,9 @@ const actions = {
     },
     log_out (context) {
         context.commit('log_out')
+        cookies.remove('userId')
+        cookies.remove('session')
+        cookies.remove('beans')
     },
     change_message (context, message) {
         context.commit('change_message', message)

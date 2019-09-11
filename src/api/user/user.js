@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { apiUrl } from '@/api/base.js'
 
+import cookies from 'vue-cookies'
 
 export default {
     get_user_info (userArgs) {
@@ -8,6 +9,11 @@ export default {
         // id
 
         return axios.get(`${apiUrl}v2/users/${userArgs.id}`)
+    },
+
+    get_user_info_by_cookies (userArgs) {
+        let session = cookies.get('session')
+        return axios.get(`${apiUrl}v2/user/`, { params: {'session': session} })
     },
 
     get_user_learning_record (userArgs) {
@@ -109,5 +115,10 @@ export default {
     get_user_discuss_info (args) {
         let id = args.id
         return axios.get(`${apiUrl}v2/users/${id}/questions/`, { params: args })        
+    },
+
+    checkin () {
+        let session = cookies.get('session')
+        return axios.get(`${apiUrl}v2/user/checkin/`, { params: { 'session': session } })
     }
 }

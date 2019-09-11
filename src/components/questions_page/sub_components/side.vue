@@ -2,7 +2,11 @@
     <div class="side_items">
         <div class="operation_div">
             <a href="javascript:;" class="operation_button post_button">我要发帖</a>
-            <a href="javascript:;" class="operation_button record_button">每日签到</a>
+            <a href="javascript:;" @click="checkin()" 
+                                   v-if="!beans"
+                                   class="operation_button record_button"
+            >每日签到</a>
+            <button disable="disable" v-if="beans" class="operation_button already_record_button">今日已签到 <div class="font_size_12">(获得{{beans}}个实验豆)</div></button>
             <a href="javascript:;" class="shop_button">
                 <i class="fas fa-gift" style="font-size: 14px"></i> 前往实验豆商城兑换好礼>
             </a>
@@ -23,7 +27,7 @@ import RecentlyEvent from './side_sub_components/recently_event.vue'
 import RecentlyLouPlus from './side_sub_components/recently_lou_plus.vue'
 import HotPath from './side_sub_components/hot_path.vue'
 
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     components: {
@@ -32,9 +36,15 @@ export default {
         RecentlyLouPlus,
         HotPath
     },
+    computed: {
+        ...mapState({
+            beans: state => state.user.beans
+        })
+    },
     methods: {
         ...mapActions({
-            get_related_stuff: 'questions/get_related_stuff'
+            get_related_stuff: 'questions/get_related_stuff',
+            checkin: 'user/checkin'
         })
     },
     created: function () {
@@ -87,10 +97,19 @@ export default {
     border-color: #08bf91;
     background: #fff;
     color: #08bf91;
+    transition: color .3s ease-in-out, background .3s ease-in-out;
 }
 
 .record_button:hover {
-    color: #08bf91;
+    color: #fff;
+    background: #08bf91;
+}
+
+.already_record_button {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+    opacity: .65;
 }
 
 .shop_button {
@@ -104,5 +123,9 @@ export default {
 
 .shop_button:hover {
     color: #0c9;
+}
+
+.font_size_12 {
+    font-size: 12px;
 }
 </style>

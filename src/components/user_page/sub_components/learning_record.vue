@@ -172,7 +172,7 @@ export default {
         ...mapState({
             learning_record_info: state => state.user.user_info.learning_record_info,
             user_id: state => state.user.user_id,
-            user_created_time: state => state.user.user_info.created_time,
+            user_created_time: state => state.user.user_info.join_date,
             user_learning_record: state => state.user.user_learning_record
         }),
         graphics_weeks: function () {

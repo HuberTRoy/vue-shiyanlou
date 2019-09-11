@@ -10,11 +10,13 @@
             <BaseInfo></BaseInfo>
             <div class="user_container_footer">
                 <div class="user_container_left">
-                    <LearningCard class="learning_card"></LearningCard>
+                    <LearningCard v-if="is_mine_index" class="learning_card"></LearningCard>
                     <VisitedUser class="visited_user"></VisitedUser>
                 </div>
                 <div class="user_container_right">
-                    <LearningRecord class="learning_record"></LearningRecord>
+                    <!-- 未找到API。 
+                        <LearningRecord class="learning_record"></LearningRecord> 
+                    -->
                     <StuffBoard></StuffBoard>
                 </div>
             </div>
@@ -28,7 +30,7 @@ import VisitedUser from './sub_components/visited_user.vue'
 import LearningRecord from './sub_components/learning_record.vue'
 import StuffBoard from './sub_components/stuff_board.vue'
 
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     components: {
@@ -42,13 +44,41 @@ export default {
     methods: {
         ...mapActions({
             change_user_id: 'user/change_user_id',
-            get_user_info: 'user/get_and_change_user_info'
+            get_user_info: 'user/get_and_change_user_info',
+            set_user_info: 'user/set_user_info'
         })
     },
 
+    computed: {
+        ...mapState({
+            // 突然想起来... 这里为啥又用驼峰命名了呢= =。
+            isLogin: state => state.loginState.sign_on,
+            loginUserInfo: state => state.loginState.user_info
+        }),
+        is_mine_index: function () {
+            if (this.loginUserInfo.id == this.$route.params.id) {
+                return true
+            }
+            return false
+        }
+    },
+    watch: {
+        loginUserInfo: function (newUserInfo, oldUserInfo) {
+            if (newUserInfo.id == this.$route.params.id) {
+                console.log(newUserInfo)
+                this.set_user_info(this.loginUserInfo)
+            } else {
+                this.get_user_info()
+            } 
+        }
+    },
     created () {
         this.change_user_id(this.$route.params.id)
-        this.get_user_info()
+        // if (this.loginUserInfo.id == this.$route.params.id) {
+        //     this.set_user_info(this.loginUserInfo)
+        // } else {
+        //     this.get_user_info()
+        // }
     }
 }
 
