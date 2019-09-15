@@ -61,7 +61,7 @@ TODO 前端部分
         - [ ] user/id/tutorial ( self )
         - [ ] user/id/software ( self )
         - [ ] user/id/messages ( self )
-- [ ] 用户信息设置页
+- [x] 用户信息设置页
 - [ ] 搜索页
 - [ ] 404页。
 - [ ] 独立的登录注册页。
