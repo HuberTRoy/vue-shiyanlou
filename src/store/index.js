@@ -11,6 +11,7 @@ import question from './modules/questions/question.js'
 import questions from './modules/questions/questions.js'
 import user from './modules/user/user.js'
 import loggedInfo from './modules/logged_info/logged_info.js'
+import profile from './modules/user/profile.js'
 
 Vue.use(Vuex)
 
@@ -27,7 +28,8 @@ export default new Vuex.Store({
         questions,
         question,
         user,
-        loggedInfo
+        loggedInfo,
+        profile
     },
   strict: debug
   // plugins: debug ? [createLogger()] : []

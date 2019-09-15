@@ -9,6 +9,7 @@ import CoursePath from '@/pages/path/course_path.vue'
 import QuestionsHome from '@/pages/questions/questions_home.vue'
 import Question from '@/pages/questions/question.vue'
 import User from '@/pages/user/user.vue'
+import Profile from '@/pages/user/profile/profile.vue'
 
 Vue.use(Router)
 
@@ -50,9 +51,14 @@ export default new Router({
         component: Question
     },
     {
+        path: '/user/profile',
+        name: 'userProfile',
+        component: Profile
+    },
+    {
         path: '/user/:id',
         name: 'user',
         component: User
-    }
+    },
   ]
 })

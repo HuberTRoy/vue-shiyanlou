@@ -38,7 +38,7 @@
                  <router-link tag="a" target="_blank" :to="{name: 'user', params: {id: data.id}}" class="user_operation_button">
                      我的主页
                  </router-link>
-                 <router-link tag="p" to="#" class="user_operation_button">
+                 <router-link tag="a" target="_blank" :to="{ name: 'userProfile' }" class="user_operation_button">
                      个人设置
                  </router-link>
                  <router-link tag="p" to="#" class="user_operation_button vip_user_operation_button">
