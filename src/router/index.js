@@ -10,6 +10,7 @@ import QuestionsHome from '@/pages/questions/questions_home.vue'
 import Question from '@/pages/questions/question.vue'
 import User from '@/pages/user/user.vue'
 import Profile from '@/pages/user/profile/profile.vue'
+import Search from '@/pages/search/search.vue'
 
 Vue.use(Router)
 
@@ -60,5 +61,10 @@ export default new Router({
         name: 'user',
         component: User
     },
+    {
+        path: '/search',
+        name: 'search',
+        component: Search
+    }
   ]
 })

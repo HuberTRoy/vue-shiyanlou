@@ -120,8 +120,8 @@
                 </li>
             </ul>
             <div id="search_bar">
-                <label id="search_button"><i class="fa fa-search"></i></label>
-                <input type="text" name="search" id="search_input" autocomplete="off" placeholder="搜索 课程/问答">
+                <label id="search_button" @click="search()"><i class="fa fa-search"></i></label>
+                <input type="text" name="search" id="search_input" autocomplete="off" placeholder="搜索 课程/问答" v-model="search_input">
             </div>
         </div>
 
@@ -139,6 +139,11 @@ export default {
         HistoryCoursesCard,
         UserCard
     },
+    data: function () {
+        return {
+            search_input: ''
+        }
+    },
     computed: {
         ...mapState({
             login_state: state => state.loginState.sign_on,
@@ -149,6 +154,9 @@ export default {
     methods: {
         change_show_state: function (onOrUp) {
             this.$store.dispatch('loginState/change_show_state', onOrUp)
+        },
+        search: function () {
+            this.$router.push({name: 'search', query: {keywords: this.search_input}})
         }
     }
 }
