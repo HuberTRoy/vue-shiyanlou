@@ -30,7 +30,7 @@ const state = {
 
     courses_content_userstatus: {},
 
-    beans: cookies.get('beans') ? cookies.get('beans') : 0
+    beans: 0
 }
 
 const mutations = {
@@ -92,6 +92,10 @@ const mutations = {
         }
 
         state.courses_content_userstatus = _userstatus
+    },
+
+    change_beans (state, beans) {
+        state.beans = beans
     }
 }
 
@@ -207,13 +211,17 @@ const actions = {
     },
 
     async checkin (context, args) {
-        let beans = await UserApi.checkin()
-        if (beans.data.beans) {
-            cookies.set('beans', beans.data.beans)
-        } else {
-            cookies.set('beans', beans.data.beans_from_today_checkin)
+        let beans = await UserApi.checkin(args)
+        // if (beans.data.beans) {
+        //     cookies.set('beans', beans.data.beans)
+        // } else {
+        //     cookies.set('beans', beans.data.beans_from_today_checkin)
+        // }
+        if (args.method == 'POST') {
+            location.reload()
+        } else if (args.method == 'GET') {
+            context.commit('change_beans', beans.data.beans_from_today_checkin)
         }
-        location.reload()
 
     }
 }

@@ -2,7 +2,7 @@
     <div class="side_items">
         <div class="operation_div">
             <a href="javascript:;" class="operation_button post_button">我要发帖</a>
-            <a href="javascript:;" @click="checkin()" 
+            <a href="javascript:;" @click="checkin({'method':'POST'})" 
                                    v-if="!beans"
                                    class="operation_button record_button"
             >每日签到</a>
@@ -49,6 +49,7 @@ export default {
     },
     created: function () {
         this.get_related_stuff()
+        this.checkin({'method': 'GET'})
     }
 }
 

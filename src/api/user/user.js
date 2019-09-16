@@ -117,8 +117,12 @@ export default {
         return axios.get(`${apiUrl}v2/users/${id}/questions/`, { params: args })        
     },
 
-    checkin () {
+    checkin (args) {
         let session = cookies.get('session')
-        return axios.get(`${apiUrl}v2/user/checkin/`, { params: { 'session': session } })
+        if (args.method == 'GET') {
+            return axios.get(`${apiUrl}v2/user/checkin/`, { params: { 'session': session } })
+        } else if (args.method == 'POST' ) {
+            return axios.post(`${apiUrl}v2/user/checkin/`, { 'session': session })
+        }
     }
 }
