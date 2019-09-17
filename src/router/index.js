@@ -12,6 +12,7 @@ import User from '@/pages/user/user.vue'
 import Profile from '@/pages/user/profile/profile.vue'
 import Search from '@/pages/search/search.vue'
 import NotFound from '@/pages/404.vue'
+import Library from '@/pages/library/library.vue'
 
 Vue.use(Router)
 
@@ -66,6 +67,11 @@ export default new Router({
         path: '/search',
         name: 'search',
         component: Search
+    },
+    {
+        path: '/library',
+        name: 'library',
+        component: Library
     },
     {
         path: '*',
