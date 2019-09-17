@@ -13,6 +13,7 @@ import user from './modules/user/user.js'
 import loggedInfo from './modules/logged_info/logged_info.js'
 import profile from './modules/user/profile.js'
 import search from './modules/search/search.js'
+import library from './modules/library/library.js'
 
 Vue.use(Vuex)
 
@@ -31,7 +32,8 @@ export default new Vuex.Store({
         user,
         loggedInfo,
         profile,
-        search
+        search,
+        library
     },
   strict: debug
   // plugins: debug ? [createLogger()] : []
