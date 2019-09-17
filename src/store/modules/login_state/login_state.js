@@ -5,7 +5,7 @@ const state = {
     show_login_dialog: false,
     // on 表示 显示的是登录框，up 则是注册框
     onOrUp: 'on',
-    sign_on: cookies.get('userId') ? true : false,
+    sign_on: cookies.get('session') ? true : false,
     login_info: {
         'message': ''
     },
@@ -51,12 +51,13 @@ const actions = {
         loginApi.login(loginArgs).then((response) => {
             if (response.data.comet_token) {
                 context.commit('change_sign_on_state', true)
-                context.commit('change_show_state', null)
+                if (!loginArgs.login_page) {
+                    context.commit('change_show_state', null)
+                }
                 cookies.set('session', response.data.session)
             }
 
             context.commit('change_login_info', response.data)
-
         })
 
 
@@ -74,6 +75,7 @@ const actions = {
         cookies.remove('userId')
         cookies.remove('session')
         cookies.remove('beans')
+
     },
     change_message (context, message) {
         context.commit('change_message', message)
@@ -81,7 +83,9 @@ const actions = {
     change_user_info (context) {
         loginApi.get_user_info().then((response) => {
             context.commit('change_user_info', response.data)
-            cookies.set('userId', response.data.id)
+            if (!cookies.get('userId')) {
+                cookies.set('userId', response.data.id)
+            }
         })
     }
 }

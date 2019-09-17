@@ -5,10 +5,12 @@
         ></InputBar>
         <div class="custom_control_div">
             <div>
-                <input type="checkbox" name="autologin" value="true" v-model="checked" id="autologinbutton">
+                <input type="checkbox" name="autologin" value="true" v-model="checked"
+                       class="autologinbutton"
+                       :id="input_id ? input_id : 'autologinbutton'">
                 <label class="autologin_label"
                        :class="[checked ? 'label_checked' : '']"
-                 for="autologinbutton">下次自动登录</label>
+                       :for="input_id ? input_id : 'autologinbutton'">下次自动登录</label>
             </div>
             <div>
                 <!-- 这个暂时未加入计划 -->
@@ -33,6 +35,12 @@ import InputBar from './sub_components/input_bar.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
+    props:{
+        input_id: {
+            type: String,
+            require: false
+        }
+    },
     data () {
         return {
             // username: ,password:
@@ -50,6 +58,9 @@ export default {
                 args['remember'] = true
             }else{
                 args['remember'] = false
+            }
+            if (this.input_id) {
+                args['login_page'] = true
             }
             // verification 暂无
             return args
@@ -114,15 +125,15 @@ export default {
     display: flex;
     justify-content: space-between;
     /*align-items: center;*/
-    color: #c6c6c6;
-    font-size: 16px;
+    color: #999;
+    font-size: 14px;
 }
 
 .autologin_label {
     position: relative;
 }
 
-#autologinbutton {
+.autologinbutton {
     opacity: 0;    
 }
 
@@ -168,13 +179,13 @@ export default {
 https://stackoverflow.com/questions/10782054/what-does-the-tilde-squiggle-twiddle-css-selector-mean
 for more ~ selector information.
  */
-#autologinbutton:active~.autologin_label:before {
+.autologinbutton:active~.autologin_label:before {
     color: #fff;
     background-color: #80fadb;
     border-color: #80fadb;
 }
 
-#autologinbutton:focus~.autologin_label:before {
+.autologinbutton:focus~.autologin_label:before {
     box-shadow: 0 0 0 0.2rem rgba(8,191,145,.25);
 }
 

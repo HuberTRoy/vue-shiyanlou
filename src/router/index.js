@@ -13,6 +13,7 @@ import Profile from '@/pages/user/profile/profile.vue'
 import Search from '@/pages/search/search.vue'
 import NotFound from '@/pages/404.vue'
 import Library from '@/pages/library/library.vue'
+import Login from '@/pages/client_area/login.vue'
 
 Vue.use(Router)
 
@@ -72,6 +73,11 @@ export default new Router({
         path: '/library',
         name: 'library',
         component: Library
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
     },
     {
         path: '*',

@@ -119,7 +119,7 @@ export default {
     opacity: 1;
     width: 350px;
     margin: 80px auto;
-    margin-top: 10px;
+    margin-top: 50px;
     background: #fff;
     padding: 10px 20px;
     border-radius: 4px;
@@ -127,12 +127,14 @@ export default {
 }
 
 .login_error_message {
+    position: fixed;
     opacity: 0;
     width: 170px;
-    margin: auto;
-    margin-top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
     transition: opacity 1s;
+    z-index: 9999;
 }
 
 .show_login_error_message {
