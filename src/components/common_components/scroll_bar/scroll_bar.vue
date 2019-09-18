@@ -58,7 +58,11 @@
                                 <router-link tag="a" to="/questions" class="scroll_sub_a">讨论</router-link>
                             </li>
                             <li class="scroll_sub_li">
-                                <a href="#10" class="scroll_sub_a">教程库</a>
+                                <router-link tag="a"
+                                             :to="{name:'library'}"
+                                             class="scroll_sub_a">
+                                         教程库
+                                </router-link>
                             </li>
                             <li class="scroll_sub_li">
                                 <a href="#11" class="scroll_sub_a">

@@ -104,7 +104,11 @@
                             <router-link tag="a" to="/questions" class="sub_community_a">讨论</router-link>
                         </li>
                         <li class="sub_community_li">
-                            <a href="#10" class="sub_community_a">教程库</a>
+                            <router-link tag="a"
+                                         :to="{name:'library'}"
+                                         class="sub_community_a">
+                                     教程库
+                            </router-link>
                         </li>
                         <li class="sub_community_li">
                             <a href="#11" class="sub_community_a">
