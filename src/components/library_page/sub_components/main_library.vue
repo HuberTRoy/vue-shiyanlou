@@ -1,42 +1,76 @@
 <template>
     <div class="libary_main_libray_div">
-        <div class="libary_main_libray_content_header">
-            <h5>前端开发</h5>
-            <h6>更多</h6>
-        </div>
-        <div class="libary_main_libray_content_cards">
-            <LibraryCard class="libray_main_library_content_card"
-                         v-for="library in test_data"
-                         :key="library.name"
-                         :data="library"
-            >
-            </LibraryCard>
+        <div v-for="library in _library_content.blocks"
+             :key="library.topic"
+        >
+            <div class="libary_main_libray_content_header">
+                <h5>{{library.topic}}</h5>
+                <router-link class="more_library_a"
+                             tag="a"
+                             :to="{ name: 'library', query: {'topic': library.topic} }"
+                >更多</router-link>
+            </div>
+            <div class="libary_main_libray_content_cards">
+                <div class="libray_main_library_content_card"
+                     v-for="md in library.books"
+                     :key="md.name"
+                >
+                    <LibraryCard :data="md"
+                    >
+                    </LibraryCard>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script type="text/javascript">
 import LibraryCard from '@/components/common_components/cards/library_card.vue'
 
+import { mapState, mapActions } from 'vuex'
+
 export default {
     components: {
         LibraryCard
     },
-    data: function () {
-        return {
-            test_data: [{
-                chapters_count: 11,
-                description: "CSS3 Tutorial 是一本关于 CSS3 的开源书。利用业余时间写了本书，图文并茂，用大量实例带你一步一步走进 CSS3 的世界。如有疏漏欢迎指正，欢迎提问。感谢您的参与",
-                html_url: "/library/css3-tutorial",
-                issue_url: "https://github.com/waylau/css3-tutorial/issues",
-                name: "CSS3教程",
-                repo_url: "https://github.com/waylau/,css3-tutorial",
-                seo_keywords: [],
-                slug: "css3-tutorial",
-                tags: [{name: "CSS",
-                        picture_url: "https://dn-simplecloud.shiyanlou.com/tech-icon/CSS.png"}]
-            }]
+    computed: {
+        ...mapState({
+            index_content: state => state.library.index_content,
+            library_content: state => state.library.library_content
+        }),
+        _library_content: function () {
+            if (!this.$route.query.topic) {
+                return this.index_content
+            }
+            // {
+            //    prev: '',
+            //    next: '',
+            //    results: {}
+            // } to
+            // {
+            //    prev: '',
+            //    next: '',
+            //    blocks: [{'topic': route.query.topic, books: results}]   
+            // }
+            // 好像没有上一页下一页的需求...
+            let c = this.library_content
+            let newC = {'previous': c.previous, 'next': c.next, blocks:[{
+                'topic': this.$route.query.topic,
+                'books': c.results
+            }]}
+            return newC
+        }
+    },
+    methods: {
+        ...mapActions({
+            change_library_content: 'library/change_library_content'
+        })
+    },
+    watch: {
+        '$route': function (newQuery) {
+            this.change_library_content(this.$route.query)
         }
     }
+
 }
 </script>
 <style type="text/css">
@@ -45,7 +79,7 @@ export default {
     margin-left: 15px;
     background: #fff;
     border: 1px solid #eee;
-    padding: 30px;
+    padding: 15px;
 }
 
 .libary_main_libray_content_header {
@@ -54,8 +88,20 @@ export default {
     margin-bottom: 20px;
 }
 
+.libary_main_libray_content_cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .libray_main_library_content_card {
     width: 33%;
+    padding: 0 15px;
 }
+
+.more_library_a {
+    font-size: 1rem;
+    color: #666;
+}
+
 
 </style>

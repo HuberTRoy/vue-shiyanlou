@@ -11,73 +11,66 @@
         类似主页中的布局
 
      -->
-    <div class="library_side_div">
+    <div class="library_side_div" v-if="index_content">
         <div class="library_side_category_header_div">
             <router-link tag="a" :to="{name:'library'}" class="without_default_css_a">
                 <i class="fa fa-th"></i>
                 全部教程
             </router-link>
         </div>
-        <div class="library_side_category_sub_header_div">
+        <div class="library_side_category_sub_header_div" 
+             v-for="nav in index_content.nav"
+             :key="nav.topic"
+             @mouseover="enter_sub_header(nav.topic)"
+             @mouseout="out_sub_header()"
+        >
             <div class="library_side_category_sub_header_categories_div"
-                 @mouseover="enter_sub_header(0)"
-                 @mouseout="out_sub_header()"
             >
-                <a href="javascript:;" class="library_side_category_topic bling_a">
-                    后端开发
-                </a>
-                <a href="javascript:;" class="library_side_category_item bling_a">
-                    Python
-                </a>
-                <a href="javascript:;" class="library_side_category_item bling_a">
-                    PHP
-                </a>
+                <router-link class="library_side_category_topic bling_a"
+                             :to="{ name:'library', query: {'topic': nav.topic} }"
+                >
+                    {{ nav.topic }}
+                </router-link>
+                <router-link class="library_side_category_item bling_a"
+                             v-for="(tag,index) in nav.tags"
+                             v-if="index < 2"
+                             :key="tag.name"
+                             :to="{ name:'library', query: {'topic': nav.topic, 'tag': tag.name} }"
+                   >
+                    {{ tag.name }}
+                </router-link>
 
             </div>
             <div class="library_side_category_sub_header_extends_div"
-                 :class="[show_sub_header == 0 ? 'show_self' : '']"
+                 :class="[show_sub_header == nav.topic ? 'show_self' : '']"
             >
-                <a href="javascript:;" class="sub_header_extends_a without_default_css_a">
-                    <img class="sub_header_extends_img" src="https://dn-simplecloud.shiyanlou.com/tech-icon/WebCrawler.png">
-                    <span class="sub_header_extends_span">爬虫</span>
-                </a>
-            </div>
-        </div>
-        <div class="library_side_category_sub_header_div">
-            <div class="library_side_category_sub_header_categories_div"
-                 @mouseover="enter_sub_header(2)"
-                 @mouseout="out_sub_header()"
-            >
-                <a href="javascript:;" class="library_side_category_topic bling_a">
-                    后端开发
-                </a>
-                <a href="javascript:;" class="library_side_category_item bling_a">
-                    Python
-                </a>
-                <a href="javascript:;" class="library_side_category_item bling_a">
-                    PHP
-                </a>
-
-            </div>
-            <div class="library_side_category_sub_header_extends_div"
-                 :class="[show_sub_header == 2 ? 'show_self' : '']"
-            >
-                <a href="javascript:;" class="sub_header_extends_a without_default_css_a">
-                    <img class="sub_header_extends_img" src="https://dn-simplecloud.shiyanlou.com/tech-icon/WebCrawler.png">
-                    <span class="sub_header_extends_span">爬虫</span>
-                </a>
+                <router-link class="sub_header_extends_a without_default_css_a"
+                             v-for="(tag,index) in nav.tags"
+                             :to="{ name:'library', query: {'topic': nav.topic, 'tag': tag.name} }"
+                             :key="tag.name"
+                >
+                    <img class="sub_header_extends_img" 
+                         :src="tag.picture_url">
+                    <span class="sub_header_extends_span">{{ tag.name }}</span>
+                </router-link>
             </div>
         </div>
     </div>
 </template>
 <script type="text/javascript">
+import { mapState, mapActions } from 'vuex'
+
 export default {
     data: function () {
         return {
             show_sub_header: -1
         }
     },
-
+    computed: {
+        ...mapState({
+            index_content: state => state.library.index_content
+        })
+    },
     methods: {
         enter_sub_header: function (index) {
             this.show_sub_header = index
@@ -134,6 +127,7 @@ export default {
     display: flex;
     align-items: flex-end;
     height: 100%;
+    flex-wrap: wrap;
 }
 
 .library_side_category_topic {
@@ -167,6 +161,8 @@ export default {
     transition: all .1s ease-out;
     opacity: 0;
     visibility: hidden;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .library_side_category_sub_header_categories_div:hover:after {
@@ -190,6 +186,7 @@ export default {
     flex-direction: column;
     align-items: center;
     width: 25%;
+    margin-bottom: 20px;
 }
 
 .sub_header_extends_img {

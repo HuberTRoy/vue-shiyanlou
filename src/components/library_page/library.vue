@@ -8,10 +8,20 @@
 import MainLibrary from '@/components/library_page/sub_components/main_library.vue'
 import Side from '@/components/library_page/sub_components/side.vue'
 
+import { mapState, mapActions } from 'vuex'
+
 export default {
     components: {
         MainLibrary,
         Side
+    },
+    methods: {
+        ...mapActions({
+            change_index_content: 'library/change_index_content'
+        })
+    },
+    created: function () {
+        this.change_index_content()
     }
 }
 
