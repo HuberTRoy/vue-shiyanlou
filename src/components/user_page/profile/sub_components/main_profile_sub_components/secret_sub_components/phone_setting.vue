@@ -11,7 +11,7 @@
                     <h5 class="phone_setting_back_header">
                         <i class="fas fa-chevron-left" v-if="forward" @click="back_to_get_verification()"></i>
                     </h5>
-                    <span>修改手机</span>
+                    <span>修改手机(未实现)</span>
                     <button @click="close_phone_setting()" class="phone_setting_close_button">×</button>
                 </header>
                 <div class="secret_phone_setting_tab_div">
@@ -19,7 +19,7 @@
                          :class="[show_appeal ? 'show_appeal' : '']"
                     >
                         <div class="phone_number">
-                            +86188****8888
+                            {{ user_info.phone.substr(0, 6) }}****{{ user_info.phone.substr(10) }}
                         </div>
                         <div class="phone_lost_tip" @click="to_appeal()">
                             手机号不能用了
@@ -49,12 +49,19 @@
     </div>    
 </template>
 <script type="text/javascript">
+import { mapState } from 'vuex'
+
 export default {
     data: function () {
         return {
             forward: false,
             show_appeal: false
         }
+    },
+    computed: {
+        ...mapState({
+            user_info: state => state.loginState.user_info
+        })
     },
     methods: {
         close_phone_setting: function () {

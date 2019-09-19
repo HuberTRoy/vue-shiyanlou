@@ -124,5 +124,45 @@ export default {
         } else if (args.method == 'POST' ) {
             return axios.post(`${apiUrl}v2/user/checkin/`, { 'session': session })
         }
-    }
+    },
+
+    // 下面是Profile相关的API,
+
+    save_profile_base_info (args) {
+        // 需要 cookies
+        let session = cookies.get('session')
+        args['session'] = session
+        return axios.patch(`${apiUrl}v2/user/`, args)
+    },
+
+    change_email (args) {
+        let session = cookies.get('session')
+        args['session'] = session
+        return axios.post(`${apiUrl}v2/user/change-email/`, args)
+    },
+
+    change_password (args) {
+        let session = cookies.get('session')
+        args['session'] = session
+        return axios.post(`${apiUrl}v2/user/change-password/`, args)
+    },
+
+    change_mail_setting (args) {
+        let session = cookies.get('session')
+        args['session'] = session
+        return axios.post(`${apiUrl}v2/user/mail-settings/`, args)        
+    },
+
+    get_mail_settings () {
+        let session = cookies.get('session')
+
+        return axios.get(`${apiUrl}v2/user/mail-settings/`, { params: { 'session': session }})
+    },
+
+    change_mail_settings (args) {
+        let session = cookies.get('session')
+        args['session'] = session
+
+        return axios.put(`${apiUrl}v2/user/mail-settings/`, args)    
+    } 
 }

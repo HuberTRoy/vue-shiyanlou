@@ -87,6 +87,9 @@ const actions = {
                 cookies.set('userId', response.data.id)
             }
         })
+    },
+    change_user_info_by_data (context, data) {
+        context.commit('change_user_info', data)
     }
 }
 

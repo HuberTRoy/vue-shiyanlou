@@ -58,12 +58,12 @@
         </div>
         <div class="main_profile_base_info_layout_div">
             <label class="main_profile_base_info_label"></label>
-            <button class="save_button">保存</button>
+            <button class="save_button" @click="_save_base_info()">保存</button>
         </div>
     </div>    
 </template>
 <script type="text/javascript">
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     data: function () {
@@ -71,7 +71,8 @@ export default {
             state: 'school',
             nickname: '',
             school: '',
-            job_title: ''
+            job_title: '',
+            avatar_url_upload: ''
         }
     },
 
@@ -91,9 +92,38 @@ export default {
             }
         }
     },
+    methods: {
+        ...mapActions({
+            save_base_info: 'profile/save_base_info',
+            change_base_info_by_data: 'loginState/change_user_info_by_data'
+        }),
+        _save_base_info: async function () {
+            // Json
+            // 这个页面下有四个状态:
+            // {
+            //    avatar_url: "https://dn-simplecloud.shiyanlou.com/gravatar8mlv5aoFoWEr.jpg?imageView2/1/w/200/h/200",
+            //    is_graduated: true,
+            //    job_title: "其他", 这里如果上面是 false 那应该是 school
+            //    name: "LOU2484605287"
+            // }
+            let data = {
+                avatar_url: this.user_info.avatar_url, // 没有对接上传功能,暂时不能更改
+                is_graduated: this.state == 'school' ? false : true,
+                name: this.nickname
+            }
+
+            if (this.state=='school') {
+                data['school'] = this.school
+            } else {
+                data['job_title'] = this.job_title
+            }
+            let response = await this.save_base_info(data)
+            this.change_base_info_by_data(response.data)
+        }
+    },
     mounted: function () {
         this.nickname = this.user_info.name
-        this.school = this.user_info.scholl
+        this.school = this.user_info.school
         this.job_title = this.user_info.job_title
         if (this.user_info.is_graduated == true) {
             this.state = 'work'

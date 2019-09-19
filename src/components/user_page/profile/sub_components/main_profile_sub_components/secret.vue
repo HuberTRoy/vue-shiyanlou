@@ -5,7 +5,7 @@
     <div class="main_profile_secret_div">
         <div class="main_profile_secret_layout_div">
             <label class="main_profile_secret_label">手机</label>
-            <span class="main_profile_secret_span">+861888888888</span>
+            <span class="main_profile_secret_span">{{ user_info.phone.substr(0, 6) }}****{{ user_info.phone.substr(10) }}</span>
             <a href="javascript:;" @click="tab_phone_setting()" class="main_profile_secret_a_button">点击修改</a>
         </div>
         <div class="main_profile_secret_layout_div">
@@ -76,6 +76,8 @@ import PhoneSetting from './secret_sub_components/phone_setting.vue'
 import MailSetting from './secret_sub_components/mail_setting.vue'
 import PasswordSetting from './secret_sub_components/password_setting.vue'
 
+import { mapState, mapActions } from 'vuex'
+
 export default {
     components: {
         PhoneSetting,
@@ -88,6 +90,11 @@ export default {
             show_mail_setting: false,
             show_password_setting: false
         }
+    },
+    computed: {
+        ...mapState({
+            user_info: state => state.loginState.user_info
+        })
     },
     methods: {
         tab_phone_setting: function () {

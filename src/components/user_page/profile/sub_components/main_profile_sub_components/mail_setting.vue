@@ -2,35 +2,78 @@
     <div class="main_profile_mail_setting_div">
         <div class="main_profile_mail_setting_layout_div">
             <label class="main_profile_mail_setting_label">提醒邮件</label>
-            <input type="checkbox" name="labreport_comment" id="labreport_comment" v-model="labreport_comment">
-            <label class="main_profile_mail_setting_input_label" for="labreport_comment">实验报告点评邀请</label>
+            <input type="checkbox" name="labreport_invite" id="labreport_invite" v-model="labreport_invite">
+            <label class="main_profile_mail_setting_input_label" for="labreport_invite">实验报告点评邀请</label>
         </div>
         <div class="main_profile_mail_setting_layout_div">
             <label class="main_profile_mail_setting_label"></label>
-            <input type="checkbox" name="question_comment" id="question_comment" v-model="question_comment">
-            <label class="main_profile_mail_setting_input_label" for="question_comment">问题邀请</label>
+            <input type="checkbox" name="question_invite" id="question_invite" v-model="question_invite">
+            <label class="main_profile_mail_setting_input_label" for="question_invite">问题邀请</label>
         </div>
         <div class="main_profile_mail_setting_layout_div">
             <label class="main_profile_mail_setting_label">官方邮件</label>
-            <input type="checkbox" name="new_courses" id="new_courses" v-model="new_courses">
-            <label class="main_profile_mail_setting_input_label" for="new_courses">新课程推荐邮件</label>
+            <input type="checkbox" name="new_course" id="new_course" v-model="new_course">
+            <label class="main_profile_mail_setting_input_label" for="new_course">新课程推荐邮件</label>
         </div>
         <div class="main_profile_mail_setting_layout_div">
             <label class="main_profile_mail_setting_label"></label>
-            <input type="checkbox" name="active_notice" id="active_notice" v-model="active_notice">
-            <label class="main_profile_mail_setting_input_label" for="active_notice">新功能/活动提醒邮件</label>
+            <input type="checkbox" name="activity" id="activity" v-model="activity">
+            <label class="main_profile_mail_setting_input_label" for="activity">新功能/活动提醒邮件</label>
         </div>
     </div>
 </template>
 <script type="text/javascript">
+import { mapState, mapActions } from 'vuex'
+
 export default {
     data: function () {
         return {
-            labreport_comment: true,
-            question_comment: true,
-            new_courses: true,
-            active_notice: true
+            labreport_invite: true,
+            question_invite: true,
+            new_course: true,
+            activity: true
         }
+    },
+    computed: {
+        ...mapState({
+            mail_settings: state => state.profile.mail_settings
+        //     labreport_invite: state => state.profile.mail_settings.labreport_invite,
+        //     question_invite: state => state.profile.mail_settings.question_invite,
+        //     new_course: state => state.profile.mail_settings.new_course,
+        //     activity: state => state.profile.mail_settings.activity
+        }),
+        setting_data: function () {
+            return {
+                labreport_invite: this.labreport_invite,
+                question_invite: this.question_invite,
+                new_course: this.new_course,
+                activity: this.activity                
+            }
+        }
+    },
+    methods: {
+        ...mapActions({
+            get_mail_settings: 'profile/get_mail_settings',
+            change_mail_settings: 'profile/change_mail_settings'
+        }),
+        set_mail_settings: function () {
+            this.labreport_invite = this.mail_settings.labreport_invite
+            this.question_invite = this.mail_settings.question_invite
+            this.new_course = this.mail_settings.new_course
+            this.activity = this.mail_settings.activity
+        }
+    },
+    watch: {
+        setting_data: async function () {
+            // 这边应该写个提示,但现在没有。
+            let res = await this.change_mail_settings(this.setting_data)
+            
+        }
+    },
+    created: async function () {
+        await this.get_mail_settings()
+        this.set_mail_settings()
+        
     }
 }  
 </script>
