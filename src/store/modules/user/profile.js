@@ -67,6 +67,10 @@ const actions = {
 
     get_qiniu_api (context, args) {
         return ProfileApi.get_qiniu_api(args)
+    },
+
+    upload_avatar (context, args) {
+        return ProfileApi.upload_avatar(args)
     }
 }
 

@@ -42,6 +42,9 @@ const mutations = {
     },
     change_user_info (state, userInfo) {
         state.user_info = userInfo
+    },
+    change_avatar_by_url (state, url) {
+        state.user_info.avatar_url = url
     }
 }
 
@@ -90,6 +93,9 @@ const actions = {
     },
     change_user_info_by_data (context, data) {
         context.commit('change_user_info', data)
+    },
+    change_avatar_by_url (context, url) {
+        context.commit('change_avatar_by_url', url)
     }
 }
 

@@ -50,6 +50,20 @@ module.exports = {
             pathRewrite: {  
               '^/api/': ''
             }  
+          },
+          '/qiniu': {
+            target: 'http://api.qiniu.com',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/qiniu/': ''
+            }
+          },
+          '/upload': {
+            target: 'http://upload.qiniup.com',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/upload/': ''
+            }
           }
     }
   },

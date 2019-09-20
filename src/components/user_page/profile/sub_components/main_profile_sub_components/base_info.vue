@@ -66,6 +66,8 @@
     </div>    
 </template>
 <script type="text/javascript">
+import { imgUrl } from '@/api/base.js'
+
 import { mapState, mapActions } from 'vuex'
 
 export default {
@@ -100,7 +102,9 @@ export default {
             save_base_info: 'profile/save_base_info',
             change_base_info_by_data: 'loginState/change_user_info_by_data',
             get_upload_key: 'profile/get_upload_key',
-            get_upload_domain: 'profile/get_qiniu_api'
+            get_upload_domain: 'profile/get_qiniu_api',
+            _upload_avatar: 'profile/upload_avatar',
+            change_avatar_url: 'loginState/change_avatar_by_url'
         }),
         _save_base_info: async function () {
             // Json
@@ -138,9 +142,6 @@ export default {
         upload_avatar: async function (event) {
             // console.log(event)
             let upload_name = this.get_upload_name()
-            let form = new FormData()
-            // console.log(event.target.files[0])
-            form.append('file', event.target.files[0])
 
             // 第一步向服务器请求上传所需的token, key其实是上传的文件名。
             let keys = await this.get_upload_key({
@@ -153,7 +154,24 @@ export default {
                 ak: keys.data.token.split(':')[0],
                 bucket: 'simplecloud'
             })
-            console.log(upload_domains)
+            // 这里获取的上传域名有很多个，有主域名与备用域名，这里就只用主域名了，
+            // 配置在 config/index.js 中做代理。
+
+            upload_domains = upload_domains.data.up.acc.main[0]
+
+            // 第三部配置form数据
+            let form = new FormData()
+            form.append('file', event.target.files[0])
+            form.append('token', keys.data.token)
+            form.append('key', upload_name)
+            form.append('fname', 'old.jpg')
+
+            let res = await this._upload_avatar(form)
+
+            let new_avatar_url = `${imgUrl}${res.data.key}`
+            this.change_avatar_url(new_avatar_url)
+            
+            // console.log(res)
         }
     },
     mounted: function () {

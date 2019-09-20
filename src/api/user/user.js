@@ -1,5 +1,6 @@
+import qs from 'qs'
 import axios from 'axios'
-import { apiUrl } from '@/api/base.js'
+import { apiUrl, qiniu, upload } from '@/api/base.js'
 
 import cookies from 'vue-cookies'
 
@@ -170,6 +171,10 @@ export default {
 
     get_qiniu_api (args) {
         // 这个是直接向七牛进行的请求。
-        return axios.get('https://api.qiniu.com/v2/query', {params: args})
+        return axios.get(`${qiniu}v2/query`, {params: args})
+    },
+
+    upload_avatar (args) {
+        return axios.post(`${upload}`, args, { 'content-type': 'application/x-www-form-urlencoded' })
     }
 }
