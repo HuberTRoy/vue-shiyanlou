@@ -40,7 +40,18 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
 
-    cssSourceMap: true
+    cssSourceMap: true,
+    // 解决本地开发下跨域及cookies问题...
+    // Ok... 当时写的切换对前后端并不友好...
+    proxyTable: {
+          '/api': {  
+            target: 'http://localhost:8000/api',//设置你调用的接口域名
+            changeOrigin: true,  
+            pathRewrite: {  
+              '^/api/': ''
+            }  
+          }
+    }
   },
 
   build: {

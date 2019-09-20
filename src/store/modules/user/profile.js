@@ -59,6 +59,14 @@ const actions = {
     async change_mail_settings (context, args) {
         let response = await ProfileApi.change_mail_settings(args)
         context.commit('change_mail_settings', response.data)
+    },
+
+    get_upload_key (context, args) {
+        return ProfileApi.get_upload_key(args)
+    },
+
+    get_qiniu_api (context, args) {
+        return ProfileApi.get_qiniu_api(args)
     }
 }
 

@@ -3,6 +3,8 @@ import { apiUrl } from '@/api/base.js'
 
 import cookies from 'vue-cookies'
 
+axios.defaults.withCredentials = true
+
 export default {
     get_user_info (userArgs) {
         // userArgs
@@ -12,8 +14,8 @@ export default {
     },
 
     get_user_info_by_cookies (userArgs) {
-        let session = cookies.get('session')
-        return axios.get(`${apiUrl}v2/user/`, { params: {'session': session} })
+        //  
+        return axios.get(`${apiUrl}v2/user/`)
     },
 
     get_user_learning_record (userArgs) {
@@ -118,11 +120,10 @@ export default {
     },
 
     checkin (args) {
-        let session = cookies.get('session')
         if (args.method == 'GET') {
-            return axios.get(`${apiUrl}v2/user/checkin/`, { params: { 'session': session } })
+            return axios.get(`${apiUrl}v2/user/checkin/`)
         } else if (args.method == 'POST' ) {
-            return axios.post(`${apiUrl}v2/user/checkin/`, { 'session': session })
+            return axios.post(`${apiUrl}v2/user/checkin/`)
         }
     },
 
@@ -130,39 +131,45 @@ export default {
 
     save_profile_base_info (args) {
         // 需要 cookies
-        let session = cookies.get('session')
-        args['session'] = session
+ 
         return axios.patch(`${apiUrl}v2/user/`, args)
     },
 
     change_email (args) {
-        let session = cookies.get('session')
-        args['session'] = session
+ 
         return axios.post(`${apiUrl}v2/user/change-email/`, args)
     },
 
     change_password (args) {
-        let session = cookies.get('session')
-        args['session'] = session
+ 
         return axios.post(`${apiUrl}v2/user/change-password/`, args)
     },
 
     change_mail_setting (args) {
-        let session = cookies.get('session')
-        args['session'] = session
+ 
         return axios.post(`${apiUrl}v2/user/mail-settings/`, args)        
     },
 
     get_mail_settings () {
-        let session = cookies.get('session')
+         
 
-        return axios.get(`${apiUrl}v2/user/mail-settings/`, { params: { 'session': session }})
+        return axios.get(`${apiUrl}v2/user/mail-settings/` )
     },
 
     change_mail_settings (args) {
-        let session = cookies.get('session')
-        args['session'] = session
+ 
 
         return axios.put(`${apiUrl}v2/user/mail-settings/`, args)    
-    } 
+    },
+
+    get_upload_key (args) {
+ 
+
+        return axios.post(`${apiUrl}v2/services/qiniu/token/`, args)
+    },
+
+    get_qiniu_api (args) {
+        // 这个是直接向七牛进行的请求。
+        return axios.get('https://api.qiniu.com/v2/query', {params: args})
+    }
 }

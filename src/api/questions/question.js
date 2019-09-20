@@ -28,17 +28,12 @@ export default {
 
     reply_question (questionArgs) {
         let id = questionArgs.id
-        let session = cookies.get('session')
-
-        return axios.post(`${apiUrl}v2/questions/${id}/answers/`, {'session': session, 'content': questionArgs.content})
+        return axios.post(`${apiUrl}v2/questions/${id}/answers/`, {'content': questionArgs.content})
     },
 
     reply_question_comment (questionArgs) {
         let id = questionArgs.id
-        let session = cookies.get('session')
-
-        return axios.post(`${apiUrl}v2/questions/${id}/answers/`, {'session': session, 
-                                                                   'content': questionArgs.content,
+        return axios.post(`${apiUrl}v2/questions/${id}/answers/`, {'content': questionArgs.content,
                                                                    'parent_id': questionArgs.parent_id})
     }
 }

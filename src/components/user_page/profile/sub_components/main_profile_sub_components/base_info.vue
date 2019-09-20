@@ -8,7 +8,10 @@
     <div class="main_profile_base_info_div">
         <div class="main_profile_base_info_layout_div main_profile_base_info_avatar">
             <label class="main_profile_base_info_label">头像: </label>
-            <img class="main_profile_base_info_avatar_img" :src="user_info.avatar_url">
+            <label for="new_upload_avatar">
+                <img class="main_profile_base_info_avatar_img" :src="user_info.avatar_url">
+            </label>
+            <input type="file" id="new_upload_avatar" @change="upload_avatar($event)">
         </div>
         <div class="main_profile_base_info_layout_div main_profile_base_info_name">
             <label class="main_profile_base_info_label">昵称: </label>
@@ -95,7 +98,9 @@ export default {
     methods: {
         ...mapActions({
             save_base_info: 'profile/save_base_info',
-            change_base_info_by_data: 'loginState/change_user_info_by_data'
+            change_base_info_by_data: 'loginState/change_user_info_by_data',
+            get_upload_key: 'profile/get_upload_key',
+            get_upload_domain: 'profile/get_qiniu_api'
         }),
         _save_base_info: async function () {
             // Json
@@ -119,6 +124,36 @@ export default {
             }
             let response = await this.save_base_info(data)
             this.change_base_info_by_data(response.data)
+        },
+        get_upload_name: function () {
+            // courses/uid1146797-20190920-1568960683910
+            // 名字试了试无所谓,这样生成应该是保证唯一。
+            let id = this.user_info.id
+            let date = new Date()
+            let today = `${date.getFullYear()}${date.getMonth()+1}${date.getDate()}`
+            let time = date.getTime()
+
+            return `courses/uid${id}-${today}-${time}`
+        },
+        upload_avatar: async function (event) {
+            // console.log(event)
+            let upload_name = this.get_upload_name()
+            let form = new FormData()
+            // console.log(event.target.files[0])
+            form.append('file', event.target.files[0])
+
+            // 第一步向服务器请求上传所需的token, key其实是上传的文件名。
+            let keys = await this.get_upload_key({
+                bucket: 'simplecloud',
+                key: upload_name
+            })
+
+            // 第二步向七牛申请可用上传域名。
+            let upload_domains = await this.get_upload_domain({
+                ak: keys.data.token.split(':')[0],
+                bucket: 'simplecloud'
+            })
+            console.log(upload_domains)
         }
     },
     mounted: function () {
@@ -163,6 +198,7 @@ export default {
     width: 125px;
     height: 125px;
     border-radius: 25px;
+    cursor: pointer;
 }
 
 .main_profile_base_info_state {
@@ -267,6 +303,10 @@ export default {
     color: #fff;
     border-color: #068e6c;
     background-color: #068e6c;
+}
+
+#new_upload_avatar {
+    display: none;
 }
 
 </style>
