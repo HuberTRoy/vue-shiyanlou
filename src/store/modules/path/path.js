@@ -1,10 +1,11 @@
-import PathApi from '../../../api/path/path.js'
-import CoursePathApi from '../../../api/path/course_path.js'
-import CommentApi from '../../../api/path/courses_path_comment.js'
+import PathApi from '@/api/path/path.js'
+import CoursePathApi from '@/api/path/course_path.js'
+import CommentApi from '@/api/path/courses_path_comment.js'
 
 const state = {
     path_information: {},
     course_path_information: {},
+    course_path_userstatus: {},
     path_courses_detail_nav: 'detail',
     comment_information: {},
     courses_path_id: 0,
@@ -14,7 +15,7 @@ const state = {
         'topic_type': 'path'
     },
     stages: [],
-    cursor: ''
+    cursor: '',
 }
 
 const getters = {
@@ -62,8 +63,12 @@ const mutations = {
         state.cursor = cursor
     },
 
-    change_recently_louplus (state, recently_louplus) {
-        state.course_path_information['recently_louplus'] = recently_louplus
+    change_recently_louplus (state, recentlyLouplus) {
+        state.course_path_information['recently_louplus'] = recentlyLouplus
+    },
+
+    change_course_path_userstatus (state, pathUserstatus) {
+        state.course_path_userstatus = pathUserstatus
     }
 }
 
@@ -111,6 +116,22 @@ const actions = {
 
     change_cursor (context, cursor) {
         context.commit('change_cursor', cursor)
+    },
+
+    async change_course_path_userstatus (context, args) {
+        let userstatus = await CoursePathApi.get_userstatus(args)
+        context.commit('change_course_path_userstatus', userstatus.data)  
+    },
+
+    async join_and_delete_path (context, args) {
+        let res = await CoursePathApi.join_and_delete_path(args)
+        if (res.status < 299) {
+            if (args.method=='POST') {
+                context.commit('change_course_path_userstatus', [{'is_joined': true}])
+            } else {
+                context.commit('change_course_path_userstatus', [{'is_joined': false}])
+            }
+        }
     }
 }
 
