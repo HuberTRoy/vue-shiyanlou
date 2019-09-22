@@ -14,8 +14,24 @@ import Search from '@/pages/search/search.vue'
 import NotFound from '@/pages/404.vue'
 import Library from '@/pages/library/library.vue'
 import Login from '@/pages/client_area/login.vue'
+import Report from '@/pages/courses/reports/report.vue'
+import Reports from '@/pages/courses/reports/reports.vue'
 
 Vue.use(Router)
+
+// 关于路由
+// 好像一开始就配置的不合理。
+// children 要配合 router-view 来使用这样共用一套公共组件。
+// 现在先分开写，等整理完功能再重新配置路由。
+// 在这里先写一下构思,以免一会忘记了。
+// 看了看语法就开始写了，一直没有整体上的把握。
+// Vue 除去配置文件，一开始是从 App.vue 开始的，
+// 教程上只在里面写了 <router-view></router-view> 然后开始写各种components 配顶层路由
+// 也没多想， Vue 从 App.vue 进来，加载路由 <router-view></router-view>
+// 这个router-view 显示的是顶层路由所配置的组件，
+// 如果这个组件里也有router-view那应该展示的是children
+// children 应该还能再嵌套...
+
 
 export default new Router({
   routes: [
@@ -28,6 +44,33 @@ export default new Router({
         path: '/courses',
         name: 'courses',
         component: Courses
+        // children: [
+        //     {
+        //         path: 'reports',
+        //         component: Reports,
+        //         name: 'reports'
+        //     },
+        //     {
+        //         path: 'reports/:id',
+        //         component: Report,
+        //         name: 'report'
+        //     },
+        //     {
+        //         path: ':id',
+        //         name: 'course',
+        //         component: Course
+        //     }
+        // ]
+    },
+    {
+        path: '/courses/reports',
+        component: Reports,
+        name: 'reports'
+    },
+    {
+        path: '/courses/reports/:id',
+        component: Report,
+        name: 'report'
     },
     {
         path: '/courses/:id',

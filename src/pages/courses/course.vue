@@ -10,10 +10,10 @@
 </template>
 
 <script type="text/javascript">
-import Footer from '../../components/common_components/footer/footer.vue'
-import ScrollBar from '../../components/common_components/scroll_bar/scroll_bar.vue'
-import Course from '../../components/courses_page/course/course.vue'
-import Login from '../../components/common_components/sign_on_up/login.vue'
+import Footer from '@/components/common_components/footer/footer.vue'
+import ScrollBar from '@/components/common_components/scroll_bar/scroll_bar.vue'
+import Course from '@/components/courses_page/course/course.vue'
+import Login from '@/components/common_components/sign_on_up/login.vue'
 import CourseHeaderBar from '@/components/courses_page/course/sub_components/course_header_bar.vue'
 
 import { mapState } from 'vuex'

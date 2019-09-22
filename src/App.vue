@@ -44,7 +44,7 @@ body {
   border: 0;
   height: 100%;
   background: #f9f9f9;
-  font-size: 12px;
+  font-size: 1rem;
   font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
 }
 
