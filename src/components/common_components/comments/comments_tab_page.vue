@@ -11,10 +11,16 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
+    props: {
+        _name: {
+            type: String,
+            require: true
+        }
+    },
     computed: {
         ...mapState({
             prev: state => { 
-                let p = state.course.course_comment_information.previous
+                let p = state.comments.comment_information.previous
                 if (p) {
                     p = p.substr(1).split('&')[0]
                     p = p.split('=')[1]
@@ -24,7 +30,7 @@ export default {
                 return ''
             },
             next: state => {
-                let n = state.course.course_comment_information.next
+                let n = state.comments.comment_information.next
                 if (n) {
                     n = n.substr(1).split('&')[0]
                     n = n.split('=')[1]
@@ -37,13 +43,13 @@ export default {
     },
     methods: {
         ...mapActions({
-            get_comments: 'course/change_comment_information' 
+            get_comments: 'comments/change_comment_information' 
         }),
         tab_page: function (cursor) {
             // this.change_cursor(cursor)
             this.get_comments({
                 'topic_id': this.$route.params.id,
-                'topic_type': 'course',
+                'topic_type': this._name,
                 'page_size': 15,
                 'cursor': cursor
             })

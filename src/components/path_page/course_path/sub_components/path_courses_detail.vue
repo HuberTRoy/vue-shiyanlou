@@ -34,15 +34,16 @@
             </div>
         </div>
         <div class="path_courses_comment" v-show="nav==='comment'">
-            <PathCoursesCommentDialog></PathCoursesCommentDialog>
-            <PathCoursesComment></PathCoursesComment>
+            <PathCoursesCommentDialog :_name="'path'"></PathCoursesCommentDialog>
+            <PathCoursesComment :_name="'path'"></PathCoursesComment>
         </div>
     </div>
 </template>
 <script type="text/javascript">
 import PhaseCard from './path_courses_detail_sub_components/phase_item.vue'
-import PathCoursesCommentDialog from './path_courses_detail_sub_components/comments/path_comment_dialog.vue'
-import PathCoursesComment from './path_courses_detail_sub_components/comments/path_current_comment.vue'
+
+import PathCoursesComment from '@/components/common_components/comments/current_comment.vue'
+import PathCoursesCommentDialog from '@/components/common_components/comments/comment_dialog.vue'
 
 import { mapState, mapActions } from 'vuex'
 

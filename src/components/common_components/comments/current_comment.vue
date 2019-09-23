@@ -24,7 +24,7 @@
                           :data="item"
             ></CommentsItem>
             <TabPage
-            :pageType="'comment'"
+            :_name="_name"
             ></TabPage>
         </div>
     </div>

@@ -20,7 +20,7 @@
     </div>
 </template>
 <script type="text/javascript">
-import CourseCard from '../../../../common_components/cards/course_card.vue'
+import CourseCard from '@/components/common_components/cards/course_card.vue'
 
 export default {
     components: {

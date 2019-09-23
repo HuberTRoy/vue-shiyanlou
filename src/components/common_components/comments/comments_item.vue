@@ -94,8 +94,8 @@ export default {
 
         _reply: function (id, name) {
             // 这个待定...
-            // let text = document.getElementsByClassName("course_teacher_div")[0]
-            // text.scrollIntoView(true)
+            let text = document.getElementsByClassName("comment_dialog")[0]
+            text.scrollIntoView(true)
             this.reply(id)
             this.change_text_placeholder("回复: " + name)
         }

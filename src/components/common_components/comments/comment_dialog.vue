@@ -53,8 +53,8 @@ export default {
     computed: {
         ...mapState({
             sign_on: state => state.loginState.sign_on,
-            reply_id: state => state.comment.reply_id,
-            placeholder: state => state.comment.text_placeholder
+            reply_id: state => state.comments.reply_id,
+            placeholder: state => state.comments.text_placeholder
         })
     },
 
@@ -69,9 +69,9 @@ export default {
             this.$store.dispatch('loginState/change_show_state', 'on')
         },
 
-        _post_comment: function () {
+        _post_comment: async function () {
             if (this.reply_id) {
-                this.reply_comment({
+                await this.reply_comment({
                     'content': this.comment_content,
                     'topic_id': this.$route.params.id,
                     'topic_type': this._name,
@@ -80,7 +80,7 @@ export default {
                 this.comment_content = ''
                 return
             }
-            this.post_comment({
+            await this.post_comment({
                 'content': this.comment_content,
                 'topic_id': this.$route.params.id,
                 'topic_type': this._name
