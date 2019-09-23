@@ -5,33 +5,46 @@
                 标签
             </p>
             <div class="reports_home_side_tags_container">
-                <span class="reports_home_side_tag">
-                    Python
-                </span>
-                <span class="reports_home_side_tag">
-                    Python
-                </span>
-                <span class="reports_home_side_tag">
-                    Python
-                </span>
-                <span class="reports_home_side_tag">
-                    Python
-                </span>
-                <span class="reports_home_side_tag">
-                    1
-                </span>
-                <span class="reports_home_side_tag">
-                    P
-                </span>
-                <span class="reports_home_side_tag">
-                    Py
+                <span class="reports_home_side_tag"
+                      v-for="tag in tags"
+                      :key="tag"
+                      :class="[current_tag==tag ? 'reports_home_side_tag_active' : '']"
+                      @click="_change_tag(tag)"
+                >
+                    {{ tag }}
                 </span>
             </div>
         </div>
     </div>
 </template>
 <script type="text/javascript">
-    
+import { mapState, mapActions } from 'vuex'
+
+export default {
+    computed: {
+        ...mapState({
+            tags: state => state.reports.categories,
+            current_tag: state => state.reports.reports_args.tag
+        })
+    },
+    methods: {
+        ...mapActions({
+            get_categories: 'reports/change_categories',
+            change_tag: 'reports/change_reports_args'
+        }),
+        _change_tag: function (tag) {
+            this.change_tag({'tag': tag})
+            this.$router.push({name: 'reports', query: {
+                ...this.$route.query,
+                'tag': tag
+            }})
+        }
+    },
+    created: async function () {
+        await this.get_categories()
+    }
+}
+
 </script>
 <style type="text/css">
 .reports_home_side {
@@ -68,6 +81,11 @@
 .reports_home_side_tag:hover {
     background: #0c9;
     color: #fff;
+}
+
+.reports_home_side_tag_active {
+    background: #0c9;
+    color: #fff;   
 }
 
 </style>

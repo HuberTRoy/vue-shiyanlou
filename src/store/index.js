@@ -15,6 +15,7 @@ import profile from './modules/user/profile.js'
 import search from './modules/search/search.js'
 import library from './modules/library/library.js'
 import comments from './modules/comments/comments.js'
+import reports from './modules/reports/reports.js'
 
 Vue.use(Vuex)
 
@@ -35,7 +36,8 @@ export default new Vuex.Store({
         profile,
         search,
         library,
-        comments
+        comments,
+        reports
     },
   strict: debug
   // plugins: debug ? [createLogger()] : []
