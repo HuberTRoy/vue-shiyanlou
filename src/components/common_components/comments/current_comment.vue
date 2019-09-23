@@ -1,4 +1,13 @@
 <template>
+    <!-- 出现在很多地方了
+         抽象成一个公共组件。
+         创建一个新的仓库来存储评论数据。
+         好像没有清晰的思路实现:
+         1. 通过 props 来指定应该请求哪个链接。
+         2. 每个各自的 store 里各自实现相关 change_comment_information 和 userstatus。
+         3. 相关的还有回复id。
+         否决 2. 改成统一在 comment中实现, 通过参数控制。
+     -->
     <div class="comments_div">
         <div class="comments_nav_div">
             <ul class="comments_nav_ul">
@@ -27,20 +36,26 @@ import CommentsItem from './comments_item.vue'
 import TabPage from './comments_tab_page.vue'
 
 export default {
+    props: {
+        _name: {
+            type: String,
+            require: true
+        }
+    },
     computed: {
         ...mapState({
-            comments: state => state.course.course_comment_information,
-            page_size: state => state.course.course_comment_args.page_size,
-            current_page: state => state.course.course_comment_args.current_page,
-            course_id: function () { return this.$route.params.id },
+            comments: state => state.comments.comment_information,
+            page_size: state => state.comments.comment_args.page_size,
+            current_page: state => state.comments.comment_args.current_page,
+            id: function () { return this.$route.params.id },
             isLogin: state => state.loginState.sign_on
         })
     },
 
     methods: {
         ...mapActions({
-            get_comments: 'course/change_comment_information',
-            change_comments_userstatus: 'course/change_comments_userstatus'
+            get_comments: 'comments/change_comment_information',
+            change_comments_userstatus: 'comments/change_comments_userstatus'
         })
     },
     components: {
@@ -50,9 +65,9 @@ export default {
 
     created: function () {
         this.get_comments({
-            'topic_id': this.course_id,
+            'topic_id': this.id,
             'page_size': this.page_size,
-            'topic_type': 'course'
+            'topic_type': this._name
         })
     },
 

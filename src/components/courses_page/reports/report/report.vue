@@ -36,6 +36,12 @@ export default {
 
 </script>
 <style type="text/css">
+.report_content_div {
+    width: 1170px;
+    margin: auto;
+    padding: 0 30px;
+}
+
 .report_content_nav_div {
     padding: .75rem 0;
 }
@@ -49,9 +55,15 @@ export default {
     color: #6c757d;
 }
 
-.report_content_nav_span_no_link:before {
+.report_content_nav_span:after {
     content: '/';
+    color: #6c757d;
     padding-left: .5rem;
     padding-right: .5rem;
 }
+
+.report_content_home_layout {
+    display: flex;
+}
+
 </style>
