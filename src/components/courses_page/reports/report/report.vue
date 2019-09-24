@@ -14,7 +14,7 @@
                 实验报告
             </router-link>
             <span class="report_content_nav_span_no_link">
-                报告名字
+                "{{ report_info.course_name }}"的实验报告
             </span>
         </div>
         <div class="report_content_home_layout">
@@ -27,10 +27,48 @@
 import MainReport from './sub_components/main_report.vue'
 import Side from './sub_components/side.vue'
 
+import { mapState, mapActions } from 'vuex'
+
 export default {
     components: {
         MainReport,
         Side
+    },
+    computed: {
+        ...mapState({
+            report_info: state => state.reports.report_information
+        })
+    },
+    methods: {
+        ...mapActions({
+            get_report_info: 'reports/change_report_information',
+            get_learn_data: 'reports/change_learn_data',
+            get_related: 'reports/change_related'
+        })
+    },
+    watch: {
+        '$route': async function () {
+            await this.get_report_info({
+                id: this.$route.params.id
+            })
+            await this.get_learn_data({
+                id: this.$route.params.id
+            })
+            await this.get_related({
+                id: this.$route.params.id
+            })
+        }
+    },
+    created: async function () {
+        await this.get_report_info({
+            id: this.$route.params.id
+        })
+        await this.get_learn_data({
+            id: this.$route.params.id
+        })
+        await this.get_related({
+            id: this.$route.params.id
+        })
     }
 }
 

@@ -7,7 +7,10 @@ const state = {
         // 还有 hot
         sort: 'newest',
         tag: ''
-    }
+    },
+    report_information: {},
+    learn_data: {},
+    related: []
 }
 
 const mutations = {
@@ -19,6 +22,15 @@ const mutations = {
     },
     change_reports_args (state, args) {
         state.reports_args = {...state.reports_args, ...args}
+    },
+    change_report_information (state, info) {
+        state.report_information = info
+    },
+    change_learn_data (state, data) {
+        state.learn_data = data
+    },
+    change_related (state, data) {
+        state.related = data
     }
 }
 
@@ -36,6 +48,18 @@ const actions = {
     },
     change_reports_args (context, args) {
         context.commit('change_reports_args', args)
+    },
+    async change_report_information (context, args) {
+        let res = await ReportsApi.get_report_information(args)
+        context.commit('change_report_information', res.data)
+    },
+    async change_learn_data (context, args) {
+        let res = await ReportsApi.get_learn_data(args)
+        context.commit('change_learn_data', res.data)
+    },
+    async change_related (context, args) {
+        let res = await ReportsApi.get_related(args)
+        context.commit('change_related', res.data)
     }
 }
 

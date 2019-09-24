@@ -72,6 +72,13 @@ export default {
     },
 
     watch: {
+        '$route': async function () {
+            await this.get_comments({
+                'topic_id': this.id,
+                'page_size': this.page_size,
+                'topic_type': this._name
+            })            
+        },
         comments: function (newComments, oldComments) {
             if (!this.isLogin) {
                 return

@@ -6,38 +6,41 @@
         comments
      -->
     <div class="report_main_content_div">
-        <div class="report_main_content_base_info">
+        <div class="report_main_content_base_info" v-if="report_info.author">
             <!-- 
                 left to right
                 userinfo check information
              -->
              <div class="report_main_content_base_info_user_info">
-                <img class="report_main_content_avatar" src="https://dn-simplecloud.shiyanlou.com/gravatarkijh4UYVEwTc.jpg?imageView2/1/w/200/h/200">
+                <img class="report_main_content_avatar" 
+                     :src="report_info.author.avatar_url">
                 <span>
-                    TEST<span class="level">L3</span>
+                    {{
+                        report_info.author.name
+                    }}<span class="level">L{{ report_info.author.level }}</span>
                 </span>
-                <span class="report_created_time">2小时前</span>
-                <a href="javascript:;">来源</a>
+                <span class="report_created_time">{{ report_info.author.created_at }}</span>
+                <a href="javascript:;">{{ report_info.lab_name }}</a>
              </div>
              <div class="report_main_content_base_info_check_info">
                  <i class="far fa-eye"></i>
-                 <span class="report_check_info_span">100</span>
+                 <span class="report_check_info_span">{{ report_info.views_count }}</span>
                  <i class="far fa-comments"></i>
-                 <span class="report_check_info_span">99</span>
+                 <span class="report_check_info_span">{{ report_info.comments_count }}</span>
              </div>
         </div>
         <div class="report_main_content_article">
             <div class="report_main_content_base_info_title">
-                <p class="report_main_content_article_course_name">course_name实验报告</p>
+                <p class="report_main_content_article_course_name"> {{ report_info.course_name }} </p>
                 <a class="report_main_content_article_lab_name" href="javascript:;">
-                    lab_name
+                    {{ report_info.lab_name }}
                 </a>
-                <VueMarkDown># TEST</VueMarkdown>
+                <VueMarkDown v-if="report_info.content" class="report_content" :source="report_info.content"></VueMarkdown>
             </div>
         </div>
         <div class="report_main_content_comments">
-            <CommentDialog :_name="'report'"></CommentDialog>
-            <Comments :_name="'report'"></Comments>
+            <CommentDialog :_name="'labreport'"></CommentDialog>
+            <Comments :_name="'labreport'"></Comments>
         </div>
     </div>
 </template>
@@ -46,11 +49,18 @@ import VueMarkDown from 'vue-markdown'
 import CommentDialog from '@/components/common_components/comments/comment_dialog.vue'
 import Comments from '@/components/common_components/comments/current_comment.vue'
 
+import { mapState, mapActions } from 'vuex'
+
 export default {
     components: {
         VueMarkDown,
         Comments,
         CommentDialog
+    },
+    computed: {
+        ...mapState({
+            report_info: state => state.reports.report_information
+        })
     }
 }
 
@@ -127,6 +137,10 @@ export default {
 
 .report_main_content_article_lab_name:hover {
     text-decoration: underline !important;
+}
+
+.report_content img {
+    width: 100%;
 }
 
 </style>

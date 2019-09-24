@@ -1,8 +1,9 @@
 <template>
     <div class="report_content_item">
         <div class="report_content_item_div">
-            <a href="javascript:;"
-               class="report_content_item_a"
+            <router-link tag="a"
+                         :to="{ name: 'report', params: { id:data.id } }"
+                         class="report_content_item_a"
             >
                 <div class="report_content_name">
                     <p class="report_content_item_p course_name">
@@ -20,7 +21,7 @@
                     <div class="label">
                     </div>
                 </div>
-            </a>
+            </router-link>
         </div>
         <div class="report_author_item_div">
             <div class="avatar_and_level">

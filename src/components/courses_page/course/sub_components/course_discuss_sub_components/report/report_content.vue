@@ -11,7 +11,7 @@
 <script type="text/javascript">
 import { mapState, mapActions } from 'vuex'
 
-import ReportContentItem from './report_content_item.vue'
+import ReportContentItem from '@/components/common_components/report_item/report_content_item.vue'
 
 export default {
     components: {
