@@ -16,6 +16,8 @@ import Library from '@/pages/library/library.vue'
 import Login from '@/pages/client_area/login.vue'
 import Report from '@/pages/courses/reports/report.vue'
 import Reports from '@/pages/courses/reports/reports.vue'
+import Publish from '@/pages/questions/publish.vue'
+
 
 Vue.use(Router)
 
@@ -91,6 +93,11 @@ export default new Router({
         path: '/questions',
         name: 'questions',
         component: QuestionsHome
+    },
+    {
+        path: '/questions/publish',
+        name: 'publish',
+        component: Publish
     },
     {
         path: '/questions/:id',

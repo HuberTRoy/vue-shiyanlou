@@ -35,5 +35,9 @@ export default {
         let id = questionArgs.id
         return axios.post(`${apiUrl}v2/questions/${id}/answers/`, {'content': questionArgs.content,
                                                                    'parent_id': questionArgs.parent_id})
+    },
+
+    publish_question (questionArgs) {
+        return axios.post(`${apiUrl}v2/questions/`, questionArgs)
     }
 }

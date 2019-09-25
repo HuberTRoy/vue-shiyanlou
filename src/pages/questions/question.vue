@@ -11,10 +11,10 @@
 
 <script type="text/javascript">
 
-import ScrollBar from '../../components/common_components/scroll_bar/scroll_bar.vue'
-import Login from '../../components/common_components/sign_on_up/login.vue'
-import Question from '../../components/questions_page/question/question.vue'
-import Footer from '../../components/common_components/footer/footer.vue'
+import ScrollBar from '@/components/common_components/scroll_bar/scroll_bar.vue'
+import Login from '@/components/common_components/sign_on_up/login.vue'
+import Question from '@/components/questions_page/question/question.vue'
+import Footer from '@/components/common_components/footer/footer.vue'
 
 import { mapState } from 'vuex'
 

@@ -159,6 +159,7 @@ export default {
 <style type="text/css">
 .markdown_editor {
     min-height: 250px;
+    border: 1px solid #ccc;
 }
 
 .markdown_container {
@@ -166,7 +167,6 @@ export default {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    border: 1px solid #ccc;
     min-height: 250px;
 }
 
@@ -212,7 +212,7 @@ export default {
 
 .markdown_container_previewer {
     padding: 10px 20px;
-    background: #fff;
+    background: transparent;
     border: 1px solid #eee;
     word-break: break-all;
     height: 100%;
@@ -262,5 +262,10 @@ export default {
 
 #upload_file {
     display: none;
+}
+
+#markdown_textarea {
+    background: transparent;
+    resize: none;
 }
 </style>

@@ -1,11 +1,10 @@
 <template>
-    <div class="question_home_div">
+    <div class="publish_home_div">
         <Login></Login>
-        <ScrollBar class="question_home_scroll_bar"
+        <ScrollBar class="publish_home_scroll_bar"
         :class="scrolled ? 'scroll_bar_scrolled' : ''"
         ></ScrollBar>
-        <Questions></Questions>
-        <Footer></Footer>
+        <Publish></Publish>
     </div>
 </template>
 
@@ -13,14 +12,14 @@
 
 import ScrollBar from '@/components/common_components/scroll_bar/scroll_bar.vue'
 import Login from '@/components/common_components/sign_on_up/login.vue'
-import Questions from '@/components/questions_page/questions.vue'
+import Publish from '@/components/publish_page/publish.vue'
 import Footer from '@/components/common_components/footer/footer.vue'
 
 import { mapState } from 'vuex'
 
 export default {
     components: {
-        Questions,
+        Publish,
         ScrollBar,
         Login,
         Footer
@@ -34,7 +33,7 @@ export default {
 }
 </script>
 <style type="text/css">
-.question_home_scroll_bar {
+.publish_home_scroll_bar {
     position: relative;
     box-shadow: 0 0 16px 0 rgba(0,0,0,.18);
     margin-bottom: 20px;

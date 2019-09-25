@@ -1,7 +1,12 @@
 <template>
     <div class="side_items">
         <div class="operation_div">
-            <a href="javascript:;" class="operation_button post_button">我要发帖</a>
+            <router-link tag="a" 
+                         class="operation_button post_button"
+                         :to="{ name: 'publish' }"   
+            >
+                     我要发帖
+            </router-link>
         </div>
         <Card class="ad_card"
               :data="{ 'img_url': 'https://static.shiyanlou.com/img/banner-vip.png'}"></Card>
