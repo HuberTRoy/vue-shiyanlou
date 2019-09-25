@@ -11,25 +11,11 @@
 <script type="text/javascript">
 import Card from '@/components/common_components/cards/card.vue'
 import RelatedQuestion from './side_sub_components/related_question.vue'
-
-import { mapActions } from 'vuex'
-
 export default {
     components: {
         Card,
         RelatedQuestion
-    },
-
-    methods: {
-        ...mapActions({
-            get_related_question: 'question/change_related_question_information'
-        })
-    },
-
-    created: function () {
-        this.get_related_question()
     }
-
 }
 
 </script>

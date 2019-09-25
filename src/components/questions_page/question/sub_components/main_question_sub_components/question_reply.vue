@@ -32,16 +32,6 @@ export default {
         ...mapState({
             question_reply: state => state.question.question_reply_information
         })
-    },
-
-    methods: {
-        ...mapActions({
-            get_reply: 'question/change_question_reply_information'
-        })
-    },
-
-    created: function () {
-        this.get_reply()
     }
 }
 

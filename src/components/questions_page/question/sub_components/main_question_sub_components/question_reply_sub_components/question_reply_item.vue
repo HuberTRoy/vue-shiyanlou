@@ -28,7 +28,7 @@
             </div>
             <div class="main_reply">
                 <p class="content_p">
-                    <VueMarkDown>{{ data.content }}</VueMarkDown>
+                    <VueMarkDown :source="data.content"></VueMarkDown>
                 </p>
                 <div class="reply_base_info_div">
                     <span class="question_reply_item_created_time">{{ data.updated_at }}</span>

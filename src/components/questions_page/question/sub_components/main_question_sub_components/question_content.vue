@@ -24,7 +24,7 @@
             <router-link class="question_content_info" tag="a" :to="{ name: 'questions', query: { type:question_info.type } }">{{ tag_type[question_info.type] }}</router-link>
         </div>
         <div class="_question_content" v-if="question_info.content">
-            <VueMarkdown>{{ question_info.content }}</VueMarkdown>
+            <VueMarkdown :source="question_info.content"></VueMarkdown>
         </div>
         <QuestionReply></QuestionReply>
     </div>
