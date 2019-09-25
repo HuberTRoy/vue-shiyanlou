@@ -19,12 +19,15 @@
                     <div class="tools">
                         <i class="fa fa-bold" @click="replace('**')"></i>
                         <i class="fa fa-italic" @click="replace('*')"></i>
-                        <i class="fa fa-link" @click="linkWith()"></i>
-                        <i class="fa fa-quote-left" @click="startWith('> ')"></i>
+                        <i class="fa fa-link" @click="link_with()"></i>
+                        <i class="fa fa-quote-left" @click="start_with('> ')"></i>
                         <i class="fa fa-code" @click="replace('```')"></i>
-                        <i class="fa fa-image" @click="upload()"></i>
-                        <i class="fa fa-list-ol" @click="startWith('1. ')"></i>
-                        <i class="fa fa-list-ul" @click="startWith('- ')"></i>
+                        <label for="upload_file">
+                            <i class="fa fa-image" @click="upload()"></i>
+                        </label>
+                        <input type="file" id="upload_file" @change="upload($event)">
+                        <i class="fa fa-list-ol" @click="start_with('1. ')"></i>
+                        <i class="fa fa-list-ul" @click="start_with('- ')"></i>
                     </div>
                     <router-link tag="a"
                                  :to="{ name: 'question', params: { id: '764' } }"
@@ -55,6 +58,8 @@
 </template>    
 <script type="text/javascript">
 import VueMarkdown from 'vue-markdown'
+import { mapState } from 'vuex'
+import Upload from '@/api/upload/upload.js'
 
 export default {
     props: {
@@ -82,6 +87,11 @@ export default {
     components: {
         VueMarkdown
     },
+    computed: {
+        ...mapState({
+            user_id: state => state.loginState.user_info.id
+        })
+    },
     methods: {
         tab_preview: function () {
             this.preview = !this.preview
@@ -105,12 +115,12 @@ export default {
             let newSymboText = `${symbo}${getSelected.selected}${symbo}`
             this.text = `${getSelected.left}${newSymboText}${getSelected.right}`
         },
-        startWith: function (symbo) {
+        start_with: function (symbo) {
             let getSelected = this.selected()
             let newSymboText = `${symbo}${getSelected.selected}`
             this.text = `${getSelected.left}${newSymboText}${getSelected.right}`
         },
-        linkWith: function () {
+        link_with: function () {
             let getSelected = this.selected()
             let newSymboText = ''
             if (getSelected.selected.substr(0,4) == 'http') {
@@ -123,9 +133,19 @@ export default {
 
             this.text = `${getSelected.left}${newSymboText}${getSelected.right}`
         },
-        upload: function () {
-            // 上传图片待添加。
-            console.log('upload img')
+        img_with: function (imgUrl) {
+            let getSelected = this.selected()
+            let newSymboText = `![picture](${imgUrl})`
+
+            this.text = `${getSelected.left}${newSymboText}${getSelected.right}`
+        },
+        upload: async function (event) {
+            let imgUrl = await Upload.upload_file({
+                file: event.target.files[0],
+                user_id: this.user_id,
+                folder: 'questions'
+            })
+            this.img_with(imgUrl)            
         }
     },
     watch: {
@@ -240,5 +260,7 @@ export default {
     border-color: #08bf91;
 }
 
-
+#upload_file {
+    display: none;
+}
 </style>
