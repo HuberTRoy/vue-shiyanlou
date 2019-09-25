@@ -62,7 +62,7 @@ export default {
             change_reply_id: 'question/change_reply_id'
         }),
         reply: function () {
-            let text = document.getElementsByClassName('editer')[0]
+            let text = document.getElementsByClassName('editor')[0]
             text.scrollIntoView(true)
             this.change_text_placeholder("回复: " + this.data.author.name)
             this.change_reply_id(this.data.id)

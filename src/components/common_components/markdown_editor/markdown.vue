@@ -33,7 +33,8 @@
                         MarkDown 语法
                     </router-link>
                 </div>
-                <textarea class="markdown_text" id="markdown_textarea" 
+                <textarea class="markdown_text" id="markdown_textarea"
+                          :placeholder="placeholder"
                           v-model="text"
                           @select="selected()"
                 >            
@@ -43,7 +44,7 @@
         <section class="markdown_container_previewer" v-show="preview">
             <VueMarkdown :source="text"></VueMarkdown>
         </section>
-        <div class="markdown_operation">
+        <div class="markdown_operation" v-if="hidden_default_tools">
             <div>
                 <button class="markdown_operation_button markdown_operation_preview_button" @click="tab_preview()" v-show="!preview">预览</button>
                 <button class="markdown_operation_button markdown_operation_preview_button" @click="tab_preview()" v-show="preview">取消预览</button>
@@ -56,11 +57,26 @@
 import VueMarkdown from 'vue-markdown'
 
 export default {
+    props: {
+        placeholder: {
+            type: String,
+            require: false
+        },
+        preview: {
+            type: Boolean,
+            require: false,
+            default: false
+        },
+        hidden_default_tools: {
+            type: Boolean,
+            require: false,
+            require: true
+        }
+    },
     data: function () {
         return {
             text: '',
-            selected_text: '',
-            preview: false
+            selected_text: ''
         }
     },
     components: {
@@ -111,11 +127,20 @@ export default {
             // 上传图片待添加。
             console.log('upload img')
         }
+    },
+    watch: {
+        text: function () {
+            this.$emit('text', this.text)
+        }
     }
 
 }
 </script>
 <style type="text/css">
+.markdown_editor {
+    min-height: 250px;
+}
+
 .markdown_container {
     display: flex;
     flex-direction: column;

@@ -16,7 +16,7 @@ import Library from '@/pages/library/library.vue'
 import Login from '@/pages/client_area/login.vue'
 import Report from '@/pages/courses/reports/report.vue'
 import Reports from '@/pages/courses/reports/reports.vue'
-import Markdown from '@/components/common_components/markdown_editor/markdown.vue'
+
 Vue.use(Router)
 
 // 关于路由
@@ -121,11 +121,6 @@ export default new Router({
         path: '/login',
         name: 'login',
         component: Login
-    },
-    {
-        path: '/markdown',
-        name: 'markdown',
-        component: Markdown
     },
     {
         path: '*',
