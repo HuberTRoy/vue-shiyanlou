@@ -46,17 +46,17 @@
 # 部分截图
 
 ## 首页
-![首页1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/index/index1.jpg)
-![首页2](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/index/index2.jpg)
+![首页1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/index/index1.png)
+![首页2](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/index/index2.png)
 
 ## 课程
-![课程1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/courses/1.jpg)
-![课程2](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/courses/2.jpg)
+![课程1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/courses/1.png)
+![课程2](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/courses/2.png)
 
 ## 社区讨论
-![社区1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/questions/1.jpg)
-![社区2](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/questions/2.jpg)
-![社区3](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/questions/3.jpg)
+![社区1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/questions/1.png)
+![社区2](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/questions/2.png)
+![社区3](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/questions/3.png)
 
 
 # 目标
