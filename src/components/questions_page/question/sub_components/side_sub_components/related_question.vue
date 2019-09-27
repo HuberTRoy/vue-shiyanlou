@@ -13,7 +13,6 @@
                 class="related_question_li"
             >
                 <router-link tag="a"
-                             target="_blank"
                              :to="{ name: 'question', params: { id: question.id} }"
                              class="related_question_a"
                 >

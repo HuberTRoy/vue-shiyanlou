@@ -3,7 +3,6 @@
         <div class="training_card_img_div">
             <router-link class="training_card_a"
                          tag="a"
-                         target="_blank"
                          :to="{ name: 'course', params: {id: data.id} }"
             >
                 <img :src="data.picture_url" class="training_card_img">

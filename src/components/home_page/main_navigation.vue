@@ -13,7 +13,6 @@
                    >
                         <div class="course_categories_div">
                             <router-link :to="{ name: 'courses', query: {category: nav.name} }"
-                                         target="_blank"
                                          class="main_course_button course_button">
                                 {{ nav.name }}
                             </router-link>
@@ -21,7 +20,6 @@
                                          v-if="s_index<2"
                                          :key="s_index"
                                          :to="{ name: 'courses', query: {category: nav.name, tag: sub.name} }"
-                                         target="_blank"
                                          class="course_button">
                                 {{ sub.name }}
                             </router-link>
@@ -37,7 +35,6 @@
                                       :key="s_c_index"
                                       class="sub_course_categories_span">
                                     <router-link :to="{ name: 'courses', query: { category: nav.name, tag: sub_category.name } }"
-                                                 target="_blank"
                                                  class="sub_course_a">
                                         {{ sub_category.name }}
                                     </router-link>

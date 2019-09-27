@@ -45,7 +45,6 @@
                     <router-link class="start_button"
                                  tag="a"
                                  :to="{ name: 'course', params: { 'id': data.id }}"
-                                 target="_blank"
                     >进入实验</router-link>
                 </div>
              </div>

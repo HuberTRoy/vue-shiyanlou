@@ -14,7 +14,6 @@
             >
                 <router-link tag="a"
                              class="recently_lou_plus_a"
-                             target="_blank"
                              :to=" { name: 'louPlus', params: {'name': louPlus.name} } "
                 >
                     <span class="lou_plus_title">

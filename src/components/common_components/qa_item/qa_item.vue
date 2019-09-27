@@ -58,7 +58,7 @@
             <img :src="data.author.avatar_url" class="item_question_avatar" />
             <div class="item_question">
                 <router-link :to="{name:'question', params: { id: data.id }}" tag="a" 
-                             target="_blank" class="item_question_title">
+                              class="item_question_title">
                     {{ data.title }}
                 </router-link>
                 <div class="item_question_base_info">

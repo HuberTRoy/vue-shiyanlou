@@ -13,7 +13,6 @@
                 class="hot_path_li"
             >
                 <router-link :to="{ name: 'path', params: {id: _path.id} }"
-                             target="_blank"
                              class="hot_path_a"
                 >
                    <img :src="_path.icon">

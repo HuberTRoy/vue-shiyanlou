@@ -10,7 +10,6 @@
             >
                 <router-link :to="{ name: 'course', params: {id: history.id} }"
                              tag="a"
-                             target="_blank"
                     class="history_courses_card_a"
                 >
                     {{ history.name }}

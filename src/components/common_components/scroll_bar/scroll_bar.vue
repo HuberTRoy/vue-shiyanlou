@@ -8,7 +8,7 @@
                 </a>
                 <ul class="scroll_selection_menu">
                     <li id="courses_li" class="scroll_sub_selection_li scroll_navigation_li">
-                        <router-link to="/courses" tag="a" id="courses_button" class="scroll_sub_selection_a">
+                        <router-link :to="{name: 'courses'}" tag="a" id="courses_button" class="scroll_sub_selection_a">
                         <!-- <a href="#100" id="courses_button" class="scroll_sub_selection_a"> -->
                             课程
                             <span class="spread"></span>
@@ -33,7 +33,7 @@
                         </ul>
                     </li>
                     <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
-                        <router-link to="/path" tag="a" id="trail_button" class="scroll_sub_selection_a">
+                        <router-link :to="{name: 'path'}" tag="a" id="trail_button" class="scroll_sub_selection_a">
                             路径
                         </router-link>
                     </li>
@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li id="community_li" class="scroll_sub_selection_li scroll_navigation_li">
-                        <router-link tag="a" to="/questions" id="community_button" class="scroll_sub_selection_a">
+                        <router-link tag="a" :to="{name: 'questions'}" id="community_button" class="scroll_sub_selection_a">
                             社区
                             <span class="spread"></span>
                         </router-link>
@@ -137,7 +137,6 @@
                             </li>
                             <li class="feature_li avatar_li">
                                 <router-link tag="a"
-                                             target="_blank"
                                              :to="{ name: 'user', params: { id : user_info.id } }"
                                    class="feature_a avatar_a"
                                 >

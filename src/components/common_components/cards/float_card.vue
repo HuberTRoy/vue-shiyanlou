@@ -6,7 +6,7 @@
         <router-link :to="{name: 'coursePath', params: {id: data.id}}"
                      tag="a"
                      class="float_card_a"
-                     target="_blank">
+        >
             <img :src="data.image" class="float_card_img">
             <div class="float_card_text_div">
                 <p class="float_card_text_p"> {{ data.name }} </p>

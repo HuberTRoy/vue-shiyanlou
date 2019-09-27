@@ -4,7 +4,6 @@
             <!-- <a :href="course_a_url" class="course_img_a"> -->
             <router-link tag="a"
                          class="course_img_a"
-                         target="_blank"
                          :to="{ name: 'course', params: {id: data.id} }">
                 <div class="course_img_div">
                     <img :src="data.picture_url" class="course_img_img">

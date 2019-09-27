@@ -57,7 +57,6 @@
                             <li class="navigation_feature_li avatar_li">
                                 <router-link :to="{ name: 'user', params: {id: user_info.id} }"
                                              class="navigation_feature_a navigation_avatar_a"
-                                             target="_blank"
                                 >
                                     <img class="navigation_avatar_img" :src="user_info.avatar_url"
                                     title="Avatar"
