@@ -1,24 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '@/pages/home.vue'
-import Course from '@/pages/courses/course.vue'
-import Courses from '@/pages/courses/course_home.vue'
-import Path from '@/pages/path/path_home.vue'
-import CoursePath from '@/pages/path/course_path.vue'
-import QuestionsHome from '@/pages/questions/questions_home.vue'
-import Question from '@/pages/questions/question.vue'
-import User from '@/pages/user/user.vue'
-import Profile from '@/pages/user/profile/profile.vue'
-import Search from '@/pages/search/search.vue'
-import NotFound from '@/pages/404.vue'
-import Library from '@/pages/library/library.vue'
-import Login from '@/pages/client_area/login.vue'
-import Report from '@/pages/courses/reports/report.vue'
-import Reports from '@/pages/courses/reports/reports.vue'
-import Publish from '@/pages/questions/publish.vue'
-
-
 Vue.use(Router)
 
 // 关于路由
@@ -35,104 +17,89 @@ Vue.use(Router)
 // children 应该还能再嵌套...
 
 
+const __import__ = file => () => import(`@/pages/${file}.vue`)
+
 export default new Router({
   routes: [
     {
         path: '/',
         name: 'Home',
-        component: Home
+        component: __import__('home')
     },
     {
         path: '/courses',
         name: 'courses',
-        component: Courses
-        // children: [
-        //     {
-        //         path: 'reports',
-        //         component: Reports,
-        //         name: 'reports'
-        //     },
-        //     {
-        //         path: 'reports/:id',
-        //         component: Report,
-        //         name: 'report'
-        //     },
-        //     {
-        //         path: ':id',
-        //         name: 'course',
-        //         component: Course
-        //     }
-        // ]
+        component: __import__('courses/course_home')
     },
     {
         path: '/courses/reports',
-        component: Reports,
-        name: 'reports'
+        name: 'reports',
+        component: __import__('courses/reports/reports')
     },
     {
         path: '/courses/reports/:id',
-        component: Report,
-        name: 'report'
+        name: 'report',
+        component: __import__('courses/reports/report')
     },
     {
         path: '/courses/:id',
         name: 'course',
-        component: Course
+        component: __import__('courses/course')
     },
     {
         path: '/path',
         name: 'path',
-        component: Path
+        component: __import__('path/path_home')
     },
     {
         path: '/path/:id',
         name: 'coursePath',
-        component: CoursePath
+        component: __import__('path/course_path')
     },
     {
         path: '/questions',
         name: 'questions',
-        component: QuestionsHome
+        component: __import__('questions/questions_home')
     },
     {
         path: '/questions/publish',
         name: 'publish',
-        component: Publish
+        component: __import__('questions/publish')
     },
     {
         path: '/questions/:id',
         name: 'question',
-        component: Question
+        component: __import__('questions/question')
     },
     {
         path: '/user/profile',
         name: 'userProfile',
-        component: Profile
+        component: __import__('user/profile/profile')
     },
     {
         path: '/user/:id',
         name: 'user',
-        component: User
+        component: __import__('user/user')
     },
     {
         path: '/search',
         name: 'search',
-        component: Search
+        component: __import__('search/search')
     },
     {
         path: '/library',
         name: 'library',
-        component: Library
+        component: __import__('library/library')
     },
     {
         path: '/login',
         name: 'login',
-        component: Login
+        component: __import__('client_area/login')
     },
     {
         path: '*',
         name: 'notfound',
-        component: NotFound
+        component: __import__('404')
     }
   ]
 })
