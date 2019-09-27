@@ -101,7 +101,6 @@ const mutations = {
 
 const actions = {
     get_and_change_user_info ({state, commit}) {
-        // let userInfo = UserApi.get_user_info({'id': state.user_id})
         UserApi.get_user_info({'id': state.user_id}).then((response) => {
             commit('change_user_info', response.data)
         })

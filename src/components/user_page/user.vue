@@ -63,22 +63,30 @@ export default {
         }
     },
     watch: {
-        loginUserInfo: function (newUserInfo, oldUserInfo) {
-            if (newUserInfo.id == this.$route.params.id) {
-                console.log(newUserInfo)
+        loginUserInfo: function () {
+            // 如果发现当前的主页是自己的主页那么将数据替换为已登录解锁的数据。
+            if (this.is_mine_index) {
                 this.set_user_info(this.loginUserInfo)
             } else {
                 this.get_user_info()
-            } 
+            }
+        },
+        '$route': function () {
+            this.change_user_id(this.$route.params.id)
+            if (this.is_mine_index) {
+                this.set_user_info(this.loginUserInfo)
+            } else {
+                this.get_user_info()
+            }            
         }
     },
-    created () {
+    created: function () {
         this.change_user_id(this.$route.params.id)
-        // if (this.loginUserInfo.id == this.$route.params.id) {
-        //     this.set_user_info(this.loginUserInfo)
-        // } else {
-        //     this.get_user_info()
-        // }
+        if (this.is_mine_index) {
+            this.set_user_info(this.loginUserInfo)
+        } else {
+            this.get_user_info()
+        }
     }
 }
 

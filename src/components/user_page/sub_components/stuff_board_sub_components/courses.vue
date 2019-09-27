@@ -66,10 +66,12 @@ export default {
                 }
                 this.$store.dispatch('user/change_courses_content_userstatus', {'user_id': this.user_id, 'course_ids': ids.join(',')})
             }
+        },
+        '$route': function () {
+            this.tab_courses('studied')
         }
     },
     created: function () {
-        // this.$store.dispatch('user/change_courses_nav', 'studied')
         this.tab_courses('studied')
     }
 }

@@ -65,9 +65,12 @@ export default {
             })
         }
     },
-
+    watch: {
+        '$route': function () {
+            this.tab_nav('课程')
+        }
+    },
     created: function () {
-        //
         this.tab_nav('课程')
     }
 }
