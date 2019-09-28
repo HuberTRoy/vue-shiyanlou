@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+
 Vue.use(Router)
 
 // 关于路由
@@ -19,7 +20,7 @@ Vue.use(Router)
 
 const __import__ = file => () => import(`@/pages/${file}.vue`)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
         path: '/',
@@ -103,3 +104,10 @@ export default new Router({
     }
   ]
 })
+
+router.afterEach((to, from, next) => {
+    window.scrollTo(0, 0)
+})
+
+export default router
+
