@@ -46,8 +46,8 @@
 # 部分截图
 
 ## 首页
-![首页1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/index/index1.png)
-![首页2](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/index/index2.png)
+![首页1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/index/index2.png)
+![首页2](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/index/transition.png)
 
 ## 路径
 ![路径1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/path/1.png)

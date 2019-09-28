@@ -108,15 +108,15 @@ a {
 }
 
 .tab_router_view-enter-active, .tab_router_view-leave_active {
-    opacity: 0;
+    /*opacity: 0;*/
     transition: all .5s;
 }
 
-.tab_router_view-enter {
-    opacity: 1;
+.tab_router_view-enter, .tab_router_view-leave-to {
+    opacity: 0;
 }
 
-.tab_router_view-leave {
+.tab_router_view-enter-to, .tab_router_view-leave {
     opacity: 1;
 }
 
