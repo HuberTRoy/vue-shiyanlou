@@ -194,7 +194,7 @@ api                           存放各类需要与后端交互获取数据的ap
         user                  获取用户主页下的各类用户信息。
     base.js                   配置api域名等基础信息。
 
-sotre                         vuex进行数据流控制的仓库  
+store                         vuex进行数据流控制的仓库  
    modules  
       course                  具体课程的信息仓库。  
       courses_category        课程主页的分类仓库  
