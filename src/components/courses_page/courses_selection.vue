@@ -81,7 +81,9 @@
                                 </a>
                             </li>
                             <li class="sub_type_order_li">
-                                <a href="#12" class="sub_type_order_a">
+                                <a href="javascript:;" class="sub_type_order_a"
+                                @click="change_current_type_order('会员')"
+                                >
                                     私有课
                                 </a>
                             </li>
@@ -291,7 +293,7 @@ export default {
     box-shadow: 0 15px 16px 0 rgba(0,0,0,.18);
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
-    z-index: 10;
+    /*z-index: 10;  这里如果覆盖掉触发按钮的话有很大几率会导致还未滑动到菜单上hover效果就消失了*/
     padding-top: 10px;
     padding-bottom: 5px;
     right: -30px;

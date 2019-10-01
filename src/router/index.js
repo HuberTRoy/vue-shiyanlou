@@ -105,7 +105,16 @@ const router = new Router({
   ]
 })
 
-router.afterEach((to, from, next) => {
+// router.beforeEach((to, from, next) => {
+//     console.log(to.meta.login)
+//     if (!to.meta.login) {
+//         next({name: 'notfound'})
+//     } else {
+//         next()
+//     }
+// })
+
+router.afterEach((to, from) => {
     window.scrollTo(0, 0)
 })
 

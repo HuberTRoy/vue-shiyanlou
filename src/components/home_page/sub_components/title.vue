@@ -12,9 +12,9 @@
                 }}
             </span>
         </div>
-        <a :href="url" class="more_course_button">
+        <router-link :to="{ name: router_name_dict[title] }" class="more_course_button">
             更多>
-        </a>
+        </router-link>
     </div>
 </template>
 
@@ -28,10 +28,20 @@ export default {
         description: {
             type: String,
             require: false
-        },
-        url: {
-            type: String,
-            require: true
+        }
+    },
+    data: function () {
+        // 更多的router name跳转对应。
+        return {
+            router_name_dict: {
+                '精选项目课 | ': 'courses',
+                '近期好课 | ': 'courses',
+                '基本功 | ': 'courses',
+                '后端开发': 'courses',
+                '云计算与大数据': 'courses',
+                '训练营强化 | ': 'bootcamp',
+                '学习路径 | ': 'path'
+            }
         }
     }
 }

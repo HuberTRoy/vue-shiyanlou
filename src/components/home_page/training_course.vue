@@ -1,7 +1,7 @@
 <template>
     <div class="training_course_div">
         <Title class="training_course_div_title"
-               :title="'训练营强化 |'"
+               :title="'训练营强化 | '"
                :description="'专注实战的完整项目，在实战中融会贯通'"
         >
 

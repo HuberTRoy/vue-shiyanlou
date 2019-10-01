@@ -20,6 +20,19 @@ const state = {
     courses_category: {
         'name': '全部',
         'tags': [1,2,3]
+    },
+    // 汉字对应的查询英文
+    // 包含所有参数，不分类。
+    query_dict: {
+        '全部': 'all',
+        '已上线': 'false',
+        '即将上线': 'true',
+        '综合': 'default',
+        '最新': 'latest',
+        '最热': 'hotest',
+        '免费': 'free',
+        '会员': 'member',
+        '私有课': 'private'
     }
 }
 
@@ -45,9 +58,9 @@ const mutations = {
             path: '/courses',
             query: { category: state.current_category,
                      tag: state.current_tag,
-                     base_order: state.current_base_order,
-                     category_order: state.current_category_order,
-                     type_order: state.current_type_order,
+                     sort: state.query_dict[state.current_base_order],
+                     preview: state.query_dict[state.current_category_order],
+                     fee: state.query_dict[state.current_type_order],
                      page: state.current_page
                     }})
     },

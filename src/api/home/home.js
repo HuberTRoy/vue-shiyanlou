@@ -2,8 +2,6 @@ import axios from 'axios'
 
 import {apiUrl} from '@/api/base.js'
 
-axios.defaults.withCredentials = true
-
 export default {
     get_index_categories () {
         // [{

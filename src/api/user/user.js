@@ -4,8 +4,6 @@ import { apiUrl, qiniu, upload } from '@/api/base.js'
 
 import cookies from 'vue-cookies'
 
-axios.defaults.withCredentials = true
-
 export default {
     get_user_info (userArgs) {
         // userArgs

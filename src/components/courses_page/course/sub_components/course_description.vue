@@ -10,7 +10,7 @@
         </ul>
 
         <div class="main_description_div">
-            <VueMarkDown v-if="description.long_description"> {{ description.long_description }} </VueMarkDown>
+            <VueMarkDown v-if="description.long_description" :source="description.long_description"></VueMarkDown>
         </div>     
     </div>
 </template>
