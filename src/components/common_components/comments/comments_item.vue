@@ -1,9 +1,9 @@
 <template>
     <div class="comments_item">
         <div class="author_avatar_div">
-            <a href="" class="avatar_a">
+            <router-link tag="a" :to="{ name: 'user', params:{ id: data.author.id } }" class="avatar_a">
                 <img :src="data.author.avatar_url" class="avatar" />
-            </a>
+            </router-link>
         </div>
 
         <div class="author_main_div">

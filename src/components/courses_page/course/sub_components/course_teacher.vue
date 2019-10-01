@@ -8,9 +8,9 @@
         <div class="course_author_main_div">
             <div class="author_base_info">
                 <div class="author_avatar">
-                    <a href="javascript:;">
+                    <router-link tag="a" :to="{ name: 'user', params: {id: course_author_info.teacher.id} }">
                         <img :src="course_author_info.teacher.avatar_url" class="course_teacher_avatar">
-                    </a>
+                    </router-link>
                 </div>
                 <div class="author_name_course_history">
                     <span class="author_name_span">
@@ -20,26 +20,14 @@
                     <span class="teacher_description">
                         {{ course_author_info.teacher.teacher_info.description }}
                     </span>
-                    <a href="javascript:;"
-                       class="look_up_teacher"
+                    <router-link tag="a" 
+                                 :to="{ name: 'user', params: {id: course_author_info.teacher.id} }"
+                                 class="look_up_teacher"
                     >
                         查看老师的所有课程 >
-                    </a>
-<!--                     <span class="author_history_span">
-                        共发表过<strong>{{ course_author_info.published_courses_number }}</strong>门课程
-                    </span> -->
+                    </router-link>
                 </div>
             </div>
-<!--             <div class="author_description">
-                {{ course_author_info.description }}
-            </div> -->
-<!--             <div class="location_author">
-                <a href="javascript:;"
-                   class="look_up_teacher"
-                >
-                    查看老师的所有课程 >
-                </a>
-            </div> -->
         </div>
     </div>    
 </template>

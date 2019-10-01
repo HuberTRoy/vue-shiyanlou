@@ -33,6 +33,7 @@
                               继续学习
                      </button>
                  </a>
+                 </button>
                  <p class="task_count_p">  &nbsp;{{ course_info.labs_count }} 个在线动手实验</p>
                  <!--  这边用 v-if 判断是否有挑战,后端数据格式还没有确定，暂时不做任何事 -->
                  <!-- <p></p> -->
