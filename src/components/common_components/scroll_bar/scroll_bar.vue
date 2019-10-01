@@ -16,12 +16,12 @@
                         <ul class="scroll_sub_ul">
                             <li class="scroll_sub_li">
                                 <!-- <a href="#9" class="scroll_sub_a">免费课</a> -->
-                                <router-link :to="{ name: 'courses', query: {type_order: '免费'}}" tag="a" class="scroll_sub_a">
+                                <router-link :to="{ name: 'courses', query: {fee: 'free'}}" tag="a" class="scroll_sub_a">
                                     免费课
                                 </router-link>
                             </li>
                             <li class="scroll_sub_li">
-                                <router-link :to="{ name: 'courses', query: {type_order: '会员'}}" tag="a" class="scroll_sub_a">
+                                <router-link :to="{ name: 'courses', query: {fee: 'member'}}" tag="a" class="scroll_sub_a">
                                     会员课
                                 </router-link>
                             </li>

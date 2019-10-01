@@ -55,7 +55,9 @@
      -->
     <div class="qa_item_div">
         <div class="qa_item_question_div">
-            <img :src="data.author.avatar_url" class="item_question_avatar" />
+            <router-link tag="a" :to="{ name: 'user', params: { id: data.author.id} }">
+                <img :src="data.author.avatar_url" class="item_question_avatar" />
+            </router-link>
             <div class="item_question">
                 <router-link :to="{name:'question', params: { id: data.id }}" tag="a" 
                               class="item_question_title">

@@ -8,10 +8,11 @@
         <!-- <div class="question_reply_item_top"> -->
             <div class="question_reply_item_base_info" v-if="data.author">
                 <div class="question_reply_item_base_info_layout">
+                    <router-link tag="a" :to="{ name: 'user', params: { id: data.author.id } }">
                     <img :src="data.author.avatar_url" class="avatar"/>
-                    <a href="javascript:;" class="author">{{ data.author.name }}
+                        {{ data.author.name }}
                         <span class="level">L{{ data.author.level }}</span>
-                    </a>
+                    </router-link>
                     <div v-if="data.parent">
                         回复
                         <a href="javascript:;" class="author">{{ data.parent.author.name }}

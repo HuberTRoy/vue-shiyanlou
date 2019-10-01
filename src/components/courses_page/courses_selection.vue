@@ -147,12 +147,6 @@ export default {
     },
 
     methods: {
-        // change_current_category: function (x) {
-        //     console.log(x)
-        // }
-        // change_current_category: function (category) {
-        //     this.$store.dispatch('coursesCategory/change_current_category', category)
-        // },
         ...mapActions({
 
             change_current_category: 'coursesCategory/change_current_category',

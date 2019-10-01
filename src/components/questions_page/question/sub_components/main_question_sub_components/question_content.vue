@@ -17,9 +17,11 @@
             </div>
         </div>
         <div class="question_content_information" v-if="question_info.author">
-            <img class="question_content_info avatar" :src="question_info.author.avatar_url" />
-            <span class="question_content_info question_author_name">{{ question_info.author.name }}</span>
-            <span class="question_content_info level">L{{ question_info.author.level }}</span>
+            <router-link tag="a" :to="{ name: 'user', params: { id: question_info.author.id }}">
+                <img class="question_content_info avatar" :src="question_info.author.avatar_url" />
+                <span class="question_content_info question_author_name">{{ question_info.author.name }}</span>
+                <span class="question_content_info level">L{{ question_info.author.level }}</span>
+            </router-link>
             <span class="question_content_info created_time">{{ question_info.created_at }}</span>
             <router-link class="question_content_info" tag="a" :to="{ name: 'questions', query: { type:question_info.type } }">{{ tag_type[question_info.type] }}</router-link>
         </div>
