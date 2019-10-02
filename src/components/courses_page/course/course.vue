@@ -74,38 +74,6 @@
             <div class="course_related_div">
                 <CourseSideContent :class="[scrolled && !scrollEnd ? 'course_side_content_scroll' : '', scrollEnd ? 'course_side_content_scrollend' : '']"
                 ></CourseSideContent>
-                <!--
-                    img
-                    author
-                    ads
-                    recommend
-                    vip_img
-                    contest
-                    challenges
-                 -->
-<!--                 <Card class="course_img_card"
-                      :data="{'img_url': course_info.course_img}"
-                ></Card>
-
-                <CourseAuthor></CourseAuthor>
-
-                <Card v-for="(related_course, index) in course_info.related_courses"
-                      :key="index"
-                      :data=" { 'img_url': related_course.course_img }"
-                      class="course_img_card"
-                ></Card>
-
-                <RecommendCourse></RecommendCourse>
-
-                <Card class="vip_img_card course_img_card"
-                      :data="{'img_url': 'https://static.shiyanlou.com/img/banner-vip.png'}"
-                ></Card>
-
-                <NewstContest></NewstContest>
-
-                <RelatedChallenges></RelatedChallenges> -->
-
-
                 <!-- 右边几乎完全重写。
                      布局如下:
                         课程img
@@ -133,10 +101,6 @@ import CourseDiscuss from './sub_components/course_discuss.vue'
 import CourseSideContent from './sub_components/course_side_content.vue'
 import CourseRelated from './sub_components/course_related.vue'
 import Card from '../../common_components/cards/card.vue'
-// import CourseAuthor from './sub_components/course_author.vue'
-// import RecommendCourse from './sub_components/recommend_courses.vue'
-// import NewstContest from './sub_components/newst_contest.vue'
-// import RelatedChallenges from './sub_components/related_challenges.vue'
 
 import { mapState, mapGetters, mapActions } from 'vuex'
 
@@ -152,10 +116,6 @@ export default {
     CourseSideContent,
     CourseRelated,
     Card
-    // CourseAuthor,
-    // RecommendCourse,
-    // NewstContest,
-    // RelatedChallenges
   },
   computed: {
     ...mapState({
@@ -168,7 +128,6 @@ export default {
         documentHeight: 'scrollBar/documentHeight'
     }),
     scrollEnd: function () {
-        // console.log((this.documentHeight - this.scrollValue), "我")
         let body = document.body
         let html = document.documentElement;
         let documentHeight = Math.max( body.scrollHeight, body.offsetHeight, 

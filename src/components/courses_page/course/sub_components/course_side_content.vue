@@ -13,22 +13,85 @@
              <img class="course_info_img" :src="course_info.picture_url">
 
              <div class="course_info_box">
-                 <p>{{ course_info.fee_type }}</p>
-
+                 <!-- 
+                    训练营的课程内容会显示
+                    价格
+                    免费 高级会员 
+                      打折后的钱 标准会员
+                    开通高级会员免费学 链接
+                  -->
+                 <p v-if="course_info.fee_type !== 'bootcamp'">{{ fee_type_dict[course_info.fee_type] }}</p>
+                 <div v-if="course_info.fee_type == 'bootcamp'" class="bootcamp_info_layout">
+                    <p class="bootcamp_price">
+                        ￥ {{ course_info.real_price }}
+                    </p>
+                    <div class="member_dict_layout">
+                        免费 <img src="https://static.shiyanlou.com/frontend/dist/img/eb8486c.png">
+                        <i class="fas fa-angle-down bootcamp_angle"></i>
+                        <div class="member_price_card">
+                            ￥ {{ course_info.real_price * 0.8 }} <img src="https://static.shiyanlou.com/frontend/dist/img/3ee60d7.png">
+                        </div>
+                    </div>
+                    <div class="bootcamp_member_info">
+                        <span>开通高级会员，立享免费学</span>
+                        <a href="https://www.shiyanlou.com/vip" target="_blank" class="go_for_purchase">去开通</a>
+                    </div>
+                 </div>
                  <!-- 这边之后会根据不同的 fee_type 和 userstatus_info 的 status 进行不同的展示，
                       目前已知的:
                       1. 加入会员免费学.
                       2. 训练营的需要额外付费或者开通高级会员.
                       3. 免费的加入课程.
                       4. 已经加入课程后显示继续学习
+
+                      登录和不登录状态下的变化:
+                      登录状态下:
+                          根据不同的类型:
+                             1. 非会员:
+                                1. 免费 -> 加入课程
+                                2. 会员 -> 加入会员学习
+                                3. 训练营 -> 显示购买价格 以及 高级会员免费学。
+                             2.
+                                会员状态下可学习的应该全都是 加入课程。
+                      非登录状态下:
+                          1. 免费 -> 原站是 ·立即购买·，这里应该是写错了吧。
+                          2. 会员 -> 加入会员学习。
+                          3. 训练营 -> 显示购买价格 以及 高级会员免费学。
                   -->
-                 <button class="btn join_in_course_button" 
-                         v-if="course_info.fee_type==='free' && userstatus_info.status==='not_joined'"
-                         @click="join_course()"
-                         >加入课程
-                 </button>
+                 <div v-if="sign_on==false">
+                     <button class="btn course_side_base_btn join_in_course_button" 
+                             v-if="course_info.fee_type==='free'"
+                             @click="join_course()"
+                             >加入课程
+                     </button>
+                     <a href="https://www.shiyanlou.com/vip" target="_blank" class="btn course_side_base_btn join_member_button" 
+                             v-if="course_info.fee_type==='member'"
+                             >加入会员免费学
+                     </a>
+                     <button class="btn course_side_base_btn buy_course_button" 
+                             v-if="course_info.fee_type==='bootcamp'"
+                             >立即购买
+                             <!-- @click="join_course()" -->
+                     </button>
+                </div>
+                <div v-else>
+                     <button class="btn course_side_base_btn join_in_course_button" 
+                             v-if="course_info.fee_type==='free' || (course_info.fee_type==='member' && (user_info.member_type == 'plus' || user_info.member_type == 'premium')) || (course_info.fee_type==='bootcamp' && user_info.member_type == 'premium')"
+                             @click="join_course()"
+                             >加入课程
+                     </button>
+                     <a href="https://www.shiyanlou.com/vip" target="_blank" class="btn course_side_base_btn join_member_button" 
+                             v-if="course_info.fee_type==='member' && user_info.member_type == null"
+                             >加入会员免费学
+                     </a>
+                     <button class="btn course_side_base_btn buy_course_button" 
+                             v-if="course_info.fee_type==='bootcamp' && user_info.member_type != 'premium' "
+                             >立即购买
+                             <!-- @click="join_course()" -->
+                     </button>                    
+                </div>
                  <a :href="'http://www.shiyanlou.com/courses/'+ userstatus_info.course_id +'/learning/?id='+ userstatus_info.last_learned_lab_id" target='_blank'>
-                     <button class="btn join_in_course_button" 
+                     <button class="btn course_side_base_btn join_in_course_button" 
                              v-if="userstatus_info.status==='active'">
                               继续学习
                      </button>
@@ -55,10 +118,20 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
+    data: function () {
+        return {
+            fee_type_dict: {
+                'free': '免费',
+                'member': '加入会员免费'
+            }
+        }
+    },
     computed: {
         ...mapState({
             course_info: state => state.course.course_information,
-            userstatus_info: state => state.course.course_userstatus[0]
+            userstatus_info: state => state.course.course_userstatus[0],
+            sign_on: state => state.loginState.sign_on,
+            user_info: state => state.loginState.user_info
         })
     },
     methods: {
@@ -101,20 +174,47 @@ export default {
     color: #333;
 }
 
-.join_in_course_button {
-    color: #fff;
-    background-color: #08bf91;
-    border-color: #08bf91;
+.course_side_base_btn {
     width: 100%;
     padding-top: 12px;
     padding-bottom: 12px;
     box-shadow: none;
 }
 
+.join_in_course_button {
+    color: #fff;
+    background-color: #08bf91;
+    border-color: #08bf91;
+}
+
 .join_in_course_button:hover {
     color: #fff;
     background-color: #069a75;
     border-color: #068e6c;    
+}
+
+.join_member_button {
+    color: #fff;
+    background-color: #ff9c4a;
+    border-color: #ff9c4a;
+}
+
+.join_member_button:hover {
+    color: #fff;
+    background-color: #ff8017;
+    border-color: #ff8017;
+}
+
+.buy_course_button {
+    color: #fff;
+    background-color: #f66;
+    border-color: #f66;
+}
+
+.buy_course_button:hover {
+    color: #fff;
+    background-color: #f33;
+    border-color: #ff2626;
 }
 
 .task_count_p {
@@ -145,4 +245,63 @@ export default {
     content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAapJREFUOBHVlL9LQlEUx895Sjj0D+iaFpUNEc1BEdTSEA0NranPqbGG4k1RBGGD+IP2aIhoaW+NBqFoUBqiINGgaEyfp+995kN99jSX6IKec8/53s+5P44S/cWQaDQjur7YS23uJgJoikzzhpjvye+fYMOoua3R3JJWzjR3LCsyRsXiSje9K1BisUkAlmyIyLaIuJ7KFUgA2DDliIRJ15dbYm0Tu5rE44PIBalWG4YNwY7AruFja+Bjxk8AX8ArwM/DL1Ag8Ii7rVpp9SWRyDXMtPL7HBXANzmTOawfWdP2Aar0CVPLHrDTE+VYQE6nz8jjUS/4qYK/Gsx3pGkznM2+qHUt94MGXkClc8R9PUJz0M0D9trQtwBVENA5QC/hDjREP9gcTjXLqdRbc97ZNn7/VbPAxb9thymtE1gqhRDvtjvVPuFOxZzAarWj0LFYZFQMw7HeEXBUZi4itgHgMazVvN9wH5XLwfZCTiBRfYfM6rK38EBDaNgjvOQ6eb3jgJ4iLhaow2m87RUAeEZf7ZLPd8CJxHtznpPJPOar+Jnu4S/NgO6jOf8//C8DrX88kmxjGQAAAABJRU5ErkJggg==);
     vertical-align: middle;
 }
+
+.bootcamp_info_layout {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+}
+
+.member_price_card {
+    position: absolute;
+    display: none;
+    box-shadow: 0 3px 16px 0 rgba(0,0,0,.18);
+    padding: 3px 10px;
+    background: #fff;
+}
+
+.bootcamp_price {
+    color: #f66;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.bootcamp_angle {
+    cursor: pointer;
+    transition: transform .3s ease-out;
+    transition: transform .3s ease-out,-webkit-transform .3s ease-out;
+    color: #6c757d;
+}
+
+.member_dict_layout {
+    margin-bottom: 1rem;
+}
+
+.member_dict_layout:hover .bootcamp_angle{
+    transform: rotate(180deg);
+}
+
+.member_dict_layout:hover .member_price_card {
+    display: block;
+}
+
+.bootcamp_member_info {
+    display: flex;
+    justify-content: space-between;
+    background: #f9f9f9;
+    padding: 4px 8px;
+    font-size: 12px;
+    margin-bottom: 1rem;
+}
+
+.go_for_purchase {
+    color: #fd8c51;
+}
+
+.go_for_purchase:hover {
+    color: #fd8c51;
+    text-decoration: underline !important;
+}
+
 </style>
