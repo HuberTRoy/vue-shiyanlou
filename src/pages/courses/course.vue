@@ -18,8 +18,14 @@ export default {
     },
     computed: {
         ...mapState({
-            scrolled: state => state.scrollBar.currentScrolledValue > 50
+            scrolled: state => state.scrollBar.currentScrolledValue > 50,
+            course_info: state => state.course.course_information
         })
+    },
+    watch: {
+        course_info: function () {
+            document.title = `${this.course_info.name} - 实验楼`
+        }
     }
 }
 </script>

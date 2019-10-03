@@ -12,6 +12,11 @@ import { mapState } from 'vuex'
 export default {
     components: {
         SearchPage
+    },
+    watch: {
+        '$route': function () {
+            document.title = `${this.$route.query.keywords}的搜索结果 - 实验楼`
+        }
     }
 }
 </script>

@@ -14,6 +14,16 @@ export default {
     components: {
         Question,
     },
+    computed: {
+        ...mapState({
+            question_info: state => state.question.question_information
+        })
+    },
+    watch: {
+        question_info: function () {
+            document.title = `${this.question_info.title} - 实验楼`
+        }
+    }
 }
 </script>
 <style type="text/css">

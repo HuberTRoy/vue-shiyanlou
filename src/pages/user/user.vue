@@ -14,6 +14,16 @@ export default {
     components: {
         UserPage,
     },
+    computed: {
+        ...mapState({
+            user_info: state => state.user.user_info
+        })
+    },
+    watch: {
+        user_info: function () {
+            document.title = `${this.user_info.name}个人信息 - 实验楼`
+        }
+    }
 }
 </script>
 <style type="text/css">
