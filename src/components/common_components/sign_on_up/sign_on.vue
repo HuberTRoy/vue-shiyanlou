@@ -2,6 +2,7 @@
     <div class="sign_on_dialog">
         <InputBar
         @signOnInfo="update_u_p"
+        @emit_login="login(loginArgs)"
         ></InputBar>
         <div class="custom_control_div">
             <div>
@@ -21,11 +22,6 @@
            href="javascript:;"
            @click="login(loginArgs)"
         >进入实验楼</a>
-<!--         <div class="login_state_message"
-             v-show="!login_state_info.state"
-        >
-            {{ login_state_info.state_message }}
-        </div> -->
     </div>
 </template>
 
@@ -80,9 +76,6 @@ export default {
         }),
         login: function (loginArgs) {
             this.get_login_info(loginArgs)
-            // if (this.login_state_info.state) {
-            //     this.$store.dispatch('loginState/change_show_state', null)
-            // }
         },
         update_u_p: function (data) {
             this.base_login_args = data

@@ -88,7 +88,7 @@
                         </li>
                         <li class="feature_li">
                             <div id="_search_bar">
-                                <input type="text" name="search" id="_search_input" autocomplete="off" placeholder="搜索 课程/问答" v-model="search_text">
+                                <input type="text" name="search" id="_search_input" autocomplete="off" placeholder="搜索 课程/问答" v-model="search_text" @keyup.enter="search()">
                                 <label id="_search_button"
                                        @click="search()"
                                 >

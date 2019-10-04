@@ -124,7 +124,7 @@
             </ul>
             <div id="search_bar">
                 <label id="search_button" @click="search()"><i class="fa fa-search"></i></label>
-                <input type="text" name="search" id="search_input" autocomplete="off" placeholder="搜索 课程/问答" v-model="search_input">
+                <input type="text" name="search" id="search_input" autocomplete="off" placeholder="搜索 课程/问答" v-model="search_input" @keyup.enter="search()">
             </div>
         </div>
 

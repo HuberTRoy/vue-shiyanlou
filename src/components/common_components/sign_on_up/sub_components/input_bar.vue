@@ -1,22 +1,18 @@
 <template>
     <div class="input_bar">
         <div class="input-group input_group">
-<!--             <div class="input_icon">
-                <i class="fa fa-envelope fa-fw"></i>
-            </div> -->
             <input class="form-control text_input"
                    type="text"
                    v-model="login"
-                   placeholder="请输入手机/邮箱">
+                   placeholder="请输入手机/邮箱"
+                   @keyup.enter="emit_login()">
         </div>
         <div class="input-group input_group">
-<!--           <div class="input_icon">
-            <i class="fa fa-lock fa-fw"></i>
-          </div> -->
           <input class="form-control text_input"
                  type="password"
                  v-model="password"
-                 placeholder="请输入密码">
+                 placeholder="请输入密码"
+                 @keyup.enter="emit_login()">
         </div>
     </div>
 </template>
@@ -41,6 +37,12 @@ export default {
     watch: {
         sign_on_info (info) {
             this.$emit('signOnInfo', info)
+        }
+    },
+
+    methods: {
+        emit_login: function () {
+            this.$emit('emit_login')
         }
     }
  }
