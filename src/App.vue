@@ -11,7 +11,7 @@
     <transition name="tab_router_view">
       <router-view></router-view>
     </transition>
-    <Footer></Footer>
+    <Footer v-show="show_index_footer"></Footer>
   </div>
 </template>
 
@@ -48,6 +48,13 @@ export default {
         } else {
             return true
         }
+      },
+      show_index_footer: function (state) {
+        if (this.$route.name == 'publish') {
+            return false
+        } else {
+            return true
+        }        
       },
       route_name: function () {
         console.log(this.$route.name)
