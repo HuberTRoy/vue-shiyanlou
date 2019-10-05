@@ -59,7 +59,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .wechat_pic_div {
     background: #fff;
     padding: 15px;

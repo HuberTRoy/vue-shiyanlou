@@ -175,7 +175,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .courses_category {
     width: 1170px;
     padding: 0 5px;

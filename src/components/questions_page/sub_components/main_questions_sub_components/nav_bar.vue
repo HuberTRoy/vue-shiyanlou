@@ -49,7 +49,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .main_questions_nav_bar_ul {
     display: flex;
     justify-content: space-between;

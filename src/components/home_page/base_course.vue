@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 /* 最外层设置 */
 .base_course_div {
     display: flex;

@@ -21,7 +21,6 @@
             <p class="course_numbers_p">
                 作者: {{ course_info.teacher.name }}
             </p>
-<!--             <p class="course_numbers_p">{{ course_info.course_learning_information.comments_number}} 人评论</p> -->
         </div>
 
         <!-- 更新后下面不需要了 -->
@@ -30,15 +29,6 @@
             <p class="course_description">
                 {{ course_info.description }}
             </p>
-            <!-- 下面更新后暂时不要了 -->
-            <!-- <div class="price_info"> -->
-                <!-- 这里放价格信息 -->
-            <!-- </div> -->
-<!--             <div class="course_buttons">
-                <a href="javascript:;" class="start_course_button">
-                    开始实验
-                </a>
-            </div> -->
         </div> 
     </div>
 </template>
@@ -68,7 +58,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 
 .course_info {
     display: flex;

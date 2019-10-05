@@ -59,7 +59,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .client_area_login_div {
     width: 1170px;
     padding: 0 30px;

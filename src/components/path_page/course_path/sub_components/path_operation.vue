@@ -79,7 +79,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .path_operation_div {
     height: 100px;
     font-size: 18px;

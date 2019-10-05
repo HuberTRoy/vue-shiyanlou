@@ -81,7 +81,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .publish_div {
     width: 660px;
     height: calc(100vh - 120px);

@@ -13,7 +13,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .selection_button_a {
     display: inline-block;
     margin: 0 8px 10px 0;

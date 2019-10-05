@@ -26,7 +26,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .course_knowledge_points {
     background: #fff;
     border: 1px solid #eee;

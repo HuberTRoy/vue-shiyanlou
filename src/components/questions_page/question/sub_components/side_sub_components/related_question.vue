@@ -34,7 +34,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .related_question {
     background: #fff;
     margin-left: 10px;

@@ -77,7 +77,7 @@ export default {
     }
 }  
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .main_profile_mail_setting_div {
     display: flex;
     flex-direction: column;

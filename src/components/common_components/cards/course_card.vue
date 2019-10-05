@@ -1,7 +1,6 @@
 <template>
     <div class="course_card_div">
         <div class="course_div">
-            <!-- <a :href="course_a_url" class="course_img_a"> -->
             <router-link tag="a"
                          class="course_img_a"
                          :to="{ name: 'course', params: {id: data.id} }">
@@ -60,7 +59,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .course_card_div {
     min-height: 220px;
     box-sizing: border-box;

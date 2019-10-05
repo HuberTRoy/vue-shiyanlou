@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .stuff_board_discuss {
     display: flex;
     flex-direction: column;

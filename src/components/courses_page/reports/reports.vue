@@ -44,7 +44,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .courses_reports_home_div {
     width: 1170px;
     margin: auto;

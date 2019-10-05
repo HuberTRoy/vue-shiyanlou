@@ -47,7 +47,7 @@ export default {
     }
 }    
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 /* course_type css设计 */
 .course_type_span {
     display: inline-block;

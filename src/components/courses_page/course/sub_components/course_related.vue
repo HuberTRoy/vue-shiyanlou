@@ -31,7 +31,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .course_related_lab_div {
     background: #fff;
     border: 1px solid #eee;

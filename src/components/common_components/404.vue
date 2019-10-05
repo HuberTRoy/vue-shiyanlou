@@ -15,7 +15,7 @@
 <script type="text/javascript">
     
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .not_found_page_div {
     width: 1170px;
     padding: 30px;

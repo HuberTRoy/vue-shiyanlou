@@ -155,7 +155,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .course_side_content_div {
     margin-left: 15px;
     width: 315px;

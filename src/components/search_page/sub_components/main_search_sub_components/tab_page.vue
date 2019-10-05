@@ -19,10 +19,6 @@ export default {
                 if (p) {
 
                     p = this.translate_query(p.split('?')[1])
-                    // p = p.split('&')
-                    // let p1 = p[0].split('=')[1]
-                    // let p2 = p[2].split('=')[1]
-                    // p = decodeURIComponent(p)
                     return {'page': p.page ? p.page : 1, 'type': p.type ? p.type : this.nav}
                 }
                 return ''
@@ -82,7 +78,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .search_result_tab_page_div {
     display: flex;
     justify-content: center;

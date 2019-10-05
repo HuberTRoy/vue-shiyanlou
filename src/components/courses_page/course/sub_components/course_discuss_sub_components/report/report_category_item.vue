@@ -51,7 +51,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .report_category_a {
     display: block;
     padding: 8px 24px;

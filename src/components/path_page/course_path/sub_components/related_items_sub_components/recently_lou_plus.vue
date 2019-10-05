@@ -52,7 +52,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .recently_lou_plus {
     background: #fff;
     margin-left: 10px;

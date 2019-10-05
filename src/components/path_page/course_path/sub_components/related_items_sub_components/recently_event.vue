@@ -33,7 +33,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .recently_event {
     background: #fff;
     margin-left: 10px;

@@ -64,7 +64,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .footer {
     background: #333;
     padding-top: 20px;

@@ -73,7 +73,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .report_content_div {
     width: 1170px;
     margin: auto;

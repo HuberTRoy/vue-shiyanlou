@@ -30,7 +30,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .stuff_board_reports {
     display: flex;
     flex-wrap: wrap;

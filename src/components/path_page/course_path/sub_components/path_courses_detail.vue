@@ -69,7 +69,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 
 .path_courses_detail_div {
     background: #fff;

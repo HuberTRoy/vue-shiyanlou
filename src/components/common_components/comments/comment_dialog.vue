@@ -95,7 +95,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .unlogin_dialog_div {
     height: 150px;
     width: 100%;

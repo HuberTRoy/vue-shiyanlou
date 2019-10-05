@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .profile_container_div {
     margin: 20px auto;
     width: 1170px;

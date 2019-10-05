@@ -28,7 +28,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .main_profile_div {
     background: #fff;
     height: 100%;

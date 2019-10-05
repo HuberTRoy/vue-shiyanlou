@@ -43,7 +43,7 @@ export default {
 
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .report_content {
     display: flex;
     flex-wrap: wrap;

@@ -48,7 +48,7 @@ export default {
  }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .input_group {
     display: flex;
     margin-bottom: 15px;

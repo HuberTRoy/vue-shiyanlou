@@ -91,7 +91,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .main_user_div {
     margin: 20px auto;
     width: 1170px;

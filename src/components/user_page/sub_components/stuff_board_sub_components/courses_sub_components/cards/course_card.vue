@@ -164,7 +164,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .stuff_board_course_card {
     padding: 20px 0;
     border-bottom: 1px solid #eee;

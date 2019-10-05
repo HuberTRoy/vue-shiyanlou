@@ -73,7 +73,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .secret_mail_setting_div {
     position: fixed;
     top: 0;

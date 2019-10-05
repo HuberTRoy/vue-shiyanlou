@@ -32,7 +32,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .related_items {
     display: flex;
     flex-direction: column;

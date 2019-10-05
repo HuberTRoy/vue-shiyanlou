@@ -9,7 +9,7 @@
 <script type="text/javascript">
     
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .main_profile_code_layout_div {
     display: flex;
     padding: 0 15px;

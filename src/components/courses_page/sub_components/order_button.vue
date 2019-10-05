@@ -13,7 +13,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .order_button {
     display: block;
     color: #999;

@@ -63,7 +63,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .report_side_div {
     width: 25%;
     padding-left: 15px;

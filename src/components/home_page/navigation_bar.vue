@@ -165,7 +165,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 
 /*总导航区域*/
 #navigation_bar {

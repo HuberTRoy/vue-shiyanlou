@@ -22,14 +22,6 @@
                          :data="course"
             ></CoursesCard>
         </div>
-<!--         <div class="stuff_board_courses_list" v-if="courses_nav==='followed'">
-            <CoursesCard v-for="course in courses_content.follow_courses"
-                         :key="course.course_id"
-                         :data="course"
-            >
-
-            </CoursesCard>
-        </div> -->
     </div>
 </template>
 <script type="text/javascript">
@@ -77,7 +69,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .stuff_board_courses_div {
     /*padding: 20px;*/
     display: flex;

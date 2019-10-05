@@ -153,7 +153,7 @@ export default {
   }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .course_content_box {
     display: flex;
     flex-direction: column;

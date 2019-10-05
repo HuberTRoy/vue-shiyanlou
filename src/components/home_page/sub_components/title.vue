@@ -47,7 +47,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .description_title_div {
     display: flex;
     justify-content: space-between;

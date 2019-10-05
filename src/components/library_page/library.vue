@@ -26,7 +26,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .library_page_div {
     padding: 30px;
     width: 1170px;

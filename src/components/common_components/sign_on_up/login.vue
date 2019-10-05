@@ -102,7 +102,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .login_div {
     height: 100%;
     width: 100%;

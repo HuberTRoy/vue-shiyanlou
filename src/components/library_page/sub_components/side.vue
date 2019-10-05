@@ -81,7 +81,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .library_side_div {
     width: 23%;
     margin-right: 15px;

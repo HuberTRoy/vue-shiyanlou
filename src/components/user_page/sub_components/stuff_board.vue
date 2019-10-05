@@ -76,7 +76,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .stuff_board {
     margin-top: 10px;
     border: 1px solid #eee;

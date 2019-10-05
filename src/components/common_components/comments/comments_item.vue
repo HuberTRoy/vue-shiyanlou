@@ -103,7 +103,7 @@ export default {
 
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 /* 每个评论框的div设置 */
 .comments_item {
     display: flex;

@@ -108,7 +108,7 @@ export default {
 
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .search_page_main_search_content_div {
     background: #fff;
     width: 74%;

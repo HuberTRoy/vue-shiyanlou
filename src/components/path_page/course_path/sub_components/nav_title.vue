@@ -26,7 +26,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .path_title {
     display: flex;
     padding-top: 10px;

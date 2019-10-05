@@ -79,7 +79,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 /*  
     vm and vh :
     https://web-design-weekly.com/2014/11/18/viewport-units-vw-vh-vmin-vmax/

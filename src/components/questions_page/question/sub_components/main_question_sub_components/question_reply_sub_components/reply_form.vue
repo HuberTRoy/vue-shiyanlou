@@ -105,7 +105,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .reply_form {
     width: 100%;
     padding-bottom: 40px;

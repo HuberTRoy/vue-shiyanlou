@@ -15,7 +15,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .nav_bar {
     margin-bottom: 10px;
 }

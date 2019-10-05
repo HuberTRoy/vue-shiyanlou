@@ -35,7 +35,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .phase_item_div {
     display: flex;
     flex-direction: column;

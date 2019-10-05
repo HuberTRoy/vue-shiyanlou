@@ -34,7 +34,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .paths_card_div {
     display: flex;
     flex-wrap: wrap;

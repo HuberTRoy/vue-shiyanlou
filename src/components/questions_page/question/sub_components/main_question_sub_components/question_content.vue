@@ -59,7 +59,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .question_content {
     border: 1px solid #eee;
     box-shadow: 0 1px 1px #ccc;

@@ -24,7 +24,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .operation_div {
     margin-left: 10px;
     margin-bottom: 10px;

@@ -87,7 +87,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .course_discuss {
     background: #fff;
     border: 1px solid #eee;

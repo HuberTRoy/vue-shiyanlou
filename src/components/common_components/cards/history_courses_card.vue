@@ -40,7 +40,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .history_courses_card_div {
     display: none;
 }

@@ -47,7 +47,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .question_title {
     display: flex;
     flex-wrap: wrap;

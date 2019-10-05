@@ -9,13 +9,11 @@
                 <ul class="scroll_selection_menu">
                     <li id="courses_li" class="scroll_sub_selection_li scroll_navigation_li">
                         <router-link :to="{name: 'courses'}" tag="a" id="courses_button" class="scroll_sub_selection_a">
-                        <!-- <a href="#100" id="courses_button" class="scroll_sub_selection_a"> -->
                             课程
                             <span class="spread"></span>
                         </router-link>
                         <ul class="scroll_sub_ul">
                             <li class="scroll_sub_li">
-                                <!-- <a href="#9" class="scroll_sub_a">免费课</a> -->
                                 <router-link :to="{ name: 'courses', query: {fee: 'free'}}" tag="a" class="scroll_sub_a">
                                     免费课
                                 </router-link>
@@ -190,7 +188,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .scroll_bar {
     /*position: fixed;*/
     top: 0;

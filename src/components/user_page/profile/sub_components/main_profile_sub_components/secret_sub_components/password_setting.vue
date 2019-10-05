@@ -60,7 +60,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .secret_password_setting_div {
     width: 100%;
 }

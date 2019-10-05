@@ -55,7 +55,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .report_content_item {
     display: flex;
     flex-direction: column;

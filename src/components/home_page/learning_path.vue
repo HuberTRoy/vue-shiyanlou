@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 
 .learning_path_course_div {
     display: flex;

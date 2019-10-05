@@ -106,7 +106,7 @@ export default {
 
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 
 /* 最外层设置 */
 .recently_recommend_courses {

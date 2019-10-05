@@ -73,7 +73,7 @@ export default {
 
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .libary_main_libray_div {
     width: 74%;
     margin-left: 15px;

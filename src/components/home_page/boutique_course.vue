@@ -43,7 +43,7 @@ export default {
 
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .boutique_course_div {
     width: 1170px;
     margin-left: auto;

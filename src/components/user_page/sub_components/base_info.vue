@@ -43,7 +43,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .user_base_info {
     display: flex;
     justify-content: space-between;

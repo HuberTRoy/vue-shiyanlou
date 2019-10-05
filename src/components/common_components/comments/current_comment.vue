@@ -92,7 +92,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .comments_nav_ul {
     margin-bottom: 10px;
     border: none;

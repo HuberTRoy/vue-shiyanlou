@@ -33,7 +33,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .library_card_a {
     display: flex;
     border: 1px solid #eee;

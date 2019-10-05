@@ -46,7 +46,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .reports_home_side {
     display: flex;
     flex-direction: column;

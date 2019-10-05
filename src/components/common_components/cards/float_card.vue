@@ -27,7 +27,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .float_card_div {
     box-sizing: border-box;
     padding-right: 15px;

@@ -5,7 +5,7 @@
 <script type="text/javascript">
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .title_background {
     height: 340px;
     background: url(https://static.shiyanlou.com/img/path_bg.png) no-repeat;

@@ -185,7 +185,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .main_profile_base_info_div {
     display: flex;
     flex-direction: column;

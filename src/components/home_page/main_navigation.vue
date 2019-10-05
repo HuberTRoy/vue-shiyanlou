@@ -145,7 +145,7 @@ export default {
 
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 
 /* 整个的背景 */
 #main_navigation_background {

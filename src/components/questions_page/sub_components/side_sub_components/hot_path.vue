@@ -34,7 +34,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .hot_path {
     background: #fff;
     margin-left: 10px;

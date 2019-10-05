@@ -51,7 +51,7 @@ export default {
 
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .submit_qa {
     display: inline-block;
     margin-top: 12px;

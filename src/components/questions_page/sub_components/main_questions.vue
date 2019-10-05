@@ -46,7 +46,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .main_questions_div {
     background: #fff;
     padding: 30px;

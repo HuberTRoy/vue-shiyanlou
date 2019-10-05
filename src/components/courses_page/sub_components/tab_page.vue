@@ -60,7 +60,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .tab_page_div {
     display: flex;
     justify-content: center;

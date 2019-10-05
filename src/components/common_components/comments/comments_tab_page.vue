@@ -58,7 +58,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .comment_tab_page_div {
     display: flex;
     justify-content: center;

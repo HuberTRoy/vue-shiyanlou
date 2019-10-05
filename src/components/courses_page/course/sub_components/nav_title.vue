@@ -40,7 +40,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .course_title {
     display: flex;
 }

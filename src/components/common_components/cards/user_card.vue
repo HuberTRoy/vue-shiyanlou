@@ -73,7 +73,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .user_card_div {
     visibility: hidden;
     transition: visibility 0s, opacity .5s linear;

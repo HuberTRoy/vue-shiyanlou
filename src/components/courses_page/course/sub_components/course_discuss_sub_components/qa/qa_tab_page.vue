@@ -17,36 +17,14 @@ export default {
         ...mapState({
             current_page: state => state.course.qa_information.page,
             next: state => state.course.qa_information.next
-            // prev: state => { 
-            //     let p = state.course.course_comment_information.previous
-            //     if (p) {
-            //         p = p.substr(1).split('&')[0]
-            //         p = p.split('=')[1]
-            //         p = decodeURIComponent(p)
-            //         return p
-            //     }
-            //     return ''
-            // },
-            // next: state => {
-            //     let n = state.course.course_comment_information.next
-            //     if (n) {
-            //         n = n.substr(1).split('&')[0]
-            //         n = n.split('=')[1]
-            //         n = decodeURIComponent(n)
-            //         return n
-            //     }
-            //     return ''
-            // }
         })
     },
     methods: {
         ...mapActions({
-            // change_cursor: 'path/change_cursor',
             get_questions: 'course/change_qa_information',
             change_qa_args: 'course/change_qa_args'
         }),
         tab_page: function (page) {
-            // this.change_cursor(cursor)
             if (page<1) {
                 return
             }
@@ -55,24 +33,16 @@ export default {
                 return 
             }
 
-            // this.change_qa_args({
-            //     'current_page': page
-            // })
-
             this.get_questions({
                 'course_id': this.$route.params.id,
                 'page': page
-                // 'topic_id': this.$route.params.id,
-                // 'topic_type': 'course',
-                // 'page_size': 15,
-                // 'cursor': cursor
             })
         }
     }
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .comment_tab_page_div {
     display: flex;
     justify-content: center;

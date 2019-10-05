@@ -23,7 +23,7 @@
     }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .normal_card {
     padding-left: 15px;
     padding-right: 15px;

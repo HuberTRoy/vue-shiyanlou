@@ -97,7 +97,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .qa_item_div {
     display: flex;
     justify-content: space-between;

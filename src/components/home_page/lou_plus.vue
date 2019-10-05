@@ -38,7 +38,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 #lou_plus_div {
     display: flex;
     flex-direction: column;

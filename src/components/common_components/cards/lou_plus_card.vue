@@ -4,7 +4,6 @@
              class="lou_plus_card_a"
              target="_blank"
              :href="data.html_url">
-                     <!-- :to="{ name: 'louPlus', params: {'name': data.lou_plus_name} }" -->
             <img :src="data.picture_url" class="lou_plus_card_img">
 
             <div class="lou_plus_card_text_div">
@@ -28,7 +27,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 
 .lou_plus_card_a {
     display: inline-block;

@@ -37,7 +37,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .search_page_div {
     width: 1170px;
     /*padding: 30px;*/

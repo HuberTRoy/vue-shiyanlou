@@ -37,7 +37,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .profile_side_div {
     padding: 0 30px;
     background: #fff;

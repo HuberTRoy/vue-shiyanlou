@@ -109,7 +109,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .main_profile_secret_div {
     display: flex;
     flex-direction: column;

@@ -57,7 +57,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .course_path {
     margin-right: auto;
     margin-left: auto;

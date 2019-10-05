@@ -296,7 +296,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .learning_record {
     display: flex;
     flex-direction: column;

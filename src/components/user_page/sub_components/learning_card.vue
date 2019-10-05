@@ -45,7 +45,7 @@ export default {
 }
 
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .learning_card {
     display: flex;
     flex-direction: column;

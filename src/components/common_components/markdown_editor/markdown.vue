@@ -156,7 +156,7 @@ export default {
 
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .markdown_editor {
     min-height: 250px;
     border: 1px solid #ccc;

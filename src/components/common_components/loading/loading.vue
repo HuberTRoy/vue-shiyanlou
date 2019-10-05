@@ -7,7 +7,7 @@
     </div>
 </template>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .loading_div {
     text-align: center;
     margin-top: 15px;

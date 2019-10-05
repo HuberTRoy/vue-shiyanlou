@@ -77,7 +77,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 .reports_home_main_reports_div {
     width: 75%;
     padding-right: 15px;

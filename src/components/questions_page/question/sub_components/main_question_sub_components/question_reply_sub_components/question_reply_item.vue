@@ -75,7 +75,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .question_reply_item {
     margin-top: 30px;
     display: flex;
