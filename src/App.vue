@@ -89,6 +89,7 @@ body {
 
 img {
     height: 100%;
+    /*width: inherit;*/
     border: 0;
     vertical-align: middle;
 }

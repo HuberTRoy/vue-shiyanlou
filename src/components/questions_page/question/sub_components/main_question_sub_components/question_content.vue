@@ -96,7 +96,6 @@ export default {
     border-radius: 4px;
     color: #fff;
     background: #21d6a8;
-    /*box-shadow: inset 0 3px 5px rgba(0,0,0,0.125)*/
 }
 
 .favourite_button:hover {
@@ -149,4 +148,8 @@ export default {
     font-size: 15px;
 }
 
+._question_content >>> img {
+    width: 100%;
+
+}
 </style>

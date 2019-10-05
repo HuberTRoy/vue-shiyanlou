@@ -5,7 +5,6 @@
                 content
                 reply_time  reply_button
          -->
-        <!-- <div class="question_reply_item_top"> -->
             <div class="question_reply_item_base_info" v-if="data.author">
                 <div class="question_reply_item_base_info_layout">
                     <router-link tag="a" :to="{ name: 'user', params: { id: data.author.id } }">
@@ -157,7 +156,14 @@ export default {
     margin-bottom: 20px;
 }
 
-.content_p img {
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+.content_p >>> img {
     max-width: 100%;
     height: auto !important;
 }

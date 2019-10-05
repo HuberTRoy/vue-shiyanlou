@@ -116,6 +116,7 @@ export default {
     padding: 10px 15px;
     border: 1px solid #efefef;
     background: #fdfefd;
+    width: 100%;
 }
 
 .report_main_content_base_info_title {
@@ -139,7 +140,7 @@ export default {
     text-decoration: underline !important;
 }
 
-.report_content img {
+.report_content >>> img {
     width: 100%;
 }
 

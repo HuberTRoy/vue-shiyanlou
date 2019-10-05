@@ -219,6 +219,10 @@ export default {
     overflow: auto;
 }
 
+.markdown_container_previewer >>> img {
+    width: 100%;
+}
+
 .markdown_operation {
     display: flex;
     justify-content: flex-end;

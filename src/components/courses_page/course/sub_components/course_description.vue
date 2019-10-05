@@ -54,13 +54,13 @@ export default {
 }
 
 
-.main_description_div h2 {
+.main_description_div >>> h2 {
     margin-top: 25px;
     font-size: 16px;
     line-height: normal;   
 }
 
-.main_description_div ul {
+.main_description_div >>> ul {
     list-style-type: disc;
     background: #fbfbf8;
     padding-bottom: 10px;
