@@ -70,7 +70,7 @@ export default {
             if (newMessage) {
                 this.change_warning_message(newMessage)
                 this.change_login_message('')
-                this.change_warning_style_class('alert')
+                this.change_warning_bar_style_class('alert')
             }
         },
         sign_on: function (newState, oldState) {
@@ -87,7 +87,7 @@ export default {
             change_user_info: 'loginState/change_user_info',
             change_login_message: 'loginState/change_message',
             change_warning_message: 'warningBar/change_message',
-            change_warning_style_class: 'warningBar/change_warning_style_class'
+            change_warning_bar_style_class: 'warningBar/change_warning_bar_style_class'
         })
     }
 }

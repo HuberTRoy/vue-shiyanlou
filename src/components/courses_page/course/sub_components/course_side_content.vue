@@ -76,16 +76,21 @@
                 </div>
                 <div v-else>
                      <button class="btn course_side_base_btn join_in_course_button" 
-                             v-if="course_info.fee_type==='free' || (course_info.fee_type==='member' && (user_info.member_type == 'plus' || user_info.member_type == 'premium')) || (course_info.fee_type==='bootcamp' && user_info.member_type == 'premium')"
+                             v-if="(course_info.fee_type==='free' || 
+                                    (course_info.fee_type==='member' && (user_info.member_type == 'plus' || user_info.member_type == 'premium')) ||
+                                    (course_info.fee_type==='bootcamp' && user_info.member_type == 'premium') ) 
+                                   && userstatus_info.status!=='active'"
                              @click="join_course()"
                              >加入课程
                      </button>
                      <a href="https://www.shiyanlou.com/vip" target="_blank" class="btn course_side_base_btn join_member_button" 
-                             v-if="course_info.fee_type==='member' && user_info.member_type == null"
+                             v-if="(course_info.fee_type==='member' && user_info.member_type == null) 
+                                   && userstatus_info.status!=='active'"
                              >加入会员免费学
                      </a>
                      <button class="btn course_side_base_btn buy_course_button" 
-                             v-if="course_info.fee_type==='bootcamp' && user_info.member_type != 'premium' "
+                             v-if="(course_info.fee_type==='bootcamp' && user_info.member_type != 'premium') 
+                                   && userstatus_info.status!=='active'"
                              >立即购买
                              <!-- @click="join_course()" -->
                      </button>                    

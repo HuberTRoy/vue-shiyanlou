@@ -27,7 +27,7 @@ export default {
 }
 </script>
 <style type="text/css" scoped>
-.course_knowledge_points {
+.course_knowledge_points_div {
     background: #fff;
     border: 1px solid #eee;
     display: flex;
