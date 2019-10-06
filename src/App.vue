@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Login></Login>
+    <WarningBar></WarningBar>
     <transition name="scroll_bar_transition">
         <ScrollBar v-show="show_index_scroll_bar"
                    :class="[route_name != 'Home' ? 'app_scroll_bar' : '',
@@ -19,6 +20,7 @@
 import Footer from '@/components/common_components/footer/footer.vue'
 import ScrollBar from '@/components/common_components/scroll_bar/scroll_bar.vue'
 import Login from '@/components/common_components/sign_on_up/login.vue'
+import WarningBar from '@/components/common_components/warning_bar/warning_bar.vue'
 
 import { mapState, mapActions } from 'vuex'
 
@@ -28,7 +30,8 @@ export default {
   components: {
     Footer,
     ScrollBar,
-    Login
+    Login,
+    WarningBar
   },
   methods: {
     ...mapActions({
@@ -40,7 +43,7 @@ export default {
   
   computed: {
     ...mapState({
-      isLogin: state => state.loginState.sign_on,
+      sign_on: state => state.loginState.sign_on,
       scrolled: state => state.scrollBar.currentScrolledValue > 50,
       show_index_scroll_bar: function (state) {
         if (this.$route.name == 'Home') {
@@ -64,7 +67,7 @@ export default {
   },
 
   created () {
-    if (this.isLogin) {
+    if (this.sign_on) {
       this.get_user_info()
       this.get_studied_courses()
     }

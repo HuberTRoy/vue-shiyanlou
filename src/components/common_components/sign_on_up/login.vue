@@ -3,11 +3,6 @@
         <div class="login_div"
              v-show="show_login_dialog"
         >
-            <div class="login_error_message alert alert-danger"
-                 :class="[show_login_error_message ? 'show_login_error_message' : '']"
-            >
-                {{ message }}
-            </div>
             <transition name="login_dialog_transition">
                 <div class="login_dialog_div"
                      v-show="show_login_dialog"
@@ -20,7 +15,7 @@
                         </div>
                         <ul class="nav_bar_ul">
                             <li class="nav_bar_li"
-                                :class="onOrUp=='on' ? 'nav_bar_li_active' : ''"
+                                :class="on_or_up=='on' ? 'nav_bar_li_active' : ''"
                             >
                                 <a href="javascript:;"
                                    class="nav_bar_a"
@@ -28,7 +23,7 @@
                                 >登录</a>
                             </li>
                             <li class="nav_bar_li"
-                                :class="onOrUp=='up' ? 'nav_bar_li_active' : ''"
+                                :class="on_or_up=='up' ? 'nav_bar_li_active' : ''"
                             >
                                 <a href="javascript:;"
                                    class="nav_bar_a"
@@ -37,8 +32,8 @@
                             </li>
                         </ul>
                     </div>
-                    <SignOn v-show="onOrUp == 'on'"></SignOn>
-                    <SignUp v-show="onOrUp == 'up'"></SignUp>
+                    <SignOn v-show="on_or_up == 'on'"></SignOn>
+                    <SignUp v-show="on_or_up == 'up'"></SignUp>
                 </div>
             </transition>
         </div>
@@ -65,27 +60,20 @@ export default {
     computed: {
         ...mapState({
             show_login_dialog: state => state.loginState.show_login_dialog,
-            onOrUp: state => state.loginState.onOrUp,
-            message: state => { 
-                // this.show_login_error_message = true
-                return state.loginState.login_info.message
-            },
-            isLogin: state => {
-                return state.loginState.sign_on
-            }
+            on_or_up: state => state.loginState.on_or_up,
+            message: state => state.loginState.login_info.message,
+            sign_on: state => state.loginState.sign_on
         })
     },
     watch: {
         message: function (newMessage, oldMesssage) {
             if (newMessage) {
-                this.show_login_error_message = true
-                setTimeout(()=>{
-                    this.change_message('')
-                    this.show_login_error_message = false
-                }, 3000)
+                this.change_warning_message(newMessage)
+                this.change_login_message('')
+                this.change_warning_style_class('alert')
             }
         },
-        isLogin: function (newState, oldState) {
+        sign_on: function (newState, oldState) {
             console.log(newState)
             if (newState === true) {
                 this.change_user_info()
@@ -96,8 +84,10 @@ export default {
         ...mapActions({
             change_show_state: 'loginState/change_show_state',
             change_on_up_state: 'loginState/change_on_up_state',
-            change_message: 'loginState/change_message',
-            change_user_info: 'loginState/change_user_info'
+            change_user_info: 'loginState/change_user_info',
+            change_login_message: 'loginState/change_message',
+            change_warning_message: 'warningBar/change_message',
+            change_warning_style_class: 'warningBar/change_warning_style_class'
         })
     }
 }
@@ -124,21 +114,6 @@ export default {
     padding: 10px 20px;
     border-radius: 4px;
     border: 1px solid rgba(0,0,0,0.2);
-}
-
-.login_error_message {
-    position: fixed;
-    opacity: 0;
-    width: 170px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    transition: opacity 1s;
-    z-index: 9999;
-}
-
-.show_login_error_message {
-    opacity: 1;
 }
 
 /* 登陆背景会淡出 */

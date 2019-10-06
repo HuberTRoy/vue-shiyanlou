@@ -4,7 +4,7 @@ import cookies from 'vue-cookies'
 const state = {
     show_login_dialog: false,
     // on 表示 显示的是登录框，up 则是注册框
-    onOrUp: 'on',
+    on_or_up: 'on',
     sign_on: cookies.get('session') ? true : false,
     login_info: {
         'message': ''
@@ -27,10 +27,10 @@ const mutations = {
         if (onOrUp === null) {
             return
         }
-        state.onOrUp = onOrUp
+        state.on_or_up = onOrUp
     },
     change_on_up_state (state, onOrUp) {
-        state.onOrUp = onOrUp
+        state.on_or_up = onOrUp
     },
     log_out (state) {
         // 登出操作
@@ -62,10 +62,6 @@ const actions = {
 
             context.commit('change_login_info', response.data)
         })
-
-
-        // return {'state': loginInfo.state,
-                // 'state_message': loginInfo.state_message}
     },
     change_show_state (context, onOrUp) {
         context.commit('change_show_state', onOrUp)

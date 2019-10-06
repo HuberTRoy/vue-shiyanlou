@@ -16,6 +16,7 @@ import search from './modules/search/search.js'
 import library from './modules/library/library.js'
 import comments from './modules/comments/comments.js'
 import reports from './modules/reports/reports.js'
+import warningBar from './modules/warning_bar/warning_bar.js'
 
 Vue.use(Vuex)
 
@@ -37,7 +38,8 @@ export default new Vuex.Store({
         search,
         library,
         comments,
-        reports
+        reports,
+        warningBar
     },
   strict: debug
   // plugins: debug ? [createLogger()] : []
