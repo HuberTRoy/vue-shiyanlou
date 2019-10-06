@@ -83,12 +83,22 @@ export default {
         ...mapActions({
             delete: 'comments/delete_comment',
             reply: 'comments/change_reply_id',
-            change_text_placeholder: 'comments/change_text_placeholder'
+            change_text_placeholder: 'comments/change_text_placeholder',
+            change_warning_message: 'warningBar/change_message',
+            change_warning_bar_style_class: 'warningBar/change_warning_bar_style_class'
         }),
-        delete_comment: function () {
+        delete_comment: async function () {
             let c = confirm("确认删除本条评论？")
             if (c) {
-                this.delete({'id': this.data.id})
+                let res = await this.delete({'id': this.data.id})
+                if (res.status === 200) {
+                    // 通知warning bar显示删除成功
+                    this.change_warning_message("删除成功")
+                    this.change_warning_bar_style_class('success')
+                } else {
+                    this.change_warning_message("删除失败")
+                    this.change_warning_bar_style_class('alert')                    
+                }
             }
         },
 

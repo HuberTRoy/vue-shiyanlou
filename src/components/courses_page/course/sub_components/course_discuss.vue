@@ -56,8 +56,6 @@
 <script type="text/javascript">
 import { mapState, mapActions } from 'vuex'
 
-// import CourseCommentDialog from './course_discuss_sub_components/comments/course_comment_dialog.vue'
-// import CourseComments from './course_discuss_sub_components/comments/course_current_comment.vue'
 import CourseCommentDialog from '@/components/common_components/comments/comment_dialog.vue'
 import CourseComments from '@/components/common_components/comments/current_comment.vue'
 

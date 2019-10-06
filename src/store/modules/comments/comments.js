@@ -27,6 +27,16 @@ const mutations = {
     },
     add_comment (state, comment) {
         state.comment_information.results.unshift(comment)
+    },
+    delete_comment (state, commentId) {
+        let index
+        for (let i=0; i<state.comment_information.results.length; i++) {
+            if (state.comment_information.results[i].id === commentId) {
+                index = i
+                break
+            }
+        }
+        state.comment_information.results.splice(index, 1)
     }
 }
 
@@ -48,12 +58,27 @@ const actions = {
     async post_comment (context, args) {
         let res = await CommentsApi.post_comment(args)
         context.commit('add_comment', res.data)
+        // 这边先进行普通权限的用户添加评论后可以做的userstatus
+        let _ = new Object()
+        _[res.data.id] = {
+                can_delete: true,
+                can_top: false,
+                can_reply: true
+            }
+        context.commit('change_comments_userstatus', _)
         
     },
     async delete_comment (context, args) {
         // 这边先不做任何后续动作。
         let res = await CommentsApi.delete_comment(args)
+        // 执行删除之后还需要 1. 删除掉 comment_information 中的元素，
+        // 执行效率问题：
+        // 数量很少，直接迭代后找下标删除。
+        if (res.status === 200) {
+            context.commit('delete_comment', args.id)
+        }
 
+        return res
     },
     change_reply_id (context, id) {
         context.commit('change_reply_id', id)
@@ -61,10 +86,6 @@ const actions = {
     change_text_placeholder (context, text) {
         context.commit('change_text_placeholder', text)
     },
-    // async delete (context, args) {
-    //     let res = await CommentsApi.get_comments_userstatus(args)
-    //     context.commit('change_comments_userstatus', res.data)
-    // },
     async reply_comment (context, args) {
         console.log(args)
         let res = await CommentsApi.reply_comment(args)
