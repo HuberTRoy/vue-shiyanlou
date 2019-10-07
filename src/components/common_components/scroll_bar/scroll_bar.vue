@@ -46,26 +46,40 @@
                         </a>
                     </li>
                     <li id="community_li" class="scroll_sub_selection_li scroll_navigation_li">
-                        <router-link tag="a" :to="{name: 'questions'}" id="community_button" class="scroll_sub_selection_a">
+                        <router-link tag="a" 
+                                    class="scroll_sub_selection_a"
+                                    id="community_button" 
+                                    :to="{ name: 'questions' }" 
+                        >
                             社区
                             <span class="spread"></span>
                         </router-link>
 
                         <ul class="scroll_sub_ul">
                             <li class="scroll_sub_li">
-                                <router-link tag="a" to="/questions" class="scroll_sub_a">讨论</router-link>
+                                <router-link tag="a" 
+                                             class="scroll_sub_a"
+                                             :to="{ name: 'questions' }" 
+                                >
+                                    讨论
+                                </router-link>
                             </li>
                             <li class="scroll_sub_li">
                                 <router-link tag="a"
-                                             :to="{name:'library'}"
-                                             class="scroll_sub_a">
+                                             class="scroll_sub_a"
+                                             :to="{name: 'library'}"
+                                >
                                          教程库
                                 </router-link>
                             </li>
                             <li class="scroll_sub_li">
-                                <a href="#11" class="scroll_sub_a">
+                                <router-link tag="a" 
+                                             class="scroll_sub_a"
+                                             :to="{ name: 'live' }"
+
+                                >
                                     直播
-                                </a>
+                                </router-link>
                             </li>
                             <li class="scroll_sub_li">
                                 <a href="#12" class="scroll_sub_a">

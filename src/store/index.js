@@ -17,6 +17,7 @@ import library from './modules/library/library.js'
 import comments from './modules/comments/comments.js'
 import reports from './modules/reports/reports.js'
 import warningBar from './modules/warning_bar/warning_bar.js'
+import live from './modules/live/live.js'
 
 Vue.use(Vuex)
 
@@ -39,7 +40,8 @@ export default new Vuex.Store({
         library,
         comments,
         reports,
-        warningBar
+        warningBar,
+        live
     },
   strict: debug
   // plugins: debug ? [createLogger()] : []

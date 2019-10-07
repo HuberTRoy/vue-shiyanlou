@@ -21,6 +21,7 @@ Vue.use(Router)
 const __import__ = file => () => import(`@/pages/${file}.vue`)
 
 const router = new Router({
+  mode: 'history',
   routes: [
     {
         path: '/',
@@ -140,6 +141,14 @@ const router = new Router({
         component: __import__('client_area/login'),
         meta: {
             title: '登录 - 实验楼'
+        }
+    },
+    {
+        path: '/live',
+        name: 'live',
+        component: __import__('live/live'),
+        meta: {
+            title: '代码直播课程 - 实验楼'
         }
     },
     {
