@@ -12,7 +12,7 @@
             tag="ul"
             class="recently_recommend_courses_ul">
                 <li v-for="(courses, index) in recently_recommend_courses_content['courses']"
-                     :key="index"
+                     :key="courses[0].id"
                      class="recently_recommend_courses_li"
                      v-show="current_index==index"
                 >

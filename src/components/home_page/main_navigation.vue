@@ -69,14 +69,12 @@
             <transition-group name="ad_transition_group" tag="ul" class="ad_transition_group_ul">
                 <li class="ads_li"
                     v-for="(ad,index) in index_banner"
-                    :key="index"
+                    :key="ad"
                     v-show="current_index==index">
-                    <a tag="a"
-                                 class="ads_a"
-                                 tagget="_blank"
-                                 :href="ad['html_url']"
-                                 >
-                                 <!-- :to="{ name: ad.router_name, params: ad.router_params}" -->
+                    <a class="ads_a"
+                       tagget="_blank"
+                       :href="ad['html_url']"
+                    >
                         <img class="ads_img" :src="ad['picture_url']">
                     </a>
                 </li>
