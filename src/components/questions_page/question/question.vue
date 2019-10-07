@@ -14,28 +14,6 @@ export default {
     components: {
         MainQuestion,
         Side
-    },
-    methods: {
-        ...mapActions({
-            set_question_id: 'question/change_question_id',
-            get_question_information: 'question/change_question_information',
-            get_related_question: 'question/change_related_question_information',
-            get_reply: 'question/change_question_reply_information'
-        })
-    },
-    watch: {
-        '$route': function () {
-            this.set_question_id(this.$route.params.id)
-            this.get_question_information()
-            this.get_related_question()
-            this.get_reply()         
-        }
-    },
-    created: function () {
-        this.set_question_id(this.$route.params.id)
-        this.get_question_information()
-        this.get_related_question()
-        this.get_reply()
     }
 }
 </script>

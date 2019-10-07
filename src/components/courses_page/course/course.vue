@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="course_related_div">
-                <CourseSideContent :class="[scrolled && !scrollEnd ? 'course_side_content_scroll' : '', scrollEnd ? 'course_side_content_scrollend' : '']"
+                <CourseSideContent :class="[scrolled && !scroll_end ? 'course_side_content_scroll' : '', scroll_end ? 'course_side_content_scrollend' : '']"
                 ></CourseSideContent>
                 <!-- 右边几乎完全重写。
                      布局如下:
@@ -121,34 +121,20 @@ export default {
     ...mapState({
       course_info: state => state.course.course_information,
       scrolled: state => state.scrollBar.currentScrolledValue > 50,
-      scrollValue: state => state.scrollBar.currentScrolledValue,
-      isLogin: state => state.loginState.sign_on
+      scroll_value: state => state.scrollBar.currentScrolledValue,
     }),
     ...mapGetters({
-        documentHeight: 'scrollBar/documentHeight'
+        document_height: 'scrollBar/documentHeight'
     }),
-    scrollEnd: function () {
+    scroll_end: function () {
         let body = document.body
         let html = document.documentElement;
         let documentHeight = Math.max( body.scrollHeight, body.offsetHeight, 
             html.clientHeight, html.scrollHeight, html.offsetHeight )
-        if (this.scrollValue === 0) {
+        if (this.scroll_value === 0) {
             return false
         }
-        return (documentHeight - this.scrollValue) < 800
-    }
-  },
-  methods: {
-    ...mapActions({
-      get_and_change_course_information: 'course/get_and_change_course_information',
-      get_course_userstatus: 'course/change_course_userstatus'
-    })
-  },
-  created: function () {
-    let courseId = this.$route.params.id
-    this.get_and_change_course_information(courseId)
-    if (this.isLogin) {
-        this.get_course_userstatus({'course_ids': courseId})
+        return (documentHeight - this.scroll_value) < 800
     }
   }
 }

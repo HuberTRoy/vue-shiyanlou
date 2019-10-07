@@ -159,18 +159,6 @@ export default {
             change_query: 'coursesCategory/change_query',
             change_courses_category: 'coursesCategory/change_courses_category'
         })
-    },
-    watch: {
-        '$route': function () {
-            this.change_courses_content(this.$route.query)
-        }
-    },
-    created: function () {
-        // console.log(1)
-        // this.has_created = true
-        // this.router_to()
-        this.change_courses_category()
-        this.change_courses_content(this.$route.query)
     }
 }
 

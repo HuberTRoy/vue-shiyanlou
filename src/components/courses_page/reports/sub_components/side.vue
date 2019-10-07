@@ -29,7 +29,6 @@ export default {
     },
     methods: {
         ...mapActions({
-            get_categories: 'reports/change_categories',
             change_tag: 'reports/change_reports_args'
         }),
         _change_tag: function (tag) {
@@ -39,9 +38,6 @@ export default {
                 'tag': tag
             }})
         }
-    },
-    created: async function () {
-        await this.get_categories()
     }
 }
 

@@ -40,52 +40,16 @@ export default {
         VisitedUser,
         StuffBoard
     },
-
-    methods: {
-        ...mapActions({
-            change_user_id: 'user/change_user_id',
-            get_user_info: 'user/get_and_change_user_info',
-            set_user_info: 'user/set_user_info'
-        })
-    },
-
+    
     computed: {
         ...mapState({
-            // 突然想起来... 这里为啥又用驼峰命名了呢= =。
-            isLogin: state => state.loginState.sign_on,
-            loginUserInfo: state => state.loginState.user_info
+            login_user_info: state => state.loginState.user_info
         }),
         is_mine_index: function () {
-            if (this.loginUserInfo.id == this.$route.params.id) {
+            if (this.login_user_info.id == this.$route.params.id) {
                 return true
             }
             return false
-        }
-    },
-    watch: {
-        loginUserInfo: function () {
-            // 如果发现当前的主页是自己的主页那么将数据替换为已登录解锁的数据。
-            if (this.is_mine_index) {
-                this.set_user_info(this.loginUserInfo)
-            } else {
-                this.get_user_info()
-            }
-        },
-        '$route': function () {
-            this.change_user_id(this.$route.params.id)
-            if (this.is_mine_index) {
-                this.set_user_info(this.loginUserInfo)
-            } else {
-                this.get_user_info()
-            }            
-        }
-    },
-    created: function () {
-        this.change_user_id(this.$route.params.id)
-        if (this.is_mine_index) {
-            this.set_user_info(this.loginUserInfo)
-        } else {
-            this.get_user_info()
         }
     }
 }

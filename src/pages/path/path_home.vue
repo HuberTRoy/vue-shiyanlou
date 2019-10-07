@@ -8,11 +8,20 @@
 
 import LearningPath from '@/components/path_page/path.vue'
 
-import { mapState } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
     components: {
         LearningPath,
+    },
+    methods: {
+        ...mapActions({
+            get_path_information: 'path/change_path_information'
+        })
+    },
+
+    mounted: function () {
+        this.get_path_information()
     }
 }
 </script>

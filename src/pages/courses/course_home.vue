@@ -9,11 +9,26 @@ import CourseSelection from '@/components/courses_page/courses_selection.vue'
 import Login from '@/components/common_components/sign_on_up/login.vue'
 import Footer from '@/components/common_components/footer/footer.vue'
 
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     components: {
         CourseSelection
+    },
+    methods: {
+        ...mapActions({
+            change_courses_content: 'coursesCategory/change_courses_content',
+            change_courses_category: 'coursesCategory/change_courses_category'
+        })
+    },
+    watch: {
+        '$route': function () {
+            this.change_courses_content(this.$route.query)
+        }
+    },
+    mounted: function () {
+        this.change_courses_category()
+        this.change_courses_content(this.$route.query)
     }
 }
 </script>

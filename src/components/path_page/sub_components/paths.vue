@@ -9,8 +9,8 @@
     </div>
 </template>
 <script type="text/javascript">
-import FloatCard from '../../common_components/cards/float_card.vue'
-import { mapState, mapActions } from 'vuex'
+import FloatCard from '@/components/common_components/cards/float_card.vue'
+import { mapState } from 'vuex'
 
 export default {
     components: {
@@ -21,16 +21,6 @@ export default {
         ...mapState({
             path_information: state => state.path.path_information
         })
-    },
-
-    methods: {
-        ...mapActions({
-            get_path_information: 'path/change_path_information'
-        })
-    },
-
-    created: function () {
-        this.get_path_information()
     }
 }
 </script>

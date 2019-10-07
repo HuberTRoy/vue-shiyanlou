@@ -48,13 +48,8 @@ export default {
     },
     methods: {
         ...mapActions({
-            get_related_stuff: 'questions/get_related_stuff',
             checkin: 'user/checkin'
         })
-    },
-    created: function () {
-        this.get_related_stuff()
-        this.checkin({'method': 'GET'})
     }
 }
 

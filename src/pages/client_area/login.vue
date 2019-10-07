@@ -25,7 +25,7 @@ export default {
             }            
         }
     },
-    created: function () {
+    mounted: function () {
         if (this.logged) {
             this.$router.push({name: 'Home'})
         }

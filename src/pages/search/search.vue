@@ -7,16 +7,31 @@
     
 import SearchPage from '@/components/search_page/search.vue'
 
-import { mapState } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
     components: {
         SearchPage
     },
+    methods: {
+        ...mapActions({
+            'change_search_result': 'search/change_search_result'
+        })
+    },
     watch: {
-        '$route': function () {
+        '$route': function (newRoute) {
             document.title = `${this.$route.query.keywords}的搜索结果 - 实验楼`
+            this.change_search_result({
+                'type': 'course',
+                'search': this.$route.query.keywords
+            })    
         }
+    },
+    mounted: function () {
+        this.change_search_result({
+            'type': 'course',
+            'search': this.$route.query.keywords
+        })
     }
 }
 </script>

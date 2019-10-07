@@ -41,16 +41,6 @@ export default {
             if (!this.$route.query.topic) {
                 return this.index_content
             }
-            // {
-            //    prev: '',
-            //    next: '',
-            //    results: {}
-            // } to
-            // {
-            //    prev: '',
-            //    next: '',
-            //    blocks: [{'topic': route.query.topic, books: results}]   
-            // }
             // 好像没有上一页下一页的需求...
             let c = this.library_content
             let newC = {'previous': c.previous, 'next': c.next, blocks:[{
@@ -59,18 +49,7 @@ export default {
             }]}
             return newC
         }
-    },
-    methods: {
-        ...mapActions({
-            change_library_content: 'library/change_library_content'
-        })
-    },
-    watch: {
-        '$route': function (newQuery) {
-            this.change_library_content(this.$route.query)
-        }
     }
-
 }
 </script>
 <style type="text/css" scoped>

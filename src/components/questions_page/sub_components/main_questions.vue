@@ -20,28 +20,6 @@ export default {
     components: {
         Navbar,
         QuestionList
-    },
-
-    computed: {
-        ...mapGetters({
-            query_args: 'questions/router_args'
-        })
-    },
-
-    methods: {
-        ...mapActions({
-            get_question_list: 'questions/change_question_list_information'
-        })
-    },
-
-    watch: {
-        '$route': function () {
-            this.get_question_list(this.query_args)
-        }
-    },
-
-    created: function () {
-        this.get_question_list(this.query_args)
     }
 }
 

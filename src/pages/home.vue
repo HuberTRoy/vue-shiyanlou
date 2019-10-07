@@ -72,7 +72,7 @@ export default {
         SiteDescription,
     },
 
-    beforeCreate: function () {
+    mounted: function () {
         this.$store.dispatch('home/get_and_change_home_content')
     }
 }

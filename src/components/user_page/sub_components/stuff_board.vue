@@ -59,9 +59,7 @@ export default {
     methods: {
         tab_nav: function (title) {
             this.$store.dispatch('user/change_user_stuff', {
-                'nav_title': title,
-                // 'id': this.user_id,
-                // 'type': 'studied'
+                'nav_title': title
             })
         }
     },
@@ -69,9 +67,6 @@ export default {
         '$route': function () {
             this.tab_nav('课程')
         }
-    },
-    created: function () {
-        this.tab_nav('课程')
     }
 }
 

@@ -21,25 +21,10 @@
 import MainReports from './sub_components/main_reports.vue'
 import Side from './sub_components/side.vue'
 
-import { mapActions } from 'vuex'
-
 export default {
     components: {
         MainReports,
         Side
-    },
-    methods: {
-        ...mapActions({
-            change_reports_information: 'reports/change_labreports_information'
-        })
-    },
-    watch: {
-        '$route': async function (newRoute) {
-            await this.change_reports_information({
-                page_size: 16,
-                ...this.$route.query
-            })
-        }
     }
 }
 

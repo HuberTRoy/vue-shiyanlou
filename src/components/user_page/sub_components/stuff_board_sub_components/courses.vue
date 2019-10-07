@@ -39,7 +39,6 @@ export default {
             user_id: state => state.user.user_id
         })
     },
-
     methods: {
         tab_courses: function (navTitle) {
             this.$store.dispatch('user/change_courses_nav', navTitle)
@@ -62,9 +61,6 @@ export default {
         '$route': function () {
             this.tab_courses('studied')
         }
-    },
-    created: function () {
-        this.tab_courses('studied')
     }
 }
 

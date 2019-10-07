@@ -14,25 +14,6 @@ export default {
     components: {
         MainSearch,
         Side
-    },
-    methods: {
-        ...mapActions({
-            'change_search_result': 'search/change_search_result'
-        })
-    },
-    watch: {
-        '$route': function (newRoute) {
-            this.change_search_result({
-                'type': 'course',
-                'search': this.$route.query.keywords
-            })    
-        }
-    },
-    created: function () {
-        this.change_search_result({
-            'type': 'course',
-            'search': this.$route.query.keywords
-        })
     }
 }
 
