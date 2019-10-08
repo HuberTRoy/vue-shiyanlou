@@ -178,4 +178,9 @@ export default {
     background-color: #08bf91;
 }
 
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
 </style>
