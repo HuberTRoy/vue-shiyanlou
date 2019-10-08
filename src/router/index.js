@@ -152,6 +152,14 @@ const router = new Router({
         }
     },
     {
+        path: '/contests',
+        name: 'contests',
+        component: __import__('contests/contests'),
+        meta: {
+            title: '编程比赛_编程能力测试_IT挑战_实验楼比赛 - 实验楼'
+        }
+    },
+    {
         path: '*',
         name: 'notfound',
         component: __import__('404'),

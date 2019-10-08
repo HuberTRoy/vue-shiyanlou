@@ -18,6 +18,7 @@ import comments from './modules/comments/comments.js'
 import reports from './modules/reports/reports.js'
 import warningBar from './modules/warning_bar/warning_bar.js'
 import live from './modules/live/live.js'
+import contests from './modules/contests/contests.js'
 
 Vue.use(Vuex)
 
@@ -41,7 +42,8 @@ export default new Vuex.Store({
         comments,
         reports,
         warningBar,
-        live
+        live,
+        contests
     },
   strict: debug
   // plugins: debug ? [createLogger()] : []
