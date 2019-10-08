@@ -119,9 +119,13 @@
                             </router-link>
                         </li>
                         <li class="sub_community_li">
-                            <a href="#12" class="sub_community_a">
+                            <router-link tag="a" 
+                                         class="sub_community_a"
+                                         :to="{ name: 'contests' }"
+
+                            >
                                 比赛
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                 </li>

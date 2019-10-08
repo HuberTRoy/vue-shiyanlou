@@ -82,9 +82,13 @@
                                 </router-link>
                             </li>
                             <li class="scroll_sub_li">
-                                <a href="#12" class="scroll_sub_a">
+                                <router-link tag="a" 
+                                             class="scroll_sub_a"
+                                             :to="{ name: 'contests' }"
+
+                                >
                                     比赛
-                                </a>
+                                </router-link>
                             </li>
                         </ul>
                     </li>
