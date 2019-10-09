@@ -183,7 +183,6 @@ export default {
 }
 
 .course_categories_li {
-    /*width: 100%;*/
     height: 58px;
     padding: 18px 12px 0;
     margin-top: -1px;
@@ -192,10 +191,11 @@ export default {
 
 /* 大分类里 div1 的设置*/
 .course_categories_div {
-    /*z-index: 5;*/
     height: 100%;
     margin-top: -1px;
     border-bottom: 1px solid #bcbcbc;
+    display: flex;
+    align-items: center;
 }
 
 .course_button {
@@ -348,9 +348,6 @@ export default {
 }
 
 /* 推广区 */
-.ads_a {
-    /*position: absolute;*/
-}
 
 .ads_img {
     width: 100%;
@@ -362,7 +359,7 @@ export default {
 
 .ads_li {
     position: absolute;
-    left: 20px;
+    left: 15px;
 }
 
 .ad_transition_group-enter-active {
