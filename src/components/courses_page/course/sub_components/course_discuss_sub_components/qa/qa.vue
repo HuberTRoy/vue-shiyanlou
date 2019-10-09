@@ -1,10 +1,5 @@
 <template>
    <div class="qa_div">
-<!--        <a href="javascript:;" class="submit_qa">
-           我要提问
-       </a>
-       <hr class="split_hr"> -->
-
        <div class="question_div">
            <QaItem v-for="(qa, index) in qa_information.results"
                    :key="index"
@@ -41,7 +36,7 @@ export default {
         })
     },
 
-    created: function () {
+    mounted: function () {
         this.get_qa({
             'course_id': this.$route.params.id,
             'page': 1

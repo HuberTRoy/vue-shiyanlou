@@ -28,10 +28,9 @@
         </ul>
 
         <div class="stuff_div">
-            <Courses v-if="nav_title==='课程'"></Courses>
-            <Paths v-if="nav_title==='路径'"></Paths>
-            <Reports v-if="nav_title==='报告'"></Reports>
-            <Discuss v-if="nav_title==='讨论'"></Discuss>
+            <keep-alive>
+                <component :is="stuff_component_dict[nav_title]"></component>
+            </keep-alive>
         </div>
     </div>
 </template>
@@ -49,6 +48,16 @@ export default {
         Paths,
         Reports,
         Discuss
+    },
+    data: function () {
+        return {
+            stuff_component_dict: {
+                '课程': 'Courses',
+                '路径': 'Paths',
+                '报告': 'Reports',
+                '讨论': 'Discuss'
+            }
+        }
     },
     computed: {
         ...mapState({

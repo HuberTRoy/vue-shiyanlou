@@ -19,10 +19,11 @@
     </div>
 </template>
 <script type="text/javascript">
-import { mapState } from 'vuex'
 import ReportCategoryItem from './report_category_item.vue'
 import ReportContent from './report_content.vue'
 import TabPage from './report_tab_page.vue'
+
+import { mapState, mapActions } from 'vuex'
 
 export default {
     components: {
@@ -33,7 +34,21 @@ export default {
 
     computed: {
         ...mapState({
-            lab_info: state => state.course.course_labs[0]
+            lab_info: state => state.course.course_labs[0],
+            course_id: state => state.course.course_information.id,
+            args: state => state.course.course_report_args
+        })
+    },
+    methods: {
+        ...mapActions({
+            get_report: 'course/change_report_information'
+        })
+    },
+
+    mounted: function () {
+        this.get_report({
+            'course_id': this.course_id,
+            'page_size': this.args.page_size
         })
     }
 }

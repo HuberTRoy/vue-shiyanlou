@@ -32,24 +32,10 @@
             </ul>
         </div>
         <div class="discuss_main_div">
-            <div class="discuss_comments_div"
-                 v-show="nav==='comment'"
-            >
-                <CourseCommentDialog :_name="'course'"></CourseCommentDialog>
-                <CourseComments :_name="'course'"></CourseComments>
-            </div>
-
-            <div class="discuss_report_div"
-                 v-show="nav==='report'"
-            >
-                <CourseReport></CourseReport>
-            </div>
-
-            <div class="discuss_qa_div"
-                 v-show="nav==='qa'"
-            >
-                <CourseQA></CourseQA>
-            </div>
+            <CourseCommentDialog :_name="'course'" v-show="nav==='comment'"></CourseCommentDialog>
+            <keep-alive>
+                <component :is="discuss_component_dict[nav]" :_name="'course'"></component>
+            </keep-alive>
         </div>
     </div>
 </template>
@@ -70,7 +56,15 @@ export default {
         CourseReport,
         CourseQA
     },
-
+    data: function () {
+            return {
+                discuss_component_dict: {
+                    'comment': 'CourseComments',
+                    'report': 'CourseReport',
+                    'qa': 'CourseQA'
+                }
+            }
+    },
     computed: {
         ...mapState({
             nav: state => state.course.course_discuss_nav,
@@ -99,10 +93,6 @@ export default {
     border: none;
     border-bottom: 1px solid #eee;
     display: flex;
-}
-
-.discuss_nav_li {
-
 }
 
 .discuss_nav_a {
