@@ -102,7 +102,7 @@ import CourseSideContent from './sub_components/course_side_content.vue'
 import CourseRelated from './sub_components/course_related.vue'
 import Card from '../../common_components/cards/card.vue'
 
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -120,11 +120,8 @@ export default {
   computed: {
     ...mapState({
       course_info: state => state.course.course_information,
-      scrolled: state => state.scrollBar.currentScrolledValue > 50,
-      scroll_value: state => state.scrollBar.currentScrolledValue,
-    }),
-    ...mapGetters({
-        document_height: 'scrollBar/documentHeight'
+      scrolled: state => state.scrollBar.current_scrolled_value > 50,
+      scroll_value: state => state.scrollBar.current_scrolled_value,
     }),
     scroll_end: function () {
         let body = document.body

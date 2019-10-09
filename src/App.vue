@@ -37,20 +37,16 @@ export default {
   },
   methods: {
     ...mapActions({
-        monitingScroll: 'scrollBar/updateScrollValue',
+        moniting_scrollbar: 'scrollBar/update_scroll_value',
         get_user_info: 'loginState/change_user_info',
         get_studied_courses: 'loggedInfo/change_user_studied_courses'
-    }),
-    x: function () {
-      let t = 1
-      console.log(t)
-    }
+    })
   },
   
   computed: {
     ...mapState({
       sign_on: state => state.loginState.sign_on,
-      scrolled: state => state.scrollBar.currentScrolledValue > 50,
+      scrolled: state => state.scrollBar.current_scrolled_value > 50,
       show_index_scroll_bar: function (state) {
         if (this.$route.name == 'Home') {
             return state.scrollBar.show_scroll_bar
@@ -78,7 +74,7 @@ export default {
       this.get_studied_courses()
     }
 
-    window.addEventListener('scroll', utils.throttle(this.monitingScroll, 90))
+    window.addEventListener('scroll', utils.throttle(this.moniting_scrollbar, 90))
   }
 }
 </script>

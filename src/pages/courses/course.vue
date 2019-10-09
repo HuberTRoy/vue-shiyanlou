@@ -18,7 +18,7 @@ export default {
     },
     computed: {
         ...mapState({
-            scrolled: state => state.scrollBar.currentScrolledValue > 50,
+            scrolled: state => state.scrollBar.current_scrolled_value > 50,
             course_info: state => state.course.course_information,
             sign_on: state => state.loginState.sign_on
         })
