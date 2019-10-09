@@ -22,6 +22,8 @@ import ScrollBar from '@/components/common_components/scroll_bar/scroll_bar.vue'
 import Login from '@/components/common_components/sign_on_up/login.vue'
 import WarningBar from '@/components/common_components/warning_bar/warning_bar.vue'
 
+import utils from '@/utils/base.js'
+
 import { mapState, mapActions } from 'vuex'
 
 
@@ -38,7 +40,11 @@ export default {
         monitingScroll: 'scrollBar/updateScrollValue',
         get_user_info: 'loginState/change_user_info',
         get_studied_courses: 'loggedInfo/change_user_studied_courses'
-    })
+    }),
+    x: function () {
+      let t = 1
+      console.log(t)
+    }
   },
   
   computed: {
@@ -66,19 +72,17 @@ export default {
     })
   },
 
-  created () {
+  mounted () {
     if (this.sign_on) {
       this.get_user_info()
       this.get_studied_courses()
     }
-  },
 
-  mounted () {
-    window.addEventListener('scroll', this.monitingScroll)
+    window.addEventListener('scroll', utils.throttle(this.monitingScroll, 90))
   }
 }
 </script>
-
+ 
 <style>
 html {
   scroll-behavior: smooth;
