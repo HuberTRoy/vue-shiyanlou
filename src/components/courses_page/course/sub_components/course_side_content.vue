@@ -61,7 +61,7 @@
                  <div v-if="sign_on==false">
                      <button class="btn course_side_base_btn join_in_course_button" 
                              v-if="course_info.fee_type==='free'"
-                             @click="join_course()"
+                             @click="show_login('on')"
                              >加入课程
                      </button>
                      <a href="https://www.shiyanlou.com/vip" target="_blank" class="btn course_side_base_btn join_member_button" 
@@ -70,8 +70,8 @@
                      </a>
                      <button class="btn course_side_base_btn buy_course_button" 
                              v-if="course_info.fee_type==='bootcamp'"
+                             @click="show_login('on')"
                              >立即购买
-                             <!-- @click="join_course()" -->
                      </button>
                 </div>
                 <div v-else>
@@ -142,7 +142,8 @@ export default {
     methods: {
         ...mapActions({
             change_follow: 'course/change_follow',
-            join: 'course/join_course'
+            join: 'course/join_course',
+            show_login: 'loginState/change_show_state'
         }),
 
         _change_follow: function (isFollow) {

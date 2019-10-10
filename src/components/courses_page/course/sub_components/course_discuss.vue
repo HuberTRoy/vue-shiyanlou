@@ -76,6 +76,9 @@ export default {
         ...mapActions({
             change_discuss_nav: 'course/change_discuss_nav'
         })
+    },
+    mounted: function () {
+        this.change_discuss_nav('comment')
     }
 }
 </script>

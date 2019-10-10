@@ -13,14 +13,19 @@
             </ReportCategoryItem>
         </div>
         <div class="expertimental_report_content">
-            <ReportContent></ReportContent>
+            <ReportContentItem class="report_content_item"
+                               v-for="(item, index) in report_info.results"
+                               :key="index"
+                               :data="item"
+            >
+            </ReportContentItem>
         </div>
         <TabPage :pageType="'report'"></TabPage>
     </div>
 </template>
 <script type="text/javascript">
 import ReportCategoryItem from './report_category_item.vue'
-import ReportContent from './report_content.vue'
+import ReportContentItem from '@/components/common_components/report_item/report_content_item.vue'
 import TabPage from './report_tab_page.vue'
 
 import { mapState, mapActions } from 'vuex'
@@ -28,14 +33,14 @@ import { mapState, mapActions } from 'vuex'
 export default {
     components: {
         ReportCategoryItem,
-        ReportContent,
+        ReportContentItem,
         TabPage
     },
 
     computed: {
         ...mapState({
             lab_info: state => state.course.course_labs[0],
-            course_id: state => state.course.course_information.id,
+            report_info: state => state.course.report_information,            
             args: state => state.course.course_report_args
         })
     },
@@ -61,4 +66,12 @@ export default {
     flex-wrap: wrap;
 }
 
+.expertimental_report_content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.report_content_item {
+    width: 25%;
+}
 </style>

@@ -38,14 +38,11 @@ export default {
     },
     methods: {
         ...mapActions({
-            // change_cursor: 'path/change_cursor',
             get_reports: 'course/change_report_information' 
         }),
         tab_page: function (cursor) {
-            // this.change_cursor(cursor)
             this.get_reports({
                 'course_id': this.$route.params.id,
-                // 'topic_type': 'course',
                 'lab_id': this.lab_id,
                 'page_size': 16,
                 'cursor': cursor
