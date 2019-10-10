@@ -25,9 +25,7 @@
                     </div>
                 </div>
             </router-link>
-            <!-- </a> -->
         </div>
-        <!-- </div> -->
     </div>
 </template>
 
@@ -142,10 +140,6 @@ export default {
     justify-content: space-between;
     align-items: baseline;
 }
-
-/*.course_information_div p {
-    padding: 4px 0 0 ;
-}*/
 
 /* course_type css设计 */
 .course_type_p {

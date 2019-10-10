@@ -96,10 +96,11 @@ export default {
 
 .course_description {
     display: -webkit-box;
-    height: 60px;
     overflow: hidden;
     word-break: break-word;
     text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     font-size: 14px;
     color: #666;
     margin-bottom: 0;
