@@ -134,7 +134,8 @@ export default {
 
 /* 这个是右边的布局也是一个flex布局，方向是 column */
 .author_main_div {
-    width: 100%;
+    /*width: 100%;*/
+    flex-grow: 1;
     padding: 0 0 0 5px;
     display: flex;
     flex-direction: column;
@@ -170,6 +171,7 @@ export default {
     font-size: 14px;
     line-height: 1.6;
     margin-bottom: 10px;
+    word-break: break-word;
 }
 
 .comment_info_div {
