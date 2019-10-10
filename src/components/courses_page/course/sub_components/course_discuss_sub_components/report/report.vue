@@ -47,7 +47,7 @@ export default {
 
     mounted: function () {
         this.get_report({
-            'course_id': this.course_id,
+            'course_id': this.$route.params.id,
             'page_size': this.args.page_size
         })
     }
