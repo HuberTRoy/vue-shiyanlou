@@ -1,4 +1,4 @@
-# vue-shiyanlou
+<h2 align="center"> Vue-shiyanlou </h2>
 
 啊哈！ (〃'▽'〃)
 
@@ -6,12 +6,12 @@
 
 选择实验楼原因也很简单：实验楼的设计个人很喜欢，简单鲜明一目了然，但实际用`CSS`实现起来又不乏一些“高级”用法，动画，过渡，纯`CSS`小箭头等等都可以从实验楼的源码中学习到。前后端分离通过一步步分析API慢慢搭建出整个页面的过程仿佛真的参与其中，抓取API分析HTTP，处理登录逻辑，筛选课程，购买课程，发帖回帖参与讨论等等都可以慢慢从中抽丝剥茧般的熟悉起来。
 
-[线上展示 (Github Page)](http://www.cyrbuzz.xyz)
+:tada: [线上展示 (Github Page)](http://www.cyrbuzz.xyz)
 
-# 技术栈
+## :muscle:技术栈
 	vue2 + vuex + vue-router + axios + webpack + ES6/7 + flex
 
-# 项目运行(本地)
+## :rocket: 项目运行(本地)
     git clone git@github.com:HuberTRoy/vue-shiyanlou.git
 
     cd vue-shiyanlou
@@ -20,47 +20,47 @@
 
     npm run dev
 
-# 关于接口数据
+## :facepunch: 关于接口数据
     实验楼API不能跨域,需要再写一个代理。
     用Django写了个简单的后端转发。
     没有API的话是没有数据可以展示的呦~。
 
 [代理请求API后端](https://github.com/HuberTRoy/vue-shiyanlou-backend)
 
-# 说明
+## :wink: 说明
 > 如果对您有帮助，希望可以得到一枚您的Star\~。(〃'▽'〃)
 
 > 有任何可以改进的地方希望您可以花费一些时间开启一个Issue或者直接PR\~。φ(>ω<\*) 
 
-# 总结
+## :relaxed: 总结
 
 1. 自己想要学习前端，看到Vue框架比较火热，上手简单功能也很强大于是学习了起来，无奈的是搜索到的项目大部分都比较简单，不是TODO就是音乐播放器，逻辑没有想象中的复杂。(；´д｀)ゞ
 2. 在 Github 搜索时看到大佬用 Vue 写的饿了么应用，于是自己也想试试实现一个这样的应用。(o°ω°o)
 3. 实验楼的编程课在初学时很友好，界面自己也很喜欢。慢慢模仿下来如在里面学习一样，页面逻辑刚开始会简单些，学习`HTML,CSS`基础就可以摸索着写出来，随着越来越多的内容，动画，过渡也慢慢浮现出来，同时处理登录，查看状态，绑定邮箱，发布内容，参与讨论等等一系列逻辑复杂的东西也进入眼帘。╮(￣▽￣)╭
 4. 整个项目从`vue-cli`自动生成开始，未配置任何东西，直接上手就开始写了，跟随`commit`的话可以找到各种初学时可能会犯的错误以及未注意到的地方，比如一开始没有用`CSS`框架，也没有统一的`CSS`文件归类，导致每个组件里越写重复的越多，之后才恍然大悟，喔...`class`和框架的作用原来是这样用的，但同时也通过这样全部都写的原生`CSS`得以一窥`CSS`真容。｡◕ᴗ◕｡
-5. 项目初步已经完成，包括子页面在内有20+个页面，完全独立的页面有16个，可以抓取到的API有46个，配合后端的API转发可以得到实验楼真实数据，进行真实交互。ヽ(•ω•ゞ)
+5. 项目初步已经完成，包括子页面在内有20+个页面，完全独立的页面有18个，可以抓取到的API有53个，配合后端的API转发可以得到实验楼真实数据，进行真实交互。ヽ(•ω•ゞ)
 6. 项目还有大量可以优化的地方，并未完全完成。(￣▽￣)／
 
-# 部分截图
+## :camera: 部分截图
 
-## 首页
+### 首页
 ![首页1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/index/index2.png)
 ![首页2](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/index/transition.gif)
 
-## 路径
+### 路径
 ![路径1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/path/1.png)
 
-## 课程
+### 课程
 ![课程1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/courses/1.png)
 ![课程2](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/courses/2.png)
 
-## 社区讨论
+### 社区讨论
 ![社区1](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/questions/1.png)
 ![社区2](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/questions/2.png)
 ![社区3](https://github.com/HuberTRoy/vue-shiyanlou/blob/master/screenshots/questions/3.png)
 
 
-# 目标
+## :loudspeaker: 目标
 
 TODO 前端部分
 
@@ -168,7 +168,7 @@ TODO 后端(代理)配合部分
 - [x] `route`优化, 加入切换动画使其更加平滑切换。
 - [ ] 细微处1px优化。
 
-# 目录结构
+## :mag_right: 目录结构
 ```   
 api                           存放各类需要与后端交互获取数据的api   
     courses   
