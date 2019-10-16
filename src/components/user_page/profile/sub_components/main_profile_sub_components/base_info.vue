@@ -104,7 +104,9 @@ export default {
             get_upload_key: 'profile/get_upload_key',
             get_upload_domain: 'profile/get_qiniu_api',
             _upload_avatar: 'profile/upload_avatar',
-            change_avatar_url: 'loginState/change_avatar_by_url'
+            change_avatar_url: 'loginState/change_avatar_by_url',
+            change_warning_message: 'warningBar/change_message',
+            change_warning_bar_style_class: 'warningBar/change_warning_bar_style_class'
         }),
         _save_base_info: async function () {
             // Json
@@ -127,7 +129,15 @@ export default {
                 data['job_title'] = this.job_title
             }
             let response = await this.save_base_info(data)
-            this.change_base_info_by_data(response.data)
+            if (response.status === 200) {
+                this.change_base_info_by_data(response.data)
+                this.change_warning_message('保存成功')
+                this.change_warning_bar_style_class('success')
+
+            } else {
+                this.change_warning_message('未知错误')
+                this.change_warning_bar_style_class('alert')
+            }
         },
         get_upload_name: function () {
             // courses/uid1146797-20190920-1568960683910

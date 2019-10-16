@@ -6,19 +6,10 @@
          -->
 
         <div class="client_area_login_header_div">
-        登录
-        </div>
-        <!--  这个应该抽象到每个页面都包含的公共组件里 位置 fixed 可设置message 和 background, 只穿数据就可以的那种不用单独设置。
-        直接copy过来,这里有个BUG,
-        当在Login页面吊起nav_bar里的登录登录时，如果登录错误会出现两个错误提示。
-         -->
-        <div class="login_error_message alert alert-danger"
-             :class="[show_login_error_message ? 'show_login_error_message' : '']"
-        >
-            {{ message }}
+            登录
         </div>
         <div class="client_area_login_box">
-         <SignOn :input_id="'client_area_autologin'"></SignOn>
+            <SignOn :input_id="'client_area_autologin'"></SignOn>
         </div>
     </div>    
 </template>
@@ -50,11 +41,16 @@ export default {
                     this.show_login_error_message = false
                 }, 3000)
             }
+
+            this.change_warning_message(newMessage)
+            this.change_warning_bar_style_class('alert')
         }
     },
     methods: {
         ...mapActions({
-            change_message: 'loginState/change_message'
+            change_message: 'loginState/change_message',
+            change_warning_message: 'warningBar/change_message',
+            change_warning_bar_style_class: 'warningBar/change_warning_bar_style_class'
         })
     }
 }
