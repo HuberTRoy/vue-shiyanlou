@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import store from '@/store/index.js'
 
 Vue.use(Router)
 
@@ -108,7 +108,8 @@ const router = new Router({
         name: 'userProfile',
         component: __import__('user/profile/profile'),
         meta: {
-            title: '个人设置 - 实验楼'
+            title: '个人设置 - 实验楼',
+            login: true
         }
     },
     {
@@ -172,6 +173,15 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title
+    if (to.meta.login) {
+        if (!store.state.loginState.sign_on) {
+            next({
+                path: '/login'
+            })
+        } else {
+            next()
+        }
+    }
     next()   
 })
 

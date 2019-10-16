@@ -10,7 +10,9 @@
         </ScrollBar>
     </transition>
     <transition name="tab_router_view">
-      <router-view></router-view>
+      <keep-alive :include="cache_router">  
+        <router-view></router-view>
+      </keep-alive>
     </transition>
     <Footer v-show="show_index_footer"></Footer>
   </div>
@@ -34,6 +36,11 @@ export default {
     ScrollBar,
     Login,
     WarningBar
+  },
+  data: function () {
+    return {
+      cache_router: ['Home', 'path', 'library', 'login', 'notfound']
+    }
   },
   methods: {
     ...mapActions({
