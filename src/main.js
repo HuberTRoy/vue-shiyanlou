@@ -4,8 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import store from './store/index.js'
 import router from './router/index.js'
+import utils from '@/utils/base.js'
 
 Vue.config.productionTip = false
+Vue.prototype.utils = utils
 
 /* eslint-disable no-new */
 /* eslint-disable indent */

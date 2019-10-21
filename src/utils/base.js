@@ -26,5 +26,35 @@ export default {
                 }, delay)
             }
         }
+    },
+    img_lazyload (args) {
+        // 图片懒加载
+        // args:
+        //  callback: 默认。
+        //  options: 观察的选项。
+        //  selector: 选择器，默认img。
+        function loadimg (img) {
+            if (!img.dataset.src) {
+                return
+            }
+            img.src = img.dataset.src
+        }
+        function default_callback (entries, self) {
+            entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                loadimg(entry.target)
+                self.unobserve(entry.target)
+            }
+            })
+        }
+
+        let callback = args.callback ? args.callback : default_callback
+        let options = args.options ? args.options : {}
+        let selector = args.selector ? args.selector : 'img'
+
+        let observer = new IntersectionObserver(callback, options)
+
+        let queries = Array.from(document.querySelectorAll(selector))
+        queries.forEach((item) => { observer.observe(item) })
     }
 }

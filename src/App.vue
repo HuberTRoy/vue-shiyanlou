@@ -24,8 +24,6 @@ import ScrollBar from '@/components/common_components/scroll_bar/scroll_bar.vue'
 import Login from '@/components/common_components/sign_on_up/login.vue'
 import WarningBar from '@/components/common_components/warning_bar/warning_bar.vue'
 
-import utils from '@/utils/base.js'
-
 import { mapState, mapActions } from 'vuex'
 
 
@@ -81,7 +79,8 @@ export default {
       this.get_studied_courses()
     }
 
-    window.addEventListener('scroll', utils.throttle(this.moniting_scrollbar, 90))
+    window.addEventListener('scroll', this.utils.throttle(this.moniting_scrollbar, 90))
+  
   }
 }
 </script>
@@ -106,9 +105,9 @@ body {
 
 img {
     height: 100%;
-    /*width: inherit;*/
     border: 0;
     vertical-align: middle;
+    transition: all .3s ease-in-out;
 }
 
 ul {
