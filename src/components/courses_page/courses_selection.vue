@@ -82,16 +82,18 @@
                 </div>
             </div>
         </div>
-        <div class="courses_div">
-            <CourseCard
-                class="courses_selection_course_card"
-                v-for="(course_info, index) in courses_content['results']"
-                :key="index"
-                :data="course_info"
-            >
+        <v-loader :source="courses_content">
+            <div class="courses_div">
+                <CourseCard
+                    class="courses_selection_course_card"
+                    v-for="(course_info, index) in courses_content['results']"
+                    :key="index"
+                    :data="course_info"
+                >
 
-            </CourseCard>
-        </div>
+                </CourseCard>
+            </div>
+        </v-loader>
         <TabPage>
         </TabPage>
     </div>
@@ -134,7 +136,7 @@ export default {
 }
 
 </script>
-<style type="text/css" scoped>
+<style scoped>
 .courses_category {
     width: 1170px;
     padding: 0 5px;

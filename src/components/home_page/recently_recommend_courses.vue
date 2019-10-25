@@ -1,56 +1,58 @@
 <template>
-    <div class="recently_recommend_courses">
-        <Title class="recently_recommend_course_div_title"
-               :title="recently_recommend_courses_content['classify_name'] + ' | '"
-               :description="recently_recommend_courses_content['description']"
-        >
-        </Title>
+    <v-loader :source="recently_recommend_courses_content">
+        <div class="recently_recommend_courses">
+            <Title class="recently_recommend_course_div_title"
+                   :title="recently_recommend_courses_content['classify_name'] + ' | '"
+                   :description="recently_recommend_courses_content['description']"
+            >
+            </Title>
 
-        <div class="outer_recently_recommend_courses_div">
-            <transition-group
-            :name="turn_direction=='right' ? 'recently_recommend_courses_transition_right' : 'recently_recommend_courses_transition_left'"
-            tag="ul"
-            class="recently_recommend_courses_ul">
-                <li v-for="(courses, index) in recently_recommend_courses_content['courses']"
-                     :key="courses[0].id"
-                     class="recently_recommend_courses_li"
-                     v-show="current_index==index"
+            <div class="outer_recently_recommend_courses_div">
+                <transition-group
+                :name="turn_direction=='right' ? 'recently_recommend_courses_transition_right' : 'recently_recommend_courses_transition_left'"
+                tag="ul"
+                class="recently_recommend_courses_ul">
+                    <li v-for="(courses, index) in recently_recommend_courses_content['courses']"
+                         :key="courses[0].id"
+                         class="recently_recommend_courses_li"
+                         v-show="current_index==index"
+                    >
+                            <CourseCard class="recently_recommend_courses_card"
+                                        v-for="(course,index) in courses"
+                                        :key="index"
+                                        :data="course"
+                            >
+
+                            </CourseCard>
+
+                    </li>
+                </transition-group>
+                <div class="tab_courses_div">
+                    <a @click="turn_left"
+                       href="javascript:1"
+                       class="tab_courses_a tab_courses_a_left">
+                        <span class="tab_courses_button tab_courses_button_left"></span>
+                    </a>
+                    <a @click="turn_right"
+                       href="javascript:1"
+                       class="tab_courses_a tab_courses_a_right">
+                        <span class="tab_courses_button tab_courses_button_right"></span>
+                    </a>
+                </div>
+
+                <div class="shadow_div"
+                     :class="has_turn? 'shadow_div_left':''"
                 >
-                        <CourseCard class="recently_recommend_courses_card"
-                                    v-for="(course,index) in courses"
-                                    :key="index"
-                                    :data="course"
-                        >
 
-                        </CourseCard>
+                </div>
+                <div class="shadow_div2"
+                     :class="has_turn? 'shadow_div_right':''"
+                >
 
-                </li>
-            </transition-group>
-            <div class="tab_courses_div">
-                <a @click="turn_left"
-                   href="javascript:1"
-                   class="tab_courses_a tab_courses_a_left">
-                    <span class="tab_courses_button tab_courses_button_left"></span>
-                </a>
-                <a @click="turn_right"
-                   href="javascript:1"
-                   class="tab_courses_a tab_courses_a_right">
-                    <span class="tab_courses_button tab_courses_button_right"></span>
-                </a>
-            </div>
-
-            <div class="shadow_div"
-                 :class="has_turn? 'shadow_div_left':''"
-            >
-
-            </div>
-            <div class="shadow_div2"
-                 :class="has_turn? 'shadow_div_right':''"
-            >
-
+                </div>
             </div>
         </div>
-    </div>
+    </v-loader>
 </template>
 
 <script type="text/javascript">

@@ -5,9 +5,11 @@ import App from './App'
 import store from './store/index.js'
 import router from './router/index.js'
 import utils from '@/utils/base.js'
+import Plugins from '@/plugins/index.js'
 
 Vue.config.productionTip = false
 Vue.prototype.utils = utils
+Vue.use(Plugins)
 
 /* eslint-disable no-new */
 /* eslint-disable indent */

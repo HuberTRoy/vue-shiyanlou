@@ -1,14 +1,16 @@
 <template>
-    <div class="question_list">
-        <QuestionItem v-for="(question, index) in question_list_info.results"
-                      :key="index"
-                      :data="question"
+    <v-loader :source="question_list_info">
+        <div class="question_list">
+            <QuestionItem v-for="(question, index) in question_list_info.results"
+                          :key="index"
+                          :data="question"
 
-        ></QuestionItem>
-        <TabPage
-        :pageType="'question_list'"
-        ></TabPage>
-    </div>
+            ></QuestionItem>
+            <TabPage
+            :pageType="'question_list'"
+            ></TabPage>
+        </div>
+    </v-loader>
 </template>
 <script type="text/javascript">
 import QuestionItem from '@/components/common_components/qa_item/qa_item.vue'

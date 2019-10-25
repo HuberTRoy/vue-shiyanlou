@@ -1,15 +1,17 @@
 <template>
-   <div class="qa_div">
-       <div class="question_div">
-           <QaItem v-for="(qa, index) in qa_information.results"
-                   :key="index"
-                   :data="qa"
-            >
-           </QaItem>
-       </div>
-       <TabPage :pageType="'qa'">
-       </TabPage>
-   </div>
+    <div class="qa_div">
+        <v-loader :source="qa_information">
+           <div class="question_div">
+               <QaItem v-for="(qa, index) in qa_information.results"
+                       :key="index"
+                       :data="qa"
+                >
+               </QaItem>
+           </div>
+        </v-loader>
+        <TabPage :pageType="'qa'">
+        </TabPage>
+    </div>
 </template>
 
 <script type="text/javascript">

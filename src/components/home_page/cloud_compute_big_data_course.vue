@@ -1,29 +1,31 @@
 <template>
-    <div class="cloud_compute_big_data_course_div">
-        <Title class="cloud_compute_big_data_course_div_title"
-               :title="cloud_compute_big_data_course_content['classify_name']"
-        >
-
-        </Title>
-
-        <div class="cloud_compute_big_data_normal_card_div">
-            <NormalCard class="cloud_compute_big_data_normal_card"
-                        :data="cloud_compute_big_data_course_content.recommend_course ?
-                        cloud_compute_big_data_course_content.recommend_course : {}"
+    <v-loader :source="cloud_compute_big_data_course_content">
+        <div class="cloud_compute_big_data_course_div">
+            <Title class="cloud_compute_big_data_course_div_title"
+                   :title="cloud_compute_big_data_course_content['classify_name']"
             >
 
-            </NormalCard>
-        </div>
-        <div class="cloud_compute_big_data_stretch_card_div">
-            <CourseCard class="cloud_compute_big_data_course_card"
-                        v-for="(course,index) in cloud_compute_big_data_course_content['courses']"
-                        :key="index"
-                        :data="course"
-            >
+            </Title>
 
-            </CourseCard>
+            <div class="cloud_compute_big_data_normal_card_div">
+                <NormalCard class="cloud_compute_big_data_normal_card"
+                            :data="cloud_compute_big_data_course_content.recommend_course ?
+                            cloud_compute_big_data_course_content.recommend_course : {}"
+                >
+
+                </NormalCard>
+            </div>
+            <div class="cloud_compute_big_data_stretch_card_div">
+                <CourseCard class="cloud_compute_big_data_course_card"
+                            v-for="(course,index) in cloud_compute_big_data_course_content['courses']"
+                            :key="index"
+                            :data="course"
+                >
+
+                </CourseCard>
+            </div>
         </div>
-    </div>
+    </v-loader>
 </template>
 
 <script type="text/javascript">

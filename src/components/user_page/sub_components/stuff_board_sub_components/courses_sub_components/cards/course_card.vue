@@ -54,21 +54,23 @@
                  :style="{ right: arrow_right }"
             ></div>
             <div class="stuff_board_course_q_r_content">
-                <Loading v-if="loading_state"></Loading>
-                <div class="course_card_report_content" v-if="q_r_transform==='r' && loading_state===false">
-                    <ReportItem class="course_report_item"
-                                v-for="(report, index) in course_report.items"
+                <!-- <Loading v-if="loading_state"></Loading> -->
+                <v-loader :source="[course_report, course_question]">
+                    <div class="course_card_report_content" v-if="q_r_transform==='r'">
+                        <ReportItem class="course_report_item"
+                                    v-for="(report, index) in course_report.items"
+                                    :key="index"
+                                    :data="report"
+                        ></ReportItem>
+                    </div>
+                    <div class="course_card_question_content" v-if="q_r_transform==='q'">
+                        <QaItem class="course_card_qa_item"
+                                v-for="(question, index) in course_question.results"
                                 :key="index"
-                                :data="report"
-                    ></ReportItem>
-                </div>
-                <div class="course_card_question_content" v-if="q_r_transform==='q' && loading_state===false">
-                    <QaItem class="course_card_qa_item"
-                            v-for="(question, index) in course_question.results"
-                            :key="index"
-                            :data="question"
-                    ></QaItem>
-                </div>
+                                :data="question"
+                        ></QaItem>
+                    </div>
+                </v-loader>
             </div>
          </div>
     </div>

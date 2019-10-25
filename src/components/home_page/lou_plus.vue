@@ -5,17 +5,19 @@
                :description="'定期开班，导师助教全程辅导，最快最优成长'"
         >
         </Title>
-        <div class="item_card">
-            <Card class="lou_plus_card"
-                  v-for="(data, index) in index_louplus "
-                  v-if="index<4"
-                  :key="index"
-                  :data="data"
-            >
+        <v-loader :source="index_louplus">
+            <div class="item_card">
+                <Card class="lou_plus_card"
+                      v-for="(data, index) in index_louplus "
+                      v-if="index<4"
+                      :key="index"
+                      :data="data"
+                >
 
-            </Card>
+                </Card>
 
-        </div>
+            </div>
+        </v-loader>
     </div>
 </template>
 

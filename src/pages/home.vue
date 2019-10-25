@@ -1,36 +1,36 @@
 <template>
     <div id="home_page">
-        <NavigationBar v-if="home_content">
+        <NavigationBar>
         </NavigationBar>
 
-        <MainNavigation v-if="home_content">
+        <MainNavigation>
         </MainNavigation>
 
-        <LouPlus v-if="home_content">
+        <LouPlus>
         </LouPlus>
 
-        <Boutique v-if="home_content">
+        <Boutique>
         </Boutique>
 
-        <RecentlyRecommendCourse v-if="home_content">
+        <RecentlyRecommendCourse>
         </RecentlyRecommendCourse>
 
-        <BaseCourse v-if="home_content">
+        <BaseCourse>
         </BaseCourse>
 
-        <BackendCourse v-if="home_content">
+        <BackendCourse>
         </BackendCourse>
 
-        <CloudComputeBigDataCourse v-if="home_content">
+        <CloudComputeBigDataCourse>
         </CloudComputeBigDataCourse>
 
-        <TrainingCourse v-if="home_content">
+        <TrainingCourse>
         </TrainingCourse>
 
-        <LearningPath v-if="home_content">
+        <LearningPath>
         </LearningPath>
 
-        <SiteDescription v-if="home_content">
+        <SiteDescription>
         </SiteDescription>
     </div>
 </template>
@@ -49,15 +49,7 @@ import BaseCourse from '@/components/home_page/base_course.vue'
 import TrainingCourse from '@/components/home_page/training_course.vue'
 import SiteDescription from '@/components/home_page/site_description.vue'
 
-import { mapState } from 'vuex'
-
 export default {
-    computed: {
-        ...mapState({
-            home_content: state => state.home.home_content
-            })
-    },
-
     components: {
         NavigationBar,
         MainNavigation,

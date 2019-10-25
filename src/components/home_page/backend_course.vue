@@ -1,28 +1,30 @@
 <template>
-    <div class="backend_course_div">
-        <Title class="backend_course_div_title"
-               :title="backend_course_content.classify_name"
-        >
-
-        </Title>
-
-        <div class="backend_normal_card_div">
-            <NormalCard class="backend_normal_card"
-                        :data="backend_course_content.recommend_course ? backend_course_content.recommend_course : {}"
+    <v-loader :source="backend_course_content">
+        <div class="backend_course_div">
+            <Title class="backend_course_div_title"
+                   :title="backend_course_content.classify_name"
             >
 
-            </NormalCard>
-        </div>
-        <div class="backend_stretch_card_div">
-            <CourseCard class="backend_course_card"
-                        v-for="(course,index) in backend_course_content['courses']"
-                        :key="index"
-                        :data="course"
-            >
+            </Title>
 
-            </CourseCard>
+            <div class="backend_normal_card_div">
+                <NormalCard class="backend_normal_card"
+                            :data="backend_course_content.recommend_course ? backend_course_content.recommend_course : {}"
+                >
+
+                </NormalCard>
+            </div>
+            <div class="backend_stretch_card_div">
+                <CourseCard class="backend_course_card"
+                            v-for="(course,index) in backend_course_content['courses']"
+                            :key="index"
+                            :data="course"
+                >
+
+                </CourseCard>
+            </div>
         </div>
-    </div>
+    </v-loader>
 </template>
 
 <script type="text/javascript">

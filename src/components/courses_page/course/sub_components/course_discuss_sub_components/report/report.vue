@@ -12,14 +12,16 @@
             >
             </ReportCategoryItem>
         </div>
-        <div class="expertimental_report_content">
-            <ReportContentItem class="report_content_item"
-                               v-for="(item, index) in report_info.results"
-                               :key="index"
-                               :data="item"
-            >
-            </ReportContentItem>
-        </div>
+        <v-loader :source="report_info">
+            <div class="expertimental_report_content">
+                <ReportContentItem class="report_content_item"
+                                   v-for="(item, index) in report_info.results"
+                                   :key="index"
+                                   :data="item"
+                >
+                </ReportContentItem>
+            </div>
+        </v-loader>
         <TabPage :pageType="'report'"></TabPage>
     </div>
 </template>

@@ -18,15 +18,17 @@
                 </li>
             </ul>
         </div>
-        <div class="current_comments">
-            <CommentsItem v-for="item in comments.results"
-                          :key="item.id"
-                          :data="item"
-            ></CommentsItem>
-            <TabPage
-            :_name="_name"
-            ></TabPage>
-        </div>
+        <v-loader :source="comments">
+            <div class="current_comments">
+                <CommentsItem v-for="item in comments.results"
+                              :key="item.id"
+                              :data="item"
+                ></CommentsItem>
+            </div>
+        </v-loader>
+        <TabPage
+        :_name="_name"
+        ></TabPage>
     </div>
 </template>
 <script type="text/javascript">

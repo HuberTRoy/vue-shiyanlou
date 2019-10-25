@@ -1,24 +1,26 @@
 <template>
-    <div class="boutique_course_div">
-        <Title class="boutique_course_div_title"
-               :title="boutique_course_content['classify_name'] + ' | '"
-               :description="boutique_course_content['description']"
-        >
+    <v-loader :source="boutique_course_content">
+        <div class="boutique_course_div">
+            <Title class="boutique_course_div_title"
+                   :title="boutique_course_content['classify_name'] + ' | '"
+                   :description="boutique_course_content['description']"
+            >
 
-        </Title>
-        <NormalCard class="boutique_normal_card"
-                    :data="boutique_course_content['recommend_course'] ? boutique_course_content['recommend_course'] : {}"
-        >
+            </Title>
+            <NormalCard class="boutique_normal_card"
+                        :data="boutique_course_content['recommend_course'] ? boutique_course_content['recommend_course'] : {}"
+            >
 
-        </NormalCard>
-        <CourseCard class="boutique_course_card"
-                    v-for="(course,index) in boutique_course_content['courses']"
-                    :key="index"
-                    :data="course"
-        >
+            </NormalCard>
+            <CourseCard class="boutique_course_card"
+                        v-for="(course,index) in boutique_course_content['courses']"
+                        :key="index"
+                        :data="course"
+            >
 
-        </CourseCard>
-    </div>
+            </CourseCard>
+        </div>
+    </v-loader>
 </template>
 
 <script type="text/javascript">
