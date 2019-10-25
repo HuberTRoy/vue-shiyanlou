@@ -158,7 +158,7 @@ const actions = {
             if (report.state) {
                 context.commit('change_loading_state', false)
             }
-            context.commit('change_courses_report', report)
+            context.commit('change_courses_report', report.data)
         }, function (error) {
             console.log(error)
         })
