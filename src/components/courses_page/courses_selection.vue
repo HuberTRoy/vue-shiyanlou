@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <v-loader :source="courses_content">
+        <v-loader :source="courses_content" :funcs="['/api/v2/courses']">
             <div class="courses_div">
                 <CourseCard
                     class="courses_selection_course_card"
@@ -94,16 +94,20 @@
                 </CourseCard>
             </div>
         </v-loader>
-        <TabPage>
+        <TabPage :change_current_page="change_current_page"
+                 :showing_page_info="showing_page_info"
+                 :current_page="current_page"
+                 :all_page="all_page"
+        >
         </TabPage>
     </div>
 </template>
 
 <script type="text/javascript">
-import CourseCard from '../common_components/cards/course_card.vue'
-import TabPage from './sub_components/tab_page.vue'
+import CourseCard from '@/components/common_components/cards/course_card.vue'
+import TabPage from '@/components/common_components/tab_page/tab_page_with_pager.vue'
 
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
     components: {
@@ -119,7 +123,12 @@ export default {
             current_category_order: state => state.coursesCategory.current_category_order,
             current_type_order: state => state.coursesCategory.current_type_order,
             courses_content: state => state.coursesCategory.courses_content,
-            courses_category: state => state.coursesCategory.courses_category
+            courses_category: state => state.coursesCategory.courses_category,
+            current_page: state => state.coursesCategory.current_page,
+            all_page: state => state.coursesCategory.all_page
+        }),
+        ...mapGetters({
+            showing_page_info: 'coursesCategory/showing_page_info'
         })
     },
 
@@ -130,7 +139,8 @@ export default {
             change_current_tag: 'coursesCategory/change_current_tag',
             change_current_base_order: 'coursesCategory/change_current_base_order',
             change_current_category_order: 'coursesCategory/change_current_category_order',
-            change_current_type_order: 'coursesCategory/change_current_type_order'
+            change_current_type_order: 'coursesCategory/change_current_type_order',
+            change_current_page: 'coursesCategory/change_current_page'
         })
     }
 }

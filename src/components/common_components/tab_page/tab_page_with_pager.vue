@@ -38,27 +38,24 @@
     </div>
 </template>
 <script type="text/javascript">
-import { mapState, mapGetters, mapActions } from 'vuex'
-
 export default {
-    computed: {
-        ...mapState({
-            current_page: state => state.coursesCategory.current_page,
-            all_page: state => state.coursesCategory.all_page
-        }),
-        ...mapGetters({
-            showing_page_info: 'coursesCategory/showing_page_info'
-        })
-
-    },
-
-    methods: {
-        ...mapActions({
-            change_current_page: 'coursesCategory/change_current_page'
-        })
+    props: {
+        change_current_page: {
+            type: Function,
+            require: true
+        },
+        showing_page_info: {
+            type: Array,
+            require: true
+        },
+        current_page: {
+            require: true
+        },
+        all_page: {
+            require: true
+        }
     }
 }
-
 </script>
 <style type="text/css" scoped>
 .tab_page_div {

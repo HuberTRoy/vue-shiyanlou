@@ -48,16 +48,22 @@
                         :data="question"
                 ></QaItem>
             </div>
-            <TabPage></TabPage>
+            <TabPage
+            :next="() => { tab_page('n') }"
+            :prev="() => { tab_page('p') }"
+            >
+            </TabPage>
          </div>
      </div>
 </template>
 <script type="text/javascript">
 import CourseCard from '@/components/common_components/cards/course_card.vue'
 import QaItem from '@/components/common_components/qa_item/qa_item.vue'
-import TabPage from './main_search_sub_components/tab_page.vue'
+import TabPage from '@/components/common_components/tab_page/tab_page.vue'
 
 import { mapState, mapActions } from 'vuex'
+
+import utils from '@/utils/base.js'
 
 export default {
     components: {
@@ -67,14 +73,30 @@ export default {
     },
     data: function () {
         return {
-            // nav: 'course',
             keywords: ''
         }
     },
     computed: {
         ...mapState({
             search_result: state => state.search.search_result,
-            nav: state => state.search.nav
+            nav: state => state.search.nav,
+            prev: function (state) { 
+                let p = state.search.search_result.previous
+                if (p) {
+
+                    p = utils.translate_query(p.split('?')[1])
+                    return {'page': p.page ? p.page : 1, 'type': p.type ? p.type : this.nav}
+                }
+                return ''
+            },
+            next: function (state) {
+                let n = state.search.search_result.next
+                if (n) {
+                    n = utils.translate_query(n.split('?')[1])
+                    return {'page': n.page ? n.page : 1, 'type': n.type ? n.type : this.nav}
+                }
+                return ''
+            }
         })
     },
     methods: {
@@ -89,6 +111,33 @@ export default {
                 search: this.keywords
             })
             // get the data
+
+        },
+        tab_page: function (types) {
+            let args = {
+                'type': '',
+                'page': '',
+                'search': this.$route.query.keywords
+            }
+
+            if (types=='p') {
+                if (!this.prev) {
+                    return
+                }
+                args['type'] = this.prev.type
+                args['page'] = this.prev.page
+            } else if (types=='n') {
+                if (!this.next) {
+                    return
+                }
+                args['type'] = this.next.type
+                args['page'] = this.next.page
+            }
+
+            this.change_search_result(args)   
+            
+            let t = document.getElementsByClassName('search_page_main_search_div')[0]
+            t.scrollIntoView(true)
 
         }
     },

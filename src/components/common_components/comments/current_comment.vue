@@ -27,7 +27,8 @@
             </div>
         </v-loader>
         <TabPage
-        :_name="_name"
+        :next="() => tab_page(next)"
+        :prev="() => tab_page(prev)"
         ></TabPage>
     </div>
 </template>
@@ -35,7 +36,9 @@
 import { mapState, mapActions } from 'vuex'
 
 import CommentsItem from './comments_item.vue'
-import TabPage from './comments_tab_page.vue'
+import TabPage from '@/components/common_components/tab_page/tab_page.vue'
+
+import utils from '@/utils/base.js'
 
 export default {
     props: {
@@ -44,35 +47,37 @@ export default {
             require: true
         }
     },
+    components: {
+        CommentsItem,
+        TabPage
+    },
     computed: {
         ...mapState({
             comments: state => state.comments.comment_information,
             page_size: state => state.comments.comment_args.page_size,
             current_page: state => state.comments.comment_args.current_page,
             id: function () { return this.$route.params.id },
-            isLogin: state => state.loginState.sign_on
+            isLogin: state => state.loginState.sign_on,
+            prev: state => { 
+                let p = state.comments.comment_information.previous
+                if (p) {
+                    p = utils.translate_query(p.split('?')[1])
+                    p = decodeURIComponent(p.cursor)
+                    return p
+                }
+                return ''
+            },
+            next: state => {
+                let n = state.comments.comment_information.next
+                if (n) {
+                    n = utils.translate_query(n.split('?')[1])
+                    n = decodeURIComponent(n.cursor)
+                    return n
+                }
+                return ''
+            }
         })
     },
-
-    methods: {
-        ...mapActions({
-            get_comments: 'comments/change_comment_information',
-            change_comments_userstatus: 'comments/change_comments_userstatus'
-        })
-    },
-    components: {
-        CommentsItem,
-        TabPage
-    },
-
-    created: function () {
-        this.get_comments({
-            'topic_id': this.id,
-            'page_size': this.page_size,
-            'topic_type': this._name
-        })
-    },
-
     watch: {
         '$route': async function () {
             await this.get_comments({
@@ -91,6 +96,28 @@ export default {
             }
             this.change_comments_userstatus({'comment_ids': comment_ids.join(',')})
         }
+    },
+    methods: {
+        ...mapActions({
+            get_comments: 'comments/change_comment_information',
+            change_comments_userstatus: 'comments/change_comments_userstatus'
+        }),
+        tab_page: function (cursor) {
+            this.get_comments({
+                'topic_id': this.$route.params.id,
+                'topic_type': this._name,
+                'page_size': 15,
+                'cursor': cursor
+            })
+        }
+    },
+
+    created: function () {
+        this.get_comments({
+            'topic_id': this.id,
+            'page_size': this.page_size,
+            'topic_type': this._name
+        })
     }
 }
 </script>

@@ -29,22 +29,31 @@
                     </a>
                 </div>
             </div>
-            <div class="main_reports_content_reports">
-                <ReportCard class="main_reports_content_report"
-                            v-for="(report,index) in labreports_information.results"
-                            :key="index"
-                            :data="report"
-                >
-                </ReportCard>
-            </div>
-            <TabPage></TabPage>
+            <v-loader :source="labreports_information">
+                <div class="main_reports_content_reports">
+                    <ReportCard class="main_reports_content_report"
+                                v-for="(report,index) in labreports_information.results"
+                                :key="index"
+                                :data="report"
+                    >
+                    </ReportCard>
+                </div>
+            </v-loader>
+            <TabPage
+            :next="() => { tab_page(next) }"
+            :prev="() => { tab_page(prev) }"
+            >
+            </TabPage>
         </div>     
     </div>
 </template>
 <script type="text/javascript">
 import ReportCard from '@/components/common_components/report_item/report_content_item.vue'
-import TabPage from './tab_page.vue'
+import TabPage from '@/components/common_components/tab_page/tab_page.vue'
+
 import { mapState, mapActions } from 'vuex'
+
+import utils from '@/utils/base.js'
 
 export default {
     components: {
@@ -54,7 +63,25 @@ export default {
     computed: {
         ...mapState({
             labreports_information: state => state.reports.labreports_information,
-            sort: state => state.reports.reports_args.sort
+            sort: state => state.reports.reports_args.sort,
+            prev: function (state) { 
+                let p = state.reports.labreports_information.previous
+                if (p) {
+                    p = utils.translate_query(p.split('?')[1])
+                    p = decodeURIComponent(p.cursor)
+                    return p
+                }
+                return ''
+            },
+            next: function (state) {
+                let n = state.reports.labreports_information.next
+                if (n) {
+                    n = utils.translate_query(n.split('?')[1])
+                    n = decodeURIComponent(n.cursor)
+                    return n
+                }
+                return ''
+            }
         })
     },
     methods: {
@@ -68,6 +95,13 @@ export default {
                 ...this.$route.query,
                 'sort': sort
             }})
+        },
+        tab_page: function (cursor) {
+            this.get_labreports({
+                'page_size': 16,
+                'cursor': cursor,
+                ...this.$route.query
+            })
         }
     },
     created: async function () {

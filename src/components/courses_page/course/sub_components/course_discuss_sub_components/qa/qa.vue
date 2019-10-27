@@ -9,7 +9,10 @@
                </QaItem>
            </div>
         </v-loader>
-        <TabPage :pageType="'qa'">
+        <TabPage 
+        :next="() => { tab_page(current_page+1) }"
+        :prev="() => { tab_page(current_page-1) }"
+        >
         </TabPage>
     </div>
 </template>
@@ -17,7 +20,7 @@
 <script type="text/javascript">
 import { mapState, mapActions } from 'vuex'
 import QaItem from '@/components/common_components/qa_item/qa_item.vue'
-import TabPage from './qa_tab_page.vue'
+import TabPage from '@/components/common_components/tab_page/tab_page.vue'
 
 export default {
     components: {
@@ -28,14 +31,31 @@ export default {
     computed: {
         ...mapState({
             course_id: state => state.course.course_id,
-            qa_information: state => state.course.qa_information
+            qa_information: state => state.course.qa_information,
+            current_page: state => state.course.qa_information.page,
+            next: state => state.course.qa_information.next
         })
     },
 
     methods: {
         ...mapActions({
-            get_qa: 'course/change_qa_information'
-        })
+            get_qa: 'course/change_qa_information',
+            change_qa_args: 'course/change_qa_args'
+        }),
+        tab_page: function (page) {
+            if (page<1) {
+                return
+            }
+
+            if (!this.next && page > this.current_page) {
+                return 
+            }
+
+            this.get_qa({
+                'course_id': this.$route.params.id,
+                'page': page
+            })
+        }
     },
 
     mounted: function () {
