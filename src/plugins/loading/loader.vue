@@ -16,45 +16,64 @@
 </template>
 
 <script>
+import Vue from 'vue'
 
 export default {
   props: {
     source: {
       require: true
     },
-    funcs: {
+    urls: {
       type: Array,
       default: () => new Array()
     }
   },
-  data () {
+  data: function () {
     return {
-      isLoading: true, // default is true
+      isLoading: true,
+      _urls: () => new Array()
     }
   },
   methods: {
-    hookFuncs: function () {
-      // Add a hook that will set isLoading true before all funcs call.
-      for (let func of this.funcs) {
-        let oldFunc = this.$parent[func]
-        this.$parent[func] = () => {
-          this.isLoading = true
-          oldFunc()
+    translate: function (url) {
+        // Remove query.
+        url = url.split('?')[0]
+        // Remove domain.
+        if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1) {
+            url = url.split('/').slice(3,).join('/')
         }
-      }
-    }
+
+        if (!url) {
+            return '/'
+        }
+
+        if (url[0] !== '/') {
+            return `/${url}`
+        }
+
+        return url
+    } 
   },
   watch: {
     source: function () {
       // If data were not empty then change isLoading to false.
-      console.log(this.source)
       if (this.source) {
         this.isLoading = false
       }
     }
   },
   mounted: function () {
-    this.hookFuncs()
+    if (this.urls) {
+      this._urls = this.urls.map(this.translate)
+      this.__loader_checks.push((key, value) => {
+        console.log(this._urls)
+        console.log(key)
+        if (this._urls.indexOf(key) !== -1) {
+          this.isLoading = true
+        }
+      })
+    }
+
   }
 }
 </script>

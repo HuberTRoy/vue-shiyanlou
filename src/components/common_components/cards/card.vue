@@ -6,21 +6,20 @@
                      target="_blank"
                      :href="data.html_url"
         >
-                     <!-- :to="{ name: 'course', params: {id: data.course_id} }" -->
             <img :src="data.picture_url" class="normal_card_img">
         </a>
     </div>
 </template>
 
 <script type="text/javascript">
-    export default {
-        props: {
-            data: {
-                type: Object,
-                require: true
-            }
+export default {
+    props: {
+        data: {
+            type: Object,
+            require: true
         }
     }
+}
 </script>
 
 <style type="text/css" scoped>

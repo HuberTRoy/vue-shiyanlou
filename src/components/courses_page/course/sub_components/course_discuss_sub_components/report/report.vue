@@ -12,7 +12,7 @@
             >
             </ReportCategoryItem>
         </div>
-        <v-loader :source="report_info">
+        <v-loader :source="report_info" :urls="['api/v2/labreports/']">
             <div class="expertimental_report_content">
                 <ReportContentItem class="report_content_item"
                                    v-for="(item, index) in report_info.results"

@@ -34,6 +34,7 @@ export default {
         //  options: 观察的选项。
         //  selector: 选择器，默认img。
         function loadimg (img) {
+            // console.log(img.dataset.src)
             if (!img.dataset.src) {
                 return
             }
@@ -43,18 +44,36 @@ export default {
             entries.forEach(entry => {
             if (entry.isIntersecting) {
                 loadimg(entry.target)
-                self.unobserve(entry.target)
+                // self.unobserve(entry.target)
             }
             })
         }
 
         let callback = args.callback ? args.callback : default_callback
-        let options = args.options ? args.options : {}
+        let options = args.options ? args.options : {
+            threshold: [0, 1]
+        }
         let selector = args.selector ? args.selector : 'img'
 
         let observer = new IntersectionObserver(callback, options)
 
         let queries = Array.from(document.querySelectorAll(selector))
-        queries.forEach((item) => { observer.observe(item) })
+        queries.forEach((item) => { 
+            // console.log(item.)
+            if (!item.dataset.observer) {
+                observer.observe(item) 
+                item.dataset.observer = true
+            }
+        })
+    },
+    translate_query: function (queryString) {
+        // x=1&y=2
+        // to {x:1,y:2}
+        let q = {}
+        for (let i of queryString.split('&')) {
+            let temp = i.split('=')
+            q[temp[0]] = temp[1]
+        }
+        return q
     }
 }

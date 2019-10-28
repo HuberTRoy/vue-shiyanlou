@@ -90,21 +90,18 @@ const actions = {
   },
 
   change_question_list_information (context, questionListArgs) {
-    // let qLInformation = QuestionListApi.get_question_list(questionListArgs)
     QuestionListApi.get_question_list(questionListArgs).then((questionsList) => {
       context.commit('change_question_list_information', questionsList.data)
     })
   },
 
-  change_current_page (context, pageArgs) {
-    // pageNumber
-    // pageType
-    if (pageArgs.pageNumber === '...' ||
-            pageArgs.pageNumber === '... ') {
+  change_current_page (context, page) {
+    // 去尾空格，非重要。
+    if (page === '...' || page === '... ') {
       return
     }
 
-    context.commit('change_current_page', pageArgs.pageNumber)
+    context.commit('change_current_page', page)
     context.dispatch('router_to')
   },
 

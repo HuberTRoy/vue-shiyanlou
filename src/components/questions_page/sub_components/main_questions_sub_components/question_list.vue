@@ -1,17 +1,17 @@
 <template>
-    <v-loader :source="question_list_info">
+    <v-loader :source="question_list_info" :urls="['api/v2/questions']">
         <div class="question_list">
             <QuestionItem v-for="(question, index) in question_list_info.results"
                           :key="index"
                           :data="question"
 
             ></QuestionItem>
-            <TabPage :change_current_page="change_current_page"
-                     :showing_page_info="showing_page_info"
-                     :all_page="total_page"
-                     :current_page="current_page"
-            ></TabPage>
         </div>
+        <TabPage :change_current_page="change_current_page"
+                 :showing_page_info="showing_page_info"
+                 :all_page="total_page"
+                 :current_page="current_page"
+        ></TabPage>
     </v-loader>
 </template>
 <script type="text/javascript">

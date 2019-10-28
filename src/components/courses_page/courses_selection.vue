@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <v-loader :source="courses_content" :funcs="['/api/v2/courses']">
+        <v-loader :source="courses_content" :urls="['/api/v2/courses']">
             <div class="courses_div">
                 <CourseCard
                     class="courses_selection_course_card"

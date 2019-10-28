@@ -11,9 +11,6 @@ Vue.config.productionTip = false
 Vue.prototype.utils = utils
 Vue.use(Plugins)
 
-/* eslint-disable no-new */
-/* eslint-disable indent */
-/* eslint-disable */
 new Vue({
   el: '#app',
   router,
@@ -21,3 +18,4 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+

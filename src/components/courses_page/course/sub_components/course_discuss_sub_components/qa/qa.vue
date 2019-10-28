@@ -1,6 +1,6 @@
 <template>
     <div class="qa_div">
-        <v-loader :source="qa_information">
+        <v-loader :source="qa_information" :urls="['api/v2/questions/']">
            <div class="question_div">
                <QaItem v-for="(qa, index) in qa_information.results"
                        :key="index"
