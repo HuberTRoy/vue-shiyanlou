@@ -16,8 +16,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-
 export default {
   props: {
     source: {
@@ -66,8 +64,6 @@ export default {
     if (this.urls) {
       this._urls = this.urls.map(this.translate)
       this.__loader_checks.push((key, value) => {
-        console.log(this._urls)
-        console.log(key)
         if (this._urls.indexOf(key) !== -1) {
           this.isLoading = true
         }
