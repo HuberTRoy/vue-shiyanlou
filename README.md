@@ -18,7 +18,7 @@
 
     npm install
 
-    npm run dev
+    npm run serve
 
 ## :facepunch: 关于接口数据
     实验楼API不能跨域,需要再写一个代理。
