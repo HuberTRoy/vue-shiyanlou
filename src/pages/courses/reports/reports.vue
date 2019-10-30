@@ -6,7 +6,7 @@
 <script type="text/javascript">
 import Reports from '@/components/courses_page/reports/reports.vue'
 
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
     components: {
@@ -19,7 +19,7 @@ export default {
         })
     },
     watch: {
-        '$route': async function (newRoute) {
+        '$route': async function () {
             await this.change_reports_information({
                 page_size: 16,
                 ...this.$route.query

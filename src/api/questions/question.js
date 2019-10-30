@@ -1,5 +1,4 @@
 import axios from 'axios'
-import cookies from 'vue-cookies'
 import { apiUrl } from '@/api/base.js'
 
 export default {

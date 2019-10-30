@@ -8,11 +8,9 @@
 
 import Publish from '@/components/publish_page/publish.vue'
 
-import { mapState } from 'vuex'
-
 export default {
     components: {
-        Publish,
+        Publish
     },
 }
 </script>

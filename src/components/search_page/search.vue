@@ -8,8 +8,6 @@
 import MainSearch from './sub_components/main_search.vue'
 import Side from './sub_components/side.vue'
 
-import { mapActions } from 'vuex'
-
 export default {
     components: {
         MainSearch,

@@ -72,7 +72,7 @@ const mutations = {
 }
 
 const actions = {
-  router_to ({ state, getters }) {
+  router_to ({ getters }) {
     router.push({
       path: '/questions',
       query: getters.router_args
@@ -112,10 +112,6 @@ const actions = {
     RelatedStuffApi.get_recently_louplus().then((response) => {
       context.commit('change_related_stuff', {'index': 'recently_louplus', 'data': response.data})
     })
-
-    console.log()
-    // let relatedStuff = RelatedStuffApi.get_related_stuff()
-    // context.commit('change_related_stuff', relatedStuff)
   }
 }
 

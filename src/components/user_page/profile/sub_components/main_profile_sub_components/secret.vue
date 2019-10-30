@@ -76,7 +76,7 @@ import PhoneSetting from './secret_sub_components/phone_setting.vue'
 import MailSetting from './secret_sub_components/mail_setting.vue'
 import PasswordSetting from './secret_sub_components/password_setting.vue'
 
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
     components: {

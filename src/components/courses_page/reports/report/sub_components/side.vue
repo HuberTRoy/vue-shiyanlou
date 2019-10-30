@@ -21,7 +21,7 @@
              <div class="report_side_block">
                  <p class="report_side_header">相关报告</p>
                  <div class="report_side_related_report" 
-                      v-for="(report, index) in related"
+                      v-for="(report) in related"
                       :key="report.id"
                  >
                      <router-link tag="span"
@@ -35,7 +35,7 @@
     </div>
 </template>
 <script type="text/javascript">
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
     data: function () {

@@ -26,7 +26,7 @@
 <script type="text/javascript">
 import LibraryCard from '@/components/common_components/cards/library_card.vue'
 
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
     components: {

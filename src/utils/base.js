@@ -44,7 +44,7 @@ export default {
             entries.forEach(entry => {
             if (entry.isIntersecting) {
                 loadimg(entry.target)
-                // self.unobserve(entry.target)
+                self.unobserve(entry.target)
             }
             })
         }

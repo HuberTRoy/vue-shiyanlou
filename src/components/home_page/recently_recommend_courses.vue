@@ -80,7 +80,7 @@ export default {
     },
 
     methods: {
-        turn_left: function (a) {
+        turn_left: function () {
             this.turn_direction = 'left'
             this.has_turn = true
             if (this.current_index - 1 >= 0) {
@@ -92,7 +92,7 @@ export default {
             setTimeout(function () { _this.has_turn = false }, 600)
         },
 
-        turn_right: function (a) {
+        turn_right: function () {
             this.turn_direction = 'right'
             this.has_turn = true
             if (this.current_index + 1 > this.recently_recommend_courses_content['courses'].length - 1) {

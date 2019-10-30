@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { apiUrl } from '@/api/base.js'
-import cookies from 'vue-cookies'
 
 export default {
     get_comments (commentArgs) {

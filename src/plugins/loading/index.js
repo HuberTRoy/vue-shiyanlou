@@ -4,6 +4,8 @@ import VueLoader from './loader.vue'
 
 export default {
     install (Vue, options) {
+        // no options now.
+        options
         // Callback functions.
         // Computed and Watch cannot moniting this data when set or delete item.
         // Every item setting will call all functions on it.

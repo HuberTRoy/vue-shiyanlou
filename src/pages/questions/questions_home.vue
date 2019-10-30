@@ -8,7 +8,7 @@
 
 import Questions from '@/components/questions_page/questions.vue'
 
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     components: {

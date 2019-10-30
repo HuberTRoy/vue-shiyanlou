@@ -234,11 +234,19 @@ const actions = {
     change_follow (context, query) {
         if (query.is_follow === true) {
             courseApi.follow(query).then((response)=> {
-                context.commit('change_follow', true)
+                // # TODO
+                // error tip.
+                if (response.status === 200 || response.status === 204) {
+                    context.commit('change_follow', true)
+                }
             })
         } else {
             courseApi.unfollow(query).then((response)=> {
-                context.commit('change_follow', false)
+                // # TODO
+                // error tip.
+                if (response.status === 200 || response.status === 204) {
+                    context.commit('change_follow', false)
+                }
             })
         }
     },
@@ -246,7 +254,11 @@ const actions = {
     join_course (context, query) {
         let id = query.id
         courseApi.join_course(query).then((response) => {
-            window.location = 'http://www.shiyanlou.com/courses/' + id + '/learning/'
+            // # TODO
+            // error tip
+            if (response.status === 204) {
+                window.location = 'http://www.shiyanlou.com/courses/' + id + '/learning/'
+            }
         })
     },
 
@@ -275,8 +287,9 @@ const actions = {
     },
 
     delete_comment (context, query) {
-        courseCommentApi.delete_comment(query).then((response) => {
-            // context.commit('delete_comment', query.id)
+        courseCommentApi.delete_comment(query).then(() => {
+            // # TODO
+            // error tip
             context.dispatch('change_comment_information', {
                 'topic_id': context.state.course_id,
                 'page_size': 15,

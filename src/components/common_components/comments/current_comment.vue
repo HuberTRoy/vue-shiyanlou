@@ -86,7 +86,7 @@ export default {
                 'topic_type': this._name
             })            
         },
-        comments: function (newComments, oldComments) {
+        comments: function (newComments) {
             if (!this.isLogin) {
                 return
             }

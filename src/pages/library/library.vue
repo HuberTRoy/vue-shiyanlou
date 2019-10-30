@@ -7,7 +7,7 @@
 <script type="text/javascript">
 import Library from '@/components/library_page/library.vue'
 
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
     components: {
@@ -20,7 +20,7 @@ export default {
         })
     },
     watch: {
-        '$route': function (newQuery) {
+        '$route': function () {
             this.change_library_content(this.$route.query)
         }
     },

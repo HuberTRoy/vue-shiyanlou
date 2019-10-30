@@ -100,9 +100,8 @@ import CourseTeacher from './sub_components/course_teacher.vue'
 import CourseDiscuss from './sub_components/course_discuss.vue'
 import CourseSideContent from './sub_components/course_side_content.vue'
 import CourseRelated from './sub_components/course_related.vue'
-import Card from '../../common_components/cards/card.vue'
 
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -114,8 +113,7 @@ export default {
     CourseTeacher,
     CourseDiscuss,
     CourseSideContent,
-    CourseRelated,
-    Card
+    CourseRelated
   },
   computed: {
     ...mapState({

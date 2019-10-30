@@ -6,7 +6,7 @@ export default {
     get_challenges (args) {
         return axios.get(`${apiUrl}/v2/challenges/`, { params: args })
     },
-    get_challenges_tags (args) {
+    get_challenges_tags () {
         return axios.get(`${apiUrl}/v2/challenges/tags/`)
     },
     get_challenges_userstatus (args) {

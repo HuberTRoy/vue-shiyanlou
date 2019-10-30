@@ -33,7 +33,7 @@ export default {
         })
     },
     watch: {
-        message: function (newMessage, oldMesssage) {
+        message: function (newMessage) {
             if (newMessage) {
                 this.show_login_error_message = true
                 setTimeout(()=>{

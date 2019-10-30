@@ -8,8 +8,6 @@
 import MainQuestion from './sub_components/main_question.vue'
 import Side from './sub_components/side.vue'
 
-import { mapActions } from 'vuex'
-
 export default {
     components: {
         MainQuestion,

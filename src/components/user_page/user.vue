@@ -30,7 +30,7 @@ import VisitedUser from './sub_components/visited_user.vue'
 import LearningRecord from './sub_components/learning_record.vue'
 import StuffBoard from './sub_components/stuff_board.vue'
 
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
     components: {

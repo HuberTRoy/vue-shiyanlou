@@ -88,7 +88,7 @@ export default {
     },
 
     watch: {
-        user_info: function (newUserInfo, oldUserInfo) {
+        user_info: function (newUserInfo) {
             this.nickname = newUserInfo.name
             this.school = newUserInfo.scholl
             this.job_title = newUserInfo.job_title

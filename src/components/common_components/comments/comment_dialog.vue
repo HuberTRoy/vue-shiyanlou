@@ -87,7 +87,7 @@ export default {
             })
         },
 
-        _cancel: function (id) {
+        _cancel: function () {
             this.cancel(0)
             this.init_text("请输入您想说的话...")
         }   

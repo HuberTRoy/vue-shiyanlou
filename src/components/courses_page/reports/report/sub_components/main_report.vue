@@ -49,7 +49,7 @@ import VueMarkDown from 'vue-markdown'
 import CommentDialog from '@/components/common_components/comments/comment_dialog.vue'
 import Comments from '@/components/common_components/comments/current_comment.vue'
 
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
     components: {

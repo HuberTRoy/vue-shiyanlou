@@ -49,7 +49,7 @@ export default {
         }
     },
     watch: {
-        courses_content: function (newContent, oldContent) {
+        courses_content: function (newContent) {
             if (newContent) {
                 let ids = []
                 for (let i of newContent.results) {

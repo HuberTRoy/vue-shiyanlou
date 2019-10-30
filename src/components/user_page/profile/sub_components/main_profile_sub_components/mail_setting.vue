@@ -37,10 +37,6 @@ export default {
     computed: {
         ...mapState({
             mail_settings: state => state.profile.mail_settings
-        //     labreport_invite: state => state.profile.mail_settings.labreport_invite,
-        //     question_invite: state => state.profile.mail_settings.question_invite,
-        //     new_course: state => state.profile.mail_settings.new_course,
-        //     activity: state => state.profile.mail_settings.activity
         }),
         setting_data: function () {
             return {
@@ -66,7 +62,7 @@ export default {
     watch: {
         setting_data: async function () {
             // 这边应该写个提示,但现在没有。
-            let res = await this.change_mail_settings(this.setting_data)
+            await this.change_mail_settings(this.setting_data)
             
         }
     },

@@ -6,12 +6,10 @@
 <script type="text/javascript">
 import Profile from '@/components/user_page/profile/profile.vue'
 
-import { mapState } from 'vuex'
-
 export default {
     components: {
-        Profile,
-    },
+        Profile
+    }
 }
 
 

@@ -3,7 +3,7 @@
         <span class="profile_side_tab_title"
                v-for="(value,key,index) in tab_title"
                :class="[nav_bar==key ? 'profile_side_tab_title_active' : '']"
-               :key="key"
+               :key="index"
                @click="tab_nav_bar(key)"
         >{{ value }}</span>
     </div>    

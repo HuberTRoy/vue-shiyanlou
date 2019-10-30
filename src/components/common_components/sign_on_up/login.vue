@@ -66,14 +66,14 @@ export default {
         })
     },
     watch: {
-        message: function (newMessage, oldMesssage) {
+        message: function (newMessage) {
             if (newMessage) {
                 this.change_warning_message(newMessage)
                 this.change_login_message('')
                 this.change_warning_bar_style_class('alert')
             }
         },
-        sign_on: function (newState, oldState) {
+        sign_on: function (newState) {
             console.log(newState)
             if (newState === true) {
                 this.change_user_info()

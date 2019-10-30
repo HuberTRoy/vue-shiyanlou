@@ -1,8 +1,5 @@
-import qs from 'qs'
 import axios from 'axios'
 import { apiUrl, qiniu, upload } from '@/api/base.js'
-
-import cookies from 'vue-cookies'
 
 export default {
     get_user_info (userArgs) {

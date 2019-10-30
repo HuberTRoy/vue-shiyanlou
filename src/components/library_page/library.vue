@@ -8,8 +8,6 @@
 import MainLibrary from '@/components/library_page/sub_components/main_library.vue'
 import Side from '@/components/library_page/sub_components/side.vue'
 
-import { mapState } from 'vuex'
-
 export default {
     components: {
         MainLibrary,

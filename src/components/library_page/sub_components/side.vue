@@ -32,7 +32,7 @@
                     {{ nav.topic }}
                 </router-link>
                 <router-link class="library_side_category_item bling_a"
-                             v-for="(tag,index) in nav.tags.slice(0, 2)"
+                             v-for="(tag) in nav.tags.slice(0, 2)"
                              :key="tag.name"
                              :to="{ name:'library', query: {'topic': nav.topic, 'tag': tag.name} }"
                    >
@@ -44,7 +44,7 @@
                  :class="[show_sub_header == nav.topic ? 'show_self' : '']"
             >
                 <router-link class="sub_header_extends_a without_default_css_a"
-                             v-for="(tag,index) in nav.tags"
+                             v-for="(tag) in nav.tags"
                              :to="{ name:'library', query: {'topic': nav.topic, 'tag': tag.name} }"
                              :key="tag.name"
                 >
@@ -57,7 +57,7 @@
     </div>
 </template>
 <script type="text/javascript">
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
     data: function () {

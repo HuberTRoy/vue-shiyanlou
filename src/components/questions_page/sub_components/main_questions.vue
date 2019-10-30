@@ -14,8 +14,6 @@
 import Navbar from './main_questions_sub_components/nav_bar.vue'
 import QuestionList from './main_questions_sub_components/question_list.vue'
 
-import { mapActions, mapGetters } from 'vuex'
-
 export default {
     components: {
         Navbar,

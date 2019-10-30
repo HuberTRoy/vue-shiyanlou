@@ -19,7 +19,7 @@ export default {
         })
     },
     watch: {
-        logged: function (n, o) {
+        logged: function (n) {
             if (n) {
                 this.$router.push({name: 'Home'})
             }            

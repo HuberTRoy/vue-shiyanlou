@@ -58,19 +58,19 @@ export default {
         } else {
             return true
         }
-      },
-      show_index_footer: function (state) {
-        if (this.$route.name == 'publish') {
-            return false
-        } else {
-            return true
-        }        
-      },
-      route_name: function () {
-        console.log(this.$route.name)
-        return this.$route.name
       }
-    })
+    }),
+    show_index_footer: function () {
+      if (this.$route.name == 'publish') {
+          return false
+      } else {
+          return true
+      }        
+    },
+    route_name: function () {
+      console.log(this.$route.name)
+      return this.$route.name
+    }
   },
 
   mounted () {

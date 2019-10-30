@@ -1,5 +1,4 @@
 import UserApi from '@/api/user/user.js'
-import cookies from 'vue-cookies'
 
 const state = {
     user_id: 0,
@@ -114,7 +113,7 @@ const actions = {
         context.commit('change_user_id', userId)
     },
 
-    get_and_change_user_learning_record ({state, commit}, userArgs) {
+    get_and_change_user_learning_record ({commit}, userArgs) {
         // userArgs
         // id
         // end_time
@@ -195,12 +194,11 @@ const actions = {
         // })
     },
 
-    change_user_stuff ({state, commit, dispatch}, args) {
+    change_user_stuff ({commit}, args) {
         // args
         // base: nav_title
         let navTitle = args.nav_title
         commit('change_user_stuff_nav', navTitle)
-        // dispatch(state.nav_to_api[navTitle], args)
     },
 
     change_courses_content_userstatus (context, args) {

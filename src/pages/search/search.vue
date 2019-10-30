@@ -19,7 +19,7 @@ export default {
         })
     },
     watch: {
-        '$route': function (newRoute) {
+        '$route': function () {
             document.title = `${this.$route.query.keywords}的搜索结果 - 实验楼`
             this.change_search_result({
                 'type': 'course',

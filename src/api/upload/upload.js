@@ -1,4 +1,3 @@
-import qs from 'qs'
 import axios from 'axios'
 import { apiUrl, qiniu, upload, imgUrl } from '@/api/base.js'
 
@@ -51,14 +50,15 @@ export default {
         })
 
         // 第二步向七牛申请可用上传域名。
-        let upload_domains = await this.get_upload_domain({
+        // let upload_domains = 
+        await this.get_upload_domain({
             ak: keys.data.token.split(':')[0],
             bucket: 'simplecloud'
         })
         // 这里获取的上传域名有很多个，有主域名与备用域名，这里就只用主域名了，
         // 配置在 config/index.js 中做代理。
 
-        upload_domains = upload_domains.data.up.acc.main[0]
+        // upload_domains = upload_domains.data.up.acc.main[0]
 
         // 第三部配置form数据
         let form = new FormData()
