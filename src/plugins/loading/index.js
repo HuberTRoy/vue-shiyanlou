@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 import VueLoader from './loader.vue'
+
 export default {
     install (Vue, options) {
         // Callback functions.
