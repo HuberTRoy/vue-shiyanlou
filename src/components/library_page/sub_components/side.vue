@@ -32,8 +32,7 @@
                     {{ nav.topic }}
                 </router-link>
                 <router-link class="library_side_category_item bling_a"
-                             v-for="(tag,index) in nav.tags"
-                             v-if="index < 2"
+                             v-for="(tag,index) in nav.tags.slice(0, 2)"
                              :key="tag.name"
                              :to="{ name:'library', query: {'topic': nav.topic, 'tag': tag.name} }"
                    >

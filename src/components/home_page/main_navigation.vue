@@ -16,8 +16,7 @@
                                          class="main_course_button course_button">
                                 {{ nav.name }}
                             </router-link>
-                            <router-link v-for=" (sub, s_index) in nav.tags"
-                                         v-if="s_index<2"
+                            <router-link v-for=" (sub, s_index) in nav.tags.slice(0, 2)"
                                          :key="s_index"
                                          :to="{ name: 'courses', query: {category: nav.name, tag: sub.name} }"
                                          class="course_button">

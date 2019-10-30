@@ -9,7 +9,6 @@
             <div class="item_card">
                 <Card class="lou_plus_card"
                       v-for="(data, index) in index_louplus "
-                      v-if="index<4"
                       :key="index"
                       :data="data"
                 >
@@ -30,7 +29,7 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            index_louplus: state => state.home.home_content.index_louplus
+            index_louplus: state => state.home.home_content.index_louplus.slice(0,4)
         })
     },
     components: {
