@@ -8,7 +8,7 @@
 
 :tada: [线上展示 (Github Page)](http://www.cyrbuzz.xyz)
 
-:tada: [项目配套开发教程(收费)，从0到发布](https://www.shiyanlou.com/courses/1547)
+:tada: [项目配套开发教程(收费，邀请码 eee1ZIbn)，从0到发布](https://www.shiyanlou.com/courses/1547)
 
 ## :muscle:技术栈
 	vue2 + vuex + vue-router + axios + webpack + ES6/7 + flex
