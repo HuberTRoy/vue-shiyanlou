@@ -6,7 +6,7 @@
 
 选择实验楼原因也很简单：实验楼的设计个人很喜欢，简单鲜明一目了然，但实际用`CSS`实现起来又不乏一些“高级”用法，动画，过渡，纯`CSS`小箭头等等都可以从实验楼的源码中学习到。前后端分离通过一步步分析API慢慢搭建出整个页面的过程仿佛真的参与其中，抓取API分析HTTP，处理登录逻辑，筛选课程，购买课程，发帖回帖参与讨论等等都可以慢慢从中抽丝剥茧般的熟悉起来。
 
-:tada: [线上展示 (Github Page)](http://www.cyrbuzz.xyz)
+:tada: [线上展示 (Github Page)](http://syl.cyr.buzz)
 
 :tada: [项目配套开发教程(收费)，从0到发布](https://www.shiyanlou.com/courses/1547) 邀请码 eee1ZIbn，有优惠呦~
 
