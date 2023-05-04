@@ -90,14 +90,13 @@
                 </div>
             </div>
     
-            <div class="user-card">
-    
-            </div>
+            <user-card></user-card>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import userCard from './user-card.vue'
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const swiperTimeout = ref<ReturnType<typeof setTimeout>>()
@@ -136,7 +135,7 @@ onUnmounted(() => {
 .category {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 10px 0;
     .menu {
         background: rgba(0,0,0,.5);
         border-radius: 5px;
@@ -276,7 +275,7 @@ onUnmounted(() => {
         display: flex;
         max-width: 577px;
         overflow: hidden;
-        margin-left: 10px;
+        margin: 0 5px;
         border-radius: 5px;
         position: relative;
         &-scroll-inner {
