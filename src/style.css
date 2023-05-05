@@ -9,6 +9,10 @@
   min-height: 100vh;
 }
 
+ul {
+  list-style: none;
+}
+
 .main-width {
   width: 1092px;
   margin: 0 auto;
