@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+#app {
+  background: #fafafa;
+  min-height: 100vh;
+}
+
 .main-width {
   width: 1092px;
   margin: 0 auto;

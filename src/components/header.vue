@@ -1,4 +1,15 @@
 <script setup lang="ts">
+import { useRoute, useRouter } from 'vue-router';
+
+const router = useRouter()
+const route = useRoute()
+
+
+const toCourses = () => {
+  router.push("/courses")
+}
+
+
 </script>
 
 <template>
@@ -23,7 +34,7 @@
       </div>
     </div>
     <div  class="main-subheader">
-      <div class="main-subheader-item">课程</div>
+      <div class="main-subheader-item" :class="[route.name === 'courses' ? 'active' : '']" @click="toCourses">课程</div>
       <div class="main-subheader-item">蓝桥杯训练赛</div>
       <div class="main-subheader-item">实训营</div>
       <div class="main-subheader-item">竞赛</div>
@@ -111,8 +122,16 @@
 
     &-item {
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      height: 100%;
       & + .main-subheader-item {
         margin-left: 20px;
+      }
+
+      &.active {
+        color: #2e7eee;
+        border-bottom: 2px solid #2e7eee;
       }
     }
   }

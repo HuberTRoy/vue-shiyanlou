@@ -1,9 +1,7 @@
 <template>
-    <!-- 改版后的官网剩下的页面基本上一致，只有几个不同的地方，这里我们实现多种样式，最终由接口驱动显示种类 -->
     <div class="courses main-width">
         <div class="courses-title">
-            <img src="@/assets/hot.png" alt="" style="width:200px;">
-
+            <slot name="cover"></slot>
             <div class="courses-title-tab" v-if="props.coursesItems">
                 <span class="tab-item" v-for="tabItem in props.coursesItems" :key="tabItem.tabKey" @click="currentActive = tabItem" :class="[tabItem.tabKey === currentActive?.tabKey ? 'active' : '']">{{ tabItem.tabName }}</span>
             </div>
@@ -72,7 +70,9 @@ onMounted(() => {
 
     &-title {
         display: flex;
-
+        /deep/img {
+            width: 200px;
+        }
         &-tab {
             margin-left: 25px;
             display: flex;

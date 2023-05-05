@@ -1,17 +1,32 @@
 <template>
     <div>
-        <Header></Header>
         <Category></Category>
         <Courses :courses-items="testData">
+            <template #cover>
+                <img src="@/assets/hot.png" alt="">
+            </template>
             <img src="@/assets/ad.png" alt="">
         </Courses>
+        <Courses :courses-items="testData">
+            <template #cover>
+                <img src="@/assets/race.png" alt="">
+            </template>
+            <img src="@/assets/ad.png" alt="">
+        </Courses>
+        <Courses :courses-items="testData">
+            <template #cover>
+                <img src="@/assets/practice.png" alt="">
+            </template>
+            <img src="@/assets/ad.png" alt="">
+        </Courses>
+        <Footer></Footer>
     </div>
 </template>
 
 <script setup lang="ts">
-import Header from './components/header.vue'
 import Category from './components/category.vue'
 import Courses from './components/courses.vue'
+import Footer from './components/footer.vue'
 
 const testData = [
             {
