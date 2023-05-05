@@ -85,7 +85,25 @@
           </div>
         </div>
       </div>
-      <div class="course-detail-right"></div>
+      <div class="course-detail-right">
+        <img class="course-cover" src="@/assets/1.png" />
+        <div class="course-info">
+          <div class="course-info-bootcamp">
+            <p class="price">￥999</p>
+            <div class="bootcamp-info">
+              <span>开通学习会员，立享免费学</span>
+              <a
+                href="https://www.lanqiao.cn/vip?member_type=premium"
+                target="_blank"
+                class="purchase"
+                >去开通</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <button class="purchase-button">立即购买</button>
+      </div>
     </div>
   </div>
 </template>
@@ -322,6 +340,73 @@
           color: #999;
         }
       }
+    }
+  }
+
+  &-right {
+    margin-left: 15px;
+    width: 315px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 500px;
+
+    .course {
+      &-cover {
+        padding: 5px 5px 0;
+        width: 100%;
+      }
+
+      &-info {
+        padding: 14px 14px 5px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+
+        &-bootcamp {
+          display: flex;
+          flex-direction: column;
+          cursor: pointer;
+          position: relative;
+        }
+
+        .price {
+          color: #f66;
+          font-weight: 700;
+          font-size: 24px;
+        }
+
+        .bootcamp-info {
+          display: flex;
+          justify-content: space-between;
+          background: #f9f9f9;
+          padding: 4px 8px;
+          font-size: 12px;
+          margin: 14px 0;
+        }
+      }
+    }
+
+    .purchase-button {
+      background-color: #f66;
+      border-color: #f66;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: #fff;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      text-align: center;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      user-select: none;
+      vertical-align: middle;
+      cursor: pointer;
+      padding: 12px 9px;
+      margin: 0 14px;
     }
   }
 }

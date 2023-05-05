@@ -19,14 +19,12 @@
       </template>
       <img src="@/assets/ad.png" alt="" />
     </Courses>
-    <Footer></Footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import Category from "./components/category.vue";
 import Courses from "./components/courses.vue";
-import Footer from "./components/footer.vue";
 
 const testData = [
   {
