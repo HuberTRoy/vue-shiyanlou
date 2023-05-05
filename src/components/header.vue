@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute, useRouter } from "vue-router";
 
-const router = useRouter()
-const route = useRoute()
-
+const router = useRouter();
+const route = useRoute();
 
 const toCourses = () => {
-  router.push("/courses")
-}
-
-
+  router.push("/courses");
+};
 </script>
 
 <template>
@@ -21,20 +18,23 @@ const toCourses = () => {
         <div class="nav-item">蓝桥杯</div>
         <div class="nav-item">讨论区</div>
         <div class="nav-search">
-          <input type="text" placeholder="搜索 课程/书籍/问答">
+          <input type="text" placeholder="搜索 课程/书籍/问答" />
         </div>
       </div>
-
 
       <div class="main-login">
         <span>登录</span>
-        <div class="main-login-register">
-          注册
-        </div>
+        <div class="main-login-register">注册</div>
       </div>
     </div>
-    <div  class="main-subheader">
-      <div class="main-subheader-item" :class="[route.name === 'courses' ? 'active' : '']" @click="toCourses">课程</div>
+    <div class="main-subheader">
+      <div
+        class="main-subheader-item"
+        :class="[route.name === 'courses' ? 'active' : '']"
+        @click="toCourses"
+      >
+        课程
+      </div>
       <div class="main-subheader-item">蓝桥杯训练赛</div>
       <div class="main-subheader-item">实训营</div>
       <div class="main-subheader-item">竞赛</div>
@@ -57,7 +57,7 @@ const toCourses = () => {
     height: 70px;
     align-items: center;
     color: #fff;
-    
+
     .nav {
       display: flex;
       align-items: center;
@@ -90,7 +90,7 @@ const toCourses = () => {
           height: 34px;
           outline: none;
           padding: 7px 25px 7px 18px;
-          
+
           &::placeholder {
             color: #fff;
           }
@@ -106,15 +106,15 @@ const toCourses = () => {
 
     &-register {
       margin-left: 22px;
-      background: linear-gradient(318deg,#0933d4,#297df3);
+      background: linear-gradient(318deg, #0933d4, #297df3);
       border-radius: 17px;
       padding: 6px 16px;
     }
   }
 
   &-subheader {
-    background: hsla(0,0%,100%,.9);
-    box-shadow: 0 0 10px hsla(0,0%,40%,.102);
+    background: hsla(0, 0%, 100%, 0.9);
+    box-shadow: 0 0 10px hsla(0, 0%, 40%, 0.102);
     height: 50px;
     display: flex;
     align-items: center;
@@ -137,4 +137,3 @@ const toCourses = () => {
   }
 }
 </style>
-
