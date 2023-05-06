@@ -5,26 +5,106 @@
       <span class="filter-title">方向：</span>
 
       <div class="filter-inner">
-        <div class="filter-item active">全部</div>
-        <div class="filter-item">计算机专业课</div>
+        <div
+          class="filter-item"
+          v-for="cate in categoryData"
+          :key="cate.name"
+          :class="[activeFilter.category === cate.name ? 'active' : '']"
+          @click="
+            activeFilter.category = cate.name;
+            activeFilter.tag = cate.tags[0].name;
+          "
+        >
+          {{ cate.name }}
+        </div>
       </div>
     </div>
 
     <div class="filter">
       <span class="filter-title">标签：</span>
+      <div class="filter-inner">
+        <div
+          class="filter-item"
+          :class="[activeFilter.tag === '全部' ? 'active' : '']"
+          @click="activeFilter.tag = '全部'"
+        >
+          全部
+        </div>
+        <div
+          class="filter-item"
+          v-for="cate in curTagsData"
+          :key="cate.name"
+          :class="[activeFilter.tag === cate.name ? 'active' : '']"
+          @click="activeFilter.tag = cate.name"
+        >
+          {{ cate.name }}
+        </div>
+      </div>
     </div>
 
     <div class="filter">
       <span class="filter-title">类型：</span>
+      <div class="filter-inner">
+        <div
+          class="filter-item"
+          v-for="cate in feeTypeCategory"
+          :key="cate"
+          :class="[activeFilter.feeType === cate ? 'active' : '']"
+          @click="activeFilter.feeType = cate"
+        >
+          {{ cate }}
+        </div>
+      </div>
     </div>
 
     <div class="filter">
       <span class="filter-title">难度：</span>
+      <div class="filter-inner">
+        <div
+          class="filter-item"
+          v-for="cate in levelCategory"
+          :key="cate"
+          :class="[activeFilter.level === cate ? 'active' : '']"
+          @click="activeFilter.level = cate"
+        >
+          {{ cate }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { IGetCoursesCategory, coursesCategory } from "@/api/courses";
+import { useCoursesStore } from "@/store/courses";
+import { computed, onMounted, ref } from "vue";
+
+const feeTypeCategory = ["全部", "免费", "会员", "实战营"];
+const levelCategory = ["全部", "初级", "中级", "高级"];
+
+const courseStore = useCoursesStore();
+
+const categoryData = ref<IGetCoursesCategory[]>([]);
+const activeFilter = courseStore.activeFilter;
+
+const curTagsData = computed(() => {
+  return (
+    categoryData.value.find((i) => i.name === activeFilter.category)?.tags || []
+  );
+});
+
+const getCoursesCategory = async () => {
+  const res = await coursesCategory();
+
+  if (res.status === 200) {
+    categoryData.value = res.data;
+  }
+};
+
+onMounted(() => {
+  getCoursesCategory();
+});
+</script>
 
 <style scoped lang="less">
 .category {

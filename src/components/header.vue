@@ -50,7 +50,7 @@ const toCourses = () => {
   flex-direction: column;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 999;
 
   &-header {
     display: flex;

@@ -4,9 +4,11 @@
   box-sizing: border-box;
 }
 
+
 #app {
   background: #fafafa;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: auto;
 }
 
 ul {

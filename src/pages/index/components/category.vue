@@ -3,22 +3,29 @@
     <!-- 左中右 -->
     <div class="main-width category">
       <div class="menu">
-        <div class="menu-item" v-for="i in 8" :key="i">
-          <span class="menu-item-title">Linux 运维：</span>
-          <span class="menu-item-rest"
-            >Linux / CentOS / Ansible / Git / Nginx / SDN</span
-          >
+        <div
+          class="menu-item"
+          v-for="cate in categoryData.slice(0, 8)"
+          :key="cate.name"
+          @mouseenter="curCategory = cate"
+        >
+          <span class="menu-item-title">{{ cate.name }}：</span>
+          <span class="menu-item-rest">{{
+            cate.tags.map((i) => i.name).join(" / ")
+          }}</span>
         </div>
 
         <div class="menu-detail">
-          <div class="menu-detail-title">Linux 运维</div>
+          <div class="menu-detail-title">{{ curCategory?.name }}</div>
 
           <div class="menu-detail-wrapper">
-            <div class="menu-detail-item">Linux</div>
-            <div class="menu-detail-item">CentOS</div>
-            <div class="menu-detail-item">Ansible</div>
-            <div class="menu-detail-item">Git</div>
-            <div class="menu-detail-item" v-for="i in 5" :index="i">Nginx</div>
+            <div
+              class="menu-detail-item"
+              v-for="tag in curCategory?.tags"
+              :key="tag.name"
+            >
+              {{ tag.name }}
+            </div>
           </div>
 
           <div style="flex-grow: 1"></div>
@@ -26,22 +33,24 @@
           <div class="menu-detail-title">一周热门推荐</div>
 
           <div class="menu-detail-course">
-            <div class="course-card" v-for="i in 4" :index="i">
-              <img
-                class="course-card-img"
-                src="https://dn-simplecloud.shiyanlou.com/assets/1681381381507_adb8da12220e6ec49508dca1e9f600a1"
-                alt=""
-              />
+            <div
+              class="course-card"
+              v-for="recommend in curCategory?.recommend_courses"
+              :index="recommend.id"
+            >
+              <img class="course-card-img" :src="recommend.image" alt="" />
 
               <div class="course-card-right">
-                <div class="course-card-title">LAMP 部署及配置</div>
+                <div class="course-card-title">{{ recommend.name }}</div>
 
                 <div class="course-card-wrapper">
-                  <div class="course-card-tag">会员</div>
+                  <div class="course-card-tag">
+                    {{ FEE_TYPE_DICT[recommend.fee_type] }}
+                  </div>
 
-                  <div>中级</div>
+                  <div>{{ LEVEL_DICT[recommend.level] }}</div>
                   <div>·</div>
-                  <div>9999</div>
+                  <div>{{ recommend.students_count }}</div>
                 </div>
               </div>
             </div>
@@ -56,11 +65,8 @@
             transform: `translateX(${adTransform})`,
           }"
         >
-          <div class="ad-item" v-for="i in maxAdCount" :key="i">
-            <img
-              src="https://dn-simplecloud.shiyanlou.com/assets/1681381381507_adb8da12220e6ec49508dca1e9f600a1"
-              alt=""
-            />
+          <div class="ad-item" v-for="i in banner" :key="i.picture_url">
+            <img :src="i.picture_url" alt="" />
           </div>
         </div>
 
@@ -94,7 +100,7 @@
               class="ad-switch-right"
               @click="
                 () => {
-                  if (adScrollIndex + 1 <= 4) {
+                  if (adScrollIndex + 1 <= maxAdCount - 1) {
                     adScrollIndex += 1;
                   } else {
                     adScrollIndex = 0;
@@ -114,30 +120,59 @@
 </template>
 
 <script setup lang="ts">
-import userCard from "./user-card.vue";
 import { computed, onMounted, onUnmounted, ref } from "vue";
+import {
+  IGetIndexCategory,
+  indexCategory,
+  IGetIndexBanner,
+  indexBanner,
+} from "../../../api/home";
+import { LEVEL_DICT, FEE_TYPE_DICT } from "@/const/index";
+import userCard from "./user-card.vue";
 
 const swiperTimeout = ref<ReturnType<typeof setTimeout>>();
 const adScrollIndex = ref(0);
+const categoryData = ref<IGetIndexCategory[]>([]);
+const banner = ref<IGetIndexBanner[]>([]);
+const curCategory = ref<IGetIndexCategory>();
 const maxAdCount = computed(() => {
-  return 5;
+  return banner.value.length;
 });
 
 const adTransform = computed(() => {
   return `${-577 * adScrollIndex.value}px`;
 });
 
+const getCategory = async () => {
+  const res = await indexCategory();
+
+  if (res.status === 200) {
+    categoryData.value = res.data;
+  }
+};
+
+const getBanner = async () => {
+  const res = await indexBanner();
+  if (res.status === 200) {
+    banner.value = res.data;
+  }
+};
+
 onMounted(() => {
+  getCategory();
+  getBanner();
   const sto = () => {
-    if (adScrollIndex.value === 4) {
+    if (!maxAdCount.value) return;
+
+    if (adScrollIndex.value === maxAdCount.value - 1) {
       adScrollIndex.value = 0;
     } else {
       adScrollIndex.value += 1;
     }
 
-    setTimeout(sto, 2000);
+    setTimeout(sto, 3000);
   };
-  swiperTimeout.value = setTimeout(sto, 2000);
+  swiperTimeout.value = setTimeout(sto, 3000);
 });
 
 onUnmounted(() => {
@@ -159,8 +194,8 @@ onUnmounted(() => {
     height: 373px;
     padding: 17px 0 0 10px;
     width: 272px;
-    z-index: 100;
     color: #fff;
+    z-index: 2;
     position: relative;
     &-item {
       height: 42px;
@@ -304,6 +339,12 @@ onUnmounted(() => {
     &-item {
       height: 373px;
       width: 577px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
 
     &-operator {
