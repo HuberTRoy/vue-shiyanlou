@@ -2,24 +2,30 @@
   <div class="course-detail main-width">
     <div class="course-detail-nav">
       <span class="course-detail-nav-item">全部课程</span>
-      <span class="course-detail-nav-item">新手入门</span>
-      <span class="course-detail-nav-item">新手入门222</span>
+      <span class="course-detail-nav-item">{{
+        courseDetail?.tags.join(" ， ")
+      }}</span>
+      <span class="course-detail-nav-item">{{ courseDetail?.name }}</span>
     </div>
     <div class="course-detail-wrapper">
       <div class="course-detail-left">
         <div class="course-detail-info">
-          <div class="course-detail-info-title">新手入门实验楼</div>
+          <div class="course-detail-info-title">{{ courseDetail?.name }}</div>
 
           <div class="course-detail-info-study">
-            <span>9999人学过</span>
-            <span>39999人评价</span>
-            <span>作者：9999</span>
-            <span>难度：初级</span>
-            <span>综合评分：<img src="@/assets/star.svg" alt="" />9.4</span>
+            <span>{{ courseDetail?.students_count }}人学过</span>
+            <span>{{ courseDetail?.comments_count }}人评价</span>
+            <span>作者：{{ courseDetail?.teacher.name }}</span>
+            <span>难度：{{ LEVEL_DICT[courseDetail?.level || 1] }}</span>
+            <span
+              >综合评分：<img src="@/assets/star.svg" alt="" />{{
+                courseDetail?.average_score
+              }}</span
+            >
           </div>
 
           <div class="course-detail-info-desc">
-            本课程为蓝桥云课新手入门指南，我们将带你了解蓝桥云课的常用功能和环境使用方法。课程将通过不同的小例子，让每位学员亲自体验到蓝桥云课线上环境的便捷性和易用性。
+            {{ courseDetail?.description }}
           </div>
         </div>
 
@@ -28,11 +34,13 @@
             <li>你将会学到</li>
           </ul>
           <div class="course-detail-knowledge-points">
-            <div class="point">123123</div>
-            <div class="point">123123</div>
-            <div class="point">123123</div>
-            <div class="point">123123</div>
-            <div class="point">123123</div>
+            <div
+              class="point"
+              v-for="point in courseDetail?.points"
+              :key="point"
+            >
+              {{ point }}
+            </div>
           </div>
         </div>
 
@@ -40,11 +48,11 @@
           <ul>
             <li>课程内容</li>
           </ul>
-          <div class="lab">
+          <div class="lab" v-for="labs in courseLabs" :key="labs.name">
             <div
               class="lab-item"
-              v-for="(courseProcess, index) in [{ type: 'classic' }]"
-              :key="index"
+              v-for="courseProcess in labs.sub_stages[0].labs"
+              :key="courseProcess.name"
             >
               <div class="lab-header">
                 <div class="lab-text">
@@ -54,13 +62,14 @@
                       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAipJREFUSA3tlcFrE0EUxpONNaGQpYdAEXopNHoIBjaGJEKhLRREPVkR9NKTkn+gDQiKF9H2UMhJClXosXgQSqEXqfSWbAiktOSiIAhepAjCYkOaZtPfW51QQjZtQgoFHRi+mbdvvu+9N29Yj+f/uGgV8KqAcrncNOvFRqMRBS8pew945PV6d30+XyaRSGzJeUckn8+HbdveZf9D07T3CB30QK6OBFjch2MErmgqlfriRIzAXT4EMI5j/K68e8VSqbRQqVT2//JmNSEivSHBfggIj2EYvwBL8Toi8uE8R9ci1FpjdtUYp4rQdY8LhUJEZWqa5ksa5Y3s+ZYpFotX1Dc37CgCyQsOZpkDQlAuly+TxRNq/Un2jPFarbZ9mpCrCNE+h2Sefr9Dv+8Io2VZM4LBYPCDYCgUegB8FSH8h8XWbriKEPEjpklb59RB9mnmaiQSORRbOByuktUytqtsbyi/VnS9QL/ff7tarW4T5RrleFiv10fp+wkySysS7ucW9jUCmaP9N5W9FV0zicVi3xCa5ICB0D3Ipoj4YzKZ/KxIEF1B4BkCS8rWDl0zEWcRIotr8Xi8hoAE9O4kia7rY6p0J+2t644i4iwCgtTeBmQ2x1kExNm1XE2mPiyUyE/hog31PnB6KLG8q0Gmw6vKtYHhFXVf5wG+5TJ/9yoGR4BGmeW8lFl4//xPZEE73qRbXrO8jqPzwsXe7eDuhHyPQJ/Sic031i3PP+x/DBPn3QC5lw/kAAAAAElFTkSuQmCC"
                     />
                     <img
-                      v-if="courseProcess.type == 'coursed-challenge'"
+                      v-if="courseProcess.type == 'course_challenge'"
                       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAnNJREFUSA3tlTuIE2EQx7OJmwRXwUIFBV+gguhFo4E8hGijhdjYqnAoeAgenIWFyonNgY0WgmhE8MqrjxMLUVHQbNhERDByGA7sbMIpEhXz9DfLrWQfJruNzfnBMN/M/Oc/O/t9sxsK/V8B3oDixBqGkW+327P41zhjw2xFURbD4fDxdDqt92NX9Buy73Q6RwHPs73kjPmwb5N/BJytiNlJqVTa0e1285CLfQJRstnsMR+kNkixWHwKxXeccz1WNBp9kUqlFsxOKPCSQBP/T0Dr2Bu27GBGDp6d8GjNZvMaqVvDS/kbcJ7K5XK7sO8H43Sh7wgPfKPIRomaRTB6iOsSuNIDOPr5rE4WaHG7cBBcRK0MwPcHSm4MkTMJwbcF9Un2VpHH7C/WarUYwQ/INgkGXeRtQj5WKhUVPU7+M+Ewi8Tj8es4V9fr9dfoffg3l8vlPQLwu+SGgpWnH2m1Wq/gWatp2lXJN4skk8mvXLf92AbtjiFdgLcE4HdBOiV56LPot+QlE4nEF8n3PGye6gBgnekdZXpnhhUCfxr8Q8jzmUym5MRbZ2LzA3xDwhWmd1rX9XO2YJ8BsUKBMebsHu7LXgUE7tmJxQPBGYgK2M+RaVVVHzHBP6rV6qpGo3EQ8kn8MnyTzMYNK8+pBxYRMB/M3XQ0wfYkZBodttAq9i9kLhKJTPFK37H/6xpaxMqkqwnIL1BkHF1A3+T13LXig7TnmXglQNzD/w3iJ+jGku0Fdfl8F3FlBnD8kyJDz4QrfJ5Xs54zyKD3MjsFbpV8MuR3UMb/mX/Pg0GNDewEUnmIQyLsY+h5ChxGv0fkIyqxPLJM1m/AKgV8WA5+twAAAABJRU5ErkJggg=="
                     />
                   </div>
-                  <div class="lab-text-item">123</div>
-
-                  <div class="lab-text-item">4123</div>
+                  <div style="color: #999">
+                    {{ courseProcess.type === "classic" ? "实验" : "挑战" }}
+                  </div>
+                  <div class="lab-text-item">{{ courseProcess.name }}</div>
                 </div>
               </div>
             </div>
@@ -73,11 +82,15 @@
           </ul>
           <div class="course-detail-teacher-info">
             <div class="base">
-              <img src="123" class="avatar" />
+              <img :src="courseDetail?.teacher.avatar_url" class="avatar" />
               <div class="history-wrapper">
                 <span class="name">
-                  xyz
-                  <span class="history">共发表过123门课程</span>
+                  {{ courseDetail?.teacher.name }}
+                  <span class="history"
+                    >共发表过{{
+                      courseDetail?.teacher.published_courses_count
+                    }}门课程</span
+                  >
                 </span>
                 <span class="lookup"> 查看老师的所有课程 > </span>
               </div>
@@ -86,10 +99,10 @@
         </div>
       </div>
       <div class="course-detail-right">
-        <img class="course-cover" src="@/assets/1.png" />
+        <img class="course-cover" :src="courseDetail?.picture_url" />
         <div class="course-info">
           <div class="course-info-bootcamp">
-            <p class="price">￥999</p>
+            <p class="price">￥{{ courseDetail?.price }}</p>
             <div class="bootcamp-info">
               <span>开通学习会员，立享免费学</span>
               <a
@@ -108,7 +121,42 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
+import {
+  IGetSingleCourse,
+  IGetSingleCourseLabs,
+  singleCoursesInfo,
+  singleCoursesLabs,
+} from "@/api/courses";
+import { useRoute } from "vue-router";
+import { LEVEL_DICT } from "@/const";
+
+const route = useRoute();
+const courseDetail = ref<IGetSingleCourse>();
+const courseLabs = ref<IGetSingleCourseLabs[]>();
+
+const getCourseDetail = async () => {
+  const res = await singleCoursesInfo(route.params.id as string);
+
+  if (res.status === 200) {
+    courseDetail.value = res.data;
+  }
+};
+
+const getCourseLabs = async () => {
+  const res = await singleCoursesLabs(route.params.id as string);
+
+  if (res.status === 200) {
+    courseLabs.value = res.data;
+  }
+};
+
+onMounted(() => {
+  getCourseDetail();
+  getCourseLabs();
+});
+</script>
 
 <style scoped lang="less">
 .course-detail {
@@ -276,7 +324,7 @@
           margin: 0 12px;
           padding: 14px 0;
           font-size: 16px;
-          color: #999;
+          color: #666;
         }
       }
     }
