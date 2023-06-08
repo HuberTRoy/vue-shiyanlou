@@ -28,7 +28,7 @@ import Courses from "./components/courses.vue";
 
 const testData = [
   {
-    tabName: "春招急救",
+    tabName: `dsn: ${import.meta.env.SENTRY_DSN}`,
     tabKey: "春招急救",
     tabCourses: [
       {
