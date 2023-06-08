@@ -7,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: 'DEV_SENTRY_DSN'
     env:
       VITE_SENTRY_DSN: ${{ vars.DEV_SENTRY_DSN }}
       NODE_OPTIONS: --max-old-space-size=32768
