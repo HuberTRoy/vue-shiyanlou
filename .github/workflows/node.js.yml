@@ -1,0 +1,26 @@
+name: test
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SENTRY_DSN: ${{ secrets.DEV_SENTRY_DSN }}
+      NODE_OPTIONS: --max-old-space-size=32768
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.4.1
+        with:
+          node-version: 16
+
+      - run: yarn
+
+      - name: Build
+        # Disable CI flag so linter warnings aren't treaded as errors
+        run: CI=false yarn build
