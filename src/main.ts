@@ -5,7 +5,7 @@ import { router } from "./router";
 import { createPinia } from "pinia";
 
 export const dsn = {
-  dsn: import.meta.env.SENTRY_DSN
+  dsn: `dsn:${import.meta.env.SENTRY_DSN}`
 }
 
 const app = createApp(App);
